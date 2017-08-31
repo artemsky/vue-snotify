@@ -25,4 +25,17 @@ Desktop.ini
 
 # Build files
 dist/*
+dist-example
 /src/package-lock.json
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+test/unit/coverage
+test/e2e/reports
+selenium-debug.log
+
+# Editor directories and files
+*.suo
+*.ntvs*
+*.njsproj

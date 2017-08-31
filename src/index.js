@@ -8,7 +8,6 @@ const instance = {
   }
 }
 
-
 // Export all components too
 export {
   instance as Snotify,

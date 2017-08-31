@@ -154,6 +154,11 @@ gulp.task('build', gulp.series(
   'styles:build'
 ));
 
+gulp.task('default', gulp.series(
+  'build',
+  'watch'
+));
+
 
 /**
  * Deletes the specified folderva
