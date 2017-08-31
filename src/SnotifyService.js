@@ -277,13 +277,11 @@ export const SnotifyService = new Vue({
         } else {
           latestToast = mergeDeep(toast, data, {config: {type: type}})
         }
-        this.notifications[this.notifications.findIndex((toast) => toast.id === id)] = latestToast
         this.$emit('toastChanged', latestToast)
-        console.log(latestToast.id, latestToast.title, 'service')
       }
       this.$on(SnotifyAction.mounted, (passedToast) => {
         if (passedToast.id === id) {
-          action.then((data) => {
+          action().then((data) => {
             updateToast(SnotifyType.SUCCESS, data)
           }).catch((data) => {
             updateToast(SnotifyType.ERROR, data)

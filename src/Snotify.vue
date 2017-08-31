@@ -2,7 +2,7 @@
   <div>
     <div class="snotify-backdrop" v-if="backdrop >= 0" :style="{opacity: backdrop}"></div>
     <div v-for="(position, index) in notifications" class="snotify" :class="'snotify-' + index">
-      <toast v-for="toast in position.slice(blockSize_a, blockSize_b)" :toast="toast" :key="toast.id">
+      <toast v-for="toast in position.slice(blockSize_a, blockSize_b)" :toastData="toast" :key="toast.id">
       </toast>
     </div>
   </div>

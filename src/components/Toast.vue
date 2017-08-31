@@ -57,9 +57,10 @@
   import SnotifyAction from '../enums/SnotifyAction'
 
   export default {
-    props: ['toast'],
+    props: ['toastData'],
     data () {
       return {
+        toast: this.toastData,
         opacity: 0,
         interval: null,
         progress: 0,
