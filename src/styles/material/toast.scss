@@ -1,0 +1,211 @@
+$simple-bg: #fff;
+$simple-color: #000;
+$simple-progressBar: #c7c7c7;
+$simple-progressBarPercentage: #4c4c4c;
+
+$success-bg: #4CAF50;
+$success-color: #C8E6C9;
+$success-progressBar: #388E3C;
+$success-progressBarPercentage: #81c784;
+
+$info-bg: #1e88e5;
+$info-color: #e3f2fd;
+$info-progressBar: #1565c0;
+$info-progressBarPercentage: #64b5f6;
+
+$warning-bg: #ff9800;
+$warning-color: #fff3e0;
+$warning-progressBar: #ef6c00;
+$warning-progressBarPercentage: #ffcc80;
+
+$error-bg: #f44336;
+$error-color: #ffebee;
+$error-progressBar: #c62828;
+$error-progressBarPercentage: #ef9a9a;
+
+$async-bg: $info-bg;
+$async-color: $info-color;
+$async-progressBar: $info-progressBar;
+$async-progressBarPercentage: $info-progressBarPercentage;
+
+$confirm-bg: #009688;
+$confirm-color: #e0f2f1;
+$confirm-progressBar: #4db6ac;
+$confirm-progressBarPercentage: #80cbc4;
+
+$prompt-bg: #009688;
+$prompt-color: #e0f2f1;
+
+.snotifyToast {
+  display: block;
+  cursor: pointer;
+  background-color: $simple-bg;
+  max-height: 300px;
+  height: 100%;
+  margin: 5px;
+  opacity: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  pointer-events: auto;
+
+  &__inner {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: 5px 65px 5px 15px;
+    min-height: 78px;
+    font-size: 16px;
+    color: $simple-color;
+  }
+
+  &__progressBar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background-color: $simple-progressBar;
+
+    &__percentage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 10px;
+      background-color: $simple-progressBarPercentage;
+      max-width: 100%;
+    }
+  }
+
+  &__title {
+    font-size: 1.8em;
+    line-height: 1.2em;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+
+  &__body {
+    font-size: 1em;
+  }
+
+}
+
+.snotifyToast-show {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+.snotifyToast-remove {
+  max-height: 0;
+  overflow: hidden;
+  transform: translate(0, 50%);
+  opacity: 0;
+}
+
+/***************
+ ** Modifiers **
+ **************/
+
+.snotify-simple {
+  .snotifyToast__title,
+  .snotifyToast__body {
+    color: $simple-color;
+  }
+}
+
+.snotify-success {
+  background-color: $success-bg;
+  .snotifyToast__progressBar {
+    background-color: $success-progressBar;
+  }
+  .snotifyToast__progressBar__percentage {
+    background-color: $success-progressBarPercentage;
+  }
+  .snotifyToast__body {
+    color: $success-color;
+  }
+}
+
+.snotify-info {
+  background-color: $info-bg;
+  .snotifyToast__progressBar {
+    background-color: $info-progressBar;
+  }
+  .snotifyToast__progressBar__percentage {
+    background-color: $info-progressBarPercentage;
+  }
+  .snotifyToast__body {
+    color: $info-color;
+  }
+
+}
+
+.snotify-warning {
+  background-color: $warning-bg;
+  .snotifyToast__progressBar {
+    background-color: $warning-progressBar;
+  }
+  .snotifyToast__progressBar__percentage {
+    background-color: $warning-progressBarPercentage;
+  }
+  .snotifyToast__body {
+    color: $warning-color;
+  }
+
+
+}
+
+.snotify-error {
+  background-color: $error-bg;
+  .snotifyToast__progressBar {
+    background-color: $error-progressBar;
+  }
+  .snotifyToast__progressBar__percentage {
+    background-color: $error-progressBarPercentage;
+  }
+  .snotifyToast__body {
+    color: $error-color;
+  }
+}
+
+.snotify-async {
+  background-color: $async-bg;
+  .snotifyToast__progressBar {
+    background-color: $async-progressBar;
+  }
+  .snotifyToast__progressBar__percentage {
+    background-color: $async-progressBarPercentage;
+  }
+  .snotifyToast__body {
+    color: $async-color;
+  }
+
+}
+
+.snotify-confirm {
+  background-color: $confirm-bg;
+  .snotifyToast__progressBar {
+    background-color: $confirm-progressBar;
+  }
+  .snotifyToast__progressBar__percentage {
+    background-color: $confirm-progressBarPercentage;
+  }
+  .snotifyToast__body {
+    color: $confirm-color;
+  }
+}
+
+.snotify-prompt {
+  background-color: $prompt-bg;
+  .snotifyToast__inner {
+    padding: 10px 15px;
+  }
+  ng-snotify-prompt {
+    width: 100%;
+  }
+  .snotifyToast__title {
+    margin-bottom: 0;
+  }
+  .snotifyToast__body {
+    color: $prompt-color;
+  }
+}

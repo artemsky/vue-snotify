@@ -1,0 +1,28 @@
+# Node
+node_modules/*
+npm-debug.log
+
+# TypeScript
+src/*.map
+src/*.d.ts
+
+# JetBrains
+.idea
+.project
+.settings
+
+# VS Code
+.vscode/*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+**/.DS_Store
+
+
+# Build files
+dist/*
+/src/package-lock.json

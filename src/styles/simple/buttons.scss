@@ -1,0 +1,41 @@
+.snotifyToast__buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0,0,0,.1);
+  button {
+    position: relative;
+    width: 100%;
+    border-right: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-top: none;
+    border-bottom: none;
+    background: transparent;
+    padding: 8px;
+    text-transform: capitalize;
+    color: #000;
+
+
+    &:hover,
+    &:focus {
+      background: rgba(0,0,0,.1);
+      outline: none;
+    }
+
+    &:active {
+      background: rgba(0,0,0,.15);
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+
+  &--bold {
+    font-weight: 700;
+  }
+}

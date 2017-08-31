@@ -1,0 +1,76 @@
+.snotifyToast__buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0,0,0,.1);
+  button {
+    position: relative;
+    width: 100%;
+    border-right: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-top: none;
+    border-bottom: none;
+    background: transparent;
+    padding: 8px;
+    text-transform: capitalize;
+    color: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, .3);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    &:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+
+    &:hover,
+    &:focus {
+      background: rgba(0,0,0,.1);
+      outline: none;
+    }
+
+    &:active {
+      background: rgba(0,0,0,.15);
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &:first-child {
+      border-left: none;
+    }
+  }
+
+  &--bold {
+    font-weight: 700;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
