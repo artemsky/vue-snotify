@@ -11,43 +11,41 @@
 <script>
   import Toast from './components/Toast'
   import {SnotifyService} from './SnotifyService'
+  import SnotifyPosition from './enums/SnotifyPosition'
   import {sortNotificationsByPositions} from './util'
 
   export default {
     data () {
       return {
         backdrop: -1,
-        positions: {
-          left_top: 'leftTop',
-          left_center: 'leftCenter',
-          left_bottom: 'leftBottom',
-
-          right_top: 'rightTop',
-          right_center: 'rightCenter',
-          right_bottom: 'rightBottom',
-
-          center_top: 'centerTop',
-          center_center: 'centerCenter',
-          center_bottom: 'centerBottom'
-        },
+        positions: SnotifyPosition,
         notifications: {}
+      }
+    },
+    methods: {
+      setOptions(options) {
+        if (options.newOnTop) {
+          this.dockSize_a = -options.maxOnScreen;
+          this.dockSize_b = undefined;
+          this.blockSize_a = -options.maxAtPosition;
+          this.blockSize_b = undefined
+        } else {
+          this.dockSize_a = 0;
+          this.dockSize_b = options.maxOnScreen;
+          this.blockSize_a = 0;
+          this.blockSize_b = options.maxAtPosition
+        }
       }
     },
     components: {
       Toast
     },
     created () {
-      if (SnotifyService.options.newOnTop) {
-        this.dockSize_a = -SnotifyService.options.maxOnScreen
-        this.dockSize_b = undefined
-        this.blockSize_a = -SnotifyService.options.maxAtPosition
-        this.blockSize_b = undefined
-      } else {
-        this.dockSize_a = 0
-        this.dockSize_b = SnotifyService.options.maxOnScreen
-        this.blockSize_a = 0
-        this.blockSize_b = SnotifyService.options.maxAtPosition
-      }
+      this.setOptions(SnotifyService.options);
+
+      SnotifyService.$on('optionsChanged', (options) => {
+        this.setOptions(options);
+      });
 
       SnotifyService.$on('notificationsChanged', (notifications) => {
         this.notifications = sortNotificationsByPositions(notifications.slice(this.dockSize_a, this.dockSize_b))

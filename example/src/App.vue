@@ -213,7 +213,7 @@
           maxOnScreen: this.dockMax,
           maxAtPosition: this.blockMax,
           maxHeight: this.maxHeight
-        })
+        });
       },
       onSuccess () {
         this.setGlobal();

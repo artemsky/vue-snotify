@@ -35,7 +35,7 @@ export const SnotifyService = new Vue({
         maxHeight: 300
       }
     }
-  },
+  }
   methods: {
     /**
      * returns SnotifyToast object
@@ -62,7 +62,7 @@ export const SnotifyService = new Vue({
     setConfig (config, options) {
       this.options = mergeDeep(this.options, options)
       this.config = mergeDeep(this.config, {animation: animationDefaults[this.options.position]}, config)
-      this.$emit('optionsChanged')
+      this.$emit('optionsChanged', this.options)
     },
     /**
      * add SnotifyToast to notifications array
