@@ -48,21 +48,23 @@
       });
 
       SnotifyService.$on('notificationsChanged', (notifications) => {
-        this.notifications = sortNotificationsByPositions(notifications.slice(this.dockSize_a, this.dockSize_b))
-        const list = notifications.filter(toast => toast.config.backdrop >= 0)
+        this.notifications = sortNotificationsByPositions(notifications.slice(this.dockSize_a, this.dockSize_b));
+        const list = notifications.filter(toast => toast.config.backdrop >= 0);
 
         if (list.length) {
-          this.backdrop = 0
-          setTimeout(() => {
-            this.backdrop = list[list.length - 1].config.backdrop
-          }, 10)
+          if (this.backdrop < 0) {
+            this.backdrop = 0
+            setTimeout(() => {
+              this.backdrop = list[list.length - 1].config.backdrop
+            }, 10)
+          }
         } else {
           if (this.backdrop > 0) {
             this.backdrop = 0
+            setTimeout(() => {
+              this.backdrop = -1
+            }, 200)
           }
-          setTimeout(() => {
-            this.backdrop = -1
-          }, 200)
         }
       })
     }

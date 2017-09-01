@@ -35,7 +35,7 @@ export const SnotifyService = new Vue({
         maxHeight: 300
       }
     }
-  }
+  },
   methods: {
     /**
      * returns SnotifyToast object

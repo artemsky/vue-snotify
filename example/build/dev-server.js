@@ -36,6 +36,7 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: false,
   heartbeat: 2000
 });
+
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
@@ -46,15 +47,17 @@ compiler.plugin('compilation', function (compilation) {
 
 //force reload on src changes
 const watcher = chokidar.watch([
-  resolve(__dirname, '../node_modules/vue-snotify'),// index.html is on the root folder
+  resolve(__dirname, '../../node_modules/vue-snotify'),// index.html is on the root folder
 ]);
 watcher.on('ready', function() {
-  console.log('Initial scan complete. Ready for changes on "vue-snotify"');
+  console.log(resolve(__dirname, '../../node_modules/vue-snotify'))
+  console.log(`Initial scan complete. Ready for changes on [${resolve(__dirname, '../../node_modules/vue-snotify')}]`);
 });
 watcher.on('change', function(path) {
   console.log('File [' + path + '] changed !');
-  // reload the client on file changes
-  hotMiddleware.publish({ action: 'reload' });
+  compiler.run(() => {
+    console.log('vue-snotify recompiled')
+  });
 });
 
 
