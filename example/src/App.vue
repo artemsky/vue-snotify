@@ -176,7 +176,7 @@
 </template>
 
 <script>
-  import {SnotifyService, SnotifyPosition} from 'vue-snotify'
+  import {SnotifyService, SnotifyPosition, SnotifyAction} from 'vue-snotify'
 
   export default {
     data() {
@@ -371,6 +371,41 @@
       onClear() {
         SnotifyService.clear();
       }
+    },
+    created () {
+      SnotifyService.$on(SnotifyAction.mounted, (toast) => {
+        console.log('[CALLBACK]: mounted', toast)
+      });
+      SnotifyService.$on(SnotifyAction.destroyed, (toast) => {
+        console.log('[CALLBACK]: destroyed', toast)
+      });
+      SnotifyService.$on(SnotifyAction.beforeDestroy, (toast) => {
+        console.log('[CALLBACK]: beforeDestroy', toast)
+      });
+      SnotifyService.$on(SnotifyAction.onInput, (toast, value) => {
+        console.log('[CALLBACK]: onInput', toast, value)
+      });
+      SnotifyService.$on(SnotifyAction.onClick, (toast) => {
+        console.log('[CALLBACK]: onClick', toast)
+      });
+      SnotifyService.$on(SnotifyAction.onHoverEnter, (toast) => {
+        console.log('[CALLBACK]: onHoverEnter', toast)
+      });
+      SnotifyService.$on(SnotifyAction.onHoverLeave, (toast) => {
+        console.log('[CALLBACK]: onHoverLeave', toast)
+      });
+      SnotifyService.$on(SnotifyAction.beforeShow, (toast) => {
+        console.log('[CALLBACK]: beforeShow', toast)
+      });
+      SnotifyService.$on(SnotifyAction.shown, (toast) => {
+        console.log('[CALLBACK]: shown', toast)
+      });
+      SnotifyService.$on(SnotifyAction.beforeHide, (toast) => {
+        console.log('[CALLBACK]: beforeHide', toast)
+      });
+      SnotifyService.$on(SnotifyAction.hidden, (toast) => {
+        console.log('[CALLBACK]: hidden', toast)
+      })
     }
   }
 </script>

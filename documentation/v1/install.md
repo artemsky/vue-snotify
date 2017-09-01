@@ -1,9 +1,9 @@
 # Installation
 
 ###### NPM 5
-`npm install ng-snotify`
+`npm install vue-snotify`
 ###### yarn
-`yarn add ng-snotify`
+`yarn add vue-snotify`
 
 
 #### Import Plugin
@@ -12,8 +12,6 @@ Use `Snotify`, into your core App.
 import Vue from 'vue';
 import App from './App.vue';
 import {Snotify} from 'vue-snotify'; // 1. Import Snotify
-
-Vue.config.productionTip = false
 
 Vue.use(Snotify) // 2. Use Snotify
 

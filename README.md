@@ -20,7 +20,7 @@ https://artemsky.github.io/vue-snotify/
 - Custom HTML
 - 4.7KB minified and gzipped
 
-###### Looking for an Angular version [here](https://github.com/artemsky/vue-snotify/)
+###### Looking for an Angular version? [Here](https://github.com/artemsky/ng-snotify/)
 
 ![Snotify Gif](https://artemsky.github.io/vue-snotify/static/vue-snotify-demo.gif)
 
