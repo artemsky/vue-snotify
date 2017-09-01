@@ -284,7 +284,6 @@
             }), this.timeout)
           })
         );
-
         SnotifyService.async('This will resolve with error', 'Async toast 2',
           // You should pass Promise of type SnotifyConfig to change some data or do some other actions
           () =>  new Promise((resolve, reject) => {
@@ -317,13 +316,13 @@
             {text: 'No', action: () => console.log('Clicked: No')},
             {
               text: 'Later', action: (toastId) => {
-              console.log('Clicked: Later');
-              SnotifyService.remove(toastId);
+              console.log('Removed with animation');
+              SnotifyService.$emit('remove', toastId);
             }
             },
             {
-              text: 'Close', action: () => {
-              console.log('Clicked: Close');
+              text: 'Remove', action: () => {
+              console.log('Removed instantly');
               SnotifyService.remove(id);
             }, bold: true
             },
@@ -359,7 +358,7 @@
       onHtml() {
         this.setGlobal();
 
-        SnotifyService.html(`<div class="snotifyToast__title" v-if="toast.title"><b>Html Bold Title</b></div>
+        SnotifyService.html(`<div class="snotifyToast__title"><b>Html Bold Title</b></div>
             <div class="snotifyToast__body"><i>Html</i> <b>toast</b> <u>content</u></div> `, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,

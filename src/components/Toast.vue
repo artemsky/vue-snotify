@@ -155,7 +155,12 @@
         if (this.toast.id === toast.id) {
           this.initToast(toast)
         }
-      })
+      });
+      SnotifyService.$on('remove', (id) => {
+        if (this.toast.id === id) {
+          this.opacity = 0
+        }
+      });
       this.initToast()
     },
     mounted: function () {

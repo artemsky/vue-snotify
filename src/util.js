@@ -82,3 +82,57 @@ export function generateAnimationDefaults (defaultAnimationTime) {
     [SnotifyPosition.centerBottom]: {enter: 'fadeInUp', exit: 'fadeOutDown', time: defaultAnimationTime}
   }
 }
+
+
+/**
+ * Toast configuration object
+ * @typedef {Object} SnotifyConfig
+ * @property {number} [timeout] Toast timeout in milliseconds. Disable timeout = 0
+ * @property {boolean} [showProgressBar] Enable/Disable progress bar. Disabled if timeout is 0
+ * @property {SnotifyType} [type] Type of toast, affects toast style.
+ * @property {boolean} [closeOnClick] Should toast close on click?
+ * @property {boolean} [pauseOnHover] Should timeout pause on hover?
+ * @property {SnotifyButton[]} [buttons] Buttons config.
+ * @property {string} [placeholder] Placeholder for Prompt toast
+ * @property {number} [titleMaxLength] Toast title maximum length
+ * @property {number} [bodyMaxLength] Toast body maximum length
+ * @property {number} [titleMaxLength] Toast title maximum length
+ * @property {number} [icon] Activate custom icon. You should provide full tag `<img src="assets/custom-icon.png"/>`
+ * @property {number} [backdrop] Backdrop opacity. Range: `0.0 - 1.0`. Disabled: `-1`
+ * @property {SnotifyAnimate} [animation] Animation config
+ * @property {string} [html] Html string witch overrides toast content
+ * @property {SnotifyPosition} [position] Toasts position on screen
+ */
+
+/**
+ * Buttons configuration object
+ * @typedef {Object} SnotifyButton
+ * @property {string} text Button text
+ * @property {SnotifyButton~action} [action] Action which will be called after button click
+ * @property {boolean} [bold] Should button text be bold.
+ */
+
+/**
+ * This callback is displayed as part of the Requester class.
+ * @callback SnotifyButton~action
+ * @param {number} [id]
+ * @param {string} [text]
+ */
+
+/**
+ * Animations configuration object
+ * @typedef {Object} SnotifyAnimate
+ * @property {('fadeOutLeft' | 'fadeOutRight' | 'fadeOutUp' | 'fadeOutDown' | string)} enter In animation
+ * @property {('fadeOutLeft' | 'fadeOutRight' | 'fadeOutUp' | 'fadeOutDown' | string)} exit Out animation
+ * @property {number} time Animation time in ms
+ */
+
+/**
+ * Options configuration object
+ * @typedef {Object} SnotifyOptions
+ * @property {number} maxOnScreen Max toast items on screen.
+ * @property {number} maxAtPosition Max toast items at single position.
+ * @property {number} maxHeight Toast maximum height in pixels.
+ * @property {boolean} [newOnTop] Should new items come from top or bottom side
+ * @property {SnotifyPosition} [position] Toasts position on screen
+ */

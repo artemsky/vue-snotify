@@ -5,7 +5,7 @@ import SnotifyType from './enums/SnotifyType'
 import {generateAnimationDefaults, generateRandomId, mergeDeep} from './util'
 import {SnotifyToast} from './SnotifyToast.model'
 
-const animationDefaults = generateAnimationDefaults(400)
+const animationDefaults = generateAnimationDefaults(400);
 
 export const SnotifyService = new Vue({
   data () {
@@ -69,7 +69,7 @@ export const SnotifyService = new Vue({
      * @param toast {SnotifyToast}
      */
     add (toast) {
-      toast.config.position = toast.config.position || this.options.position
+      toast.config.position = toast.config.position || this.options.position;
       if (this.options.newOnTop) {
         this.notifications.unshift(toast)
       } else {
@@ -85,7 +85,7 @@ export const SnotifyService = new Vue({
       if (!id) {
         return this.clear()
       } else {
-        this.notifications = this.notifications.filter(toast => toast.id !== id)
+        this.notifications = this.notifications.filter(toast => toast.id !== id);
         return this.emit()
       }
     },
@@ -93,7 +93,7 @@ export const SnotifyService = new Vue({
      * Clear notifications array
      */
     clear () {
-      this.notifications = []
+      this.notifications = [];
       this.emit()
     },
     /**
@@ -102,8 +102,8 @@ export const SnotifyService = new Vue({
      * @return {number}
      */
     create (snotify) {
-      const id = generateRandomId()
-      this.add(new SnotifyToast(id, snotify.title, snotify.body, snotify.config || null))
+      const id = generateRandomId();
+      this.add(new SnotifyToast(id, snotify.title, snotify.body, snotify.config || null));
       return id
     },
 
@@ -205,7 +205,7 @@ export const SnotifyService = new Vue({
             closeOnClick: false
           }
         )
-      })
+      });
       return id
     },
 
@@ -234,7 +234,7 @@ export const SnotifyService = new Vue({
             type: SnotifyType.PROMPT
           }
         )
-      })
+      });
       return id
     },
 
@@ -266,10 +266,10 @@ export const SnotifyService = new Vue({
         timeout: 0,
         showProgressBar: false,
         type: SnotifyType.ASYNC
-      })
+      });
 
-      let toast = this.get(id)
-      let latestToast = Object.assign({}, toast)
+      let toast = this.get(id);
+      let latestToast = Object.assign({}, toast);
 
       const updateToast = (type, data) => {
         if (!data) {
@@ -278,7 +278,7 @@ export const SnotifyService = new Vue({
           latestToast = mergeDeep(toast, data, {config: {type: type}})
         }
         this.$emit('toastChanged', latestToast)
-      }
+      };
       this.$on(SnotifyAction.mounted, (passedToast) => {
         if (passedToast.id === id) {
           action().then((data) => {
@@ -287,9 +287,9 @@ export const SnotifyService = new Vue({
             updateToast(SnotifyType.ERROR, data)
           })
         }
-      })
+      });
 
       return id
     }
   }
-})
+});
