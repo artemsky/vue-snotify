@@ -73,7 +73,7 @@ gulp.task('rollup:umd', function () {
     .pipe(rollup(generateRollupOptions({
       format: 'umd',
       exports: 'named',
-      moduleName: 'ng-snotify',
+      moduleName: 'vue-snotify',
     })))
     .pipe(inject.prepend(banner))
     .pipe(gulp.dest(distFolder));
