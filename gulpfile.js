@@ -18,7 +18,7 @@ const {version, license, author, name} = require('./package.json');
 const banner =
   '/**\n' +
   ' * ' + name + ' v' + version + '\n' +
-  ' * (c) ' + new Date().getFullYear() + ' ' + author.name + ' <' + author.email +  '>\n' +
+  ' * (c) ' + new Date().getFullYear() + ' ' + author.name + ' <' + author.email + '>\n' +
   ' * @license ' + license + '\n' +
   ' */\n';
 
@@ -149,8 +149,8 @@ gulp.task('watch', function () {
 gulp.task('clean', gulp.parallel('clean:dist', 'clean:tmp'));
 
 gulp.task('styles:build', gulp.parallel('styles:build', 'styles:copy', (done) => {
-    console.log('STYLES: compilation finished successfully');
-    done();
+  console.log('STYLES: compilation finished successfully');
+  done();
 }));
 
 gulp.task('build', gulp.series(
@@ -195,7 +195,7 @@ function generateRollupOptions(options) {
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
     external: [
       'vue',
-	    'Vue'
+      'Vue'
     ],
 
     // Format of generated bundle
@@ -213,7 +213,7 @@ function generateRollupOptions(options) {
 
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
     globals: {
-       vue: 'Vue'
+      vue: 'Vue'
     },
 
     plugins: [
@@ -221,13 +221,41 @@ function generateRollupOptions(options) {
         extensions: ['.js', '.vue']
       }),
       replace({
-        'process.env.NODE_ENV': JSON.stringify( 'production' )
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
       cjs(),
       vue({
         compileTemplate: true
       }),
-      babel()
+      babel({
+          babelrc: false,
+          "presets": [
+            [
+              "env",
+              {
+                "modules": false,
+                "targets": {
+                  "browsers": ["last 2 versions", "safari >= 7", "not ie <= 8"]
+                }
+              }
+            ],
+            "stage-2"
+          ],
+          "plugins": [
+            "syntax-class-properties",
+            "transform-class-properties",
+            "transform-object-rest-spread"
+          ],
+          "env": {
+            "test": {
+              "presets": ["env", "stage-2"],
+              "plugins": [
+                "istanbul"
+              ]
+            }
+          }
+        }
+      )
     ]
 
   }, options)

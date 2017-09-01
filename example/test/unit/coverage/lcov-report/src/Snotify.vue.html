@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\Snotify.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> Snotify.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/25</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;div&gt;
+    &lt;div class="snotify-backdrop" v-if="backdrop &gt;= 0" :style="{opacity: backdrop}"&gt;&lt;/div&gt;
+    &lt;div v-for="(position, index) in notifications" class="snotify" :class="'snotify-' + index"&gt;
+      &lt;toast v-for="toast in position.slice(blockSize_a, blockSize_b)" :toastData="toast" :key="toast.id"&gt;
+      &lt;/toast&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+  import Toast from './components/Toast'
+  import {SnotifyService} from './SnotifyService'
+  import SnotifyPosition from './enums/SnotifyPosition'
+  import {sortNotificationsByPositions} from './util'
+&nbsp;
+  export default {
+    data () {
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        backdrop: -1,
+        positions: SnotifyPosition,
+        notifications: {}
+      }
+    },
+    methods: {
+      setOptions(options) {
+<span class="cstat-no" title="statement not covered" >        if (options.newOnTop) {</span>
+<span class="cstat-no" title="statement not covered" >          this.dockSize_a = -options.maxOnScreen</span>;
+<span class="cstat-no" title="statement not covered" >          this.dockSize_b = undefined</span>;
+<span class="cstat-no" title="statement not covered" >          this.blockSize_a = -options.maxAtPosition</span>;
+<span class="cstat-no" title="statement not covered" >          this.blockSize_b = undefine</span>d
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.dockSize_a = 0</span>;
+<span class="cstat-no" title="statement not covered" >          this.dockSize_b = options.maxOnScreen</span>;
+<span class="cstat-no" title="statement not covered" >          this.blockSize_a = 0</span>;
+<span class="cstat-no" title="statement not covered" >          this.blockSize_b = options.maxAtPositio</span>n
+        }
+      }
+    },
+    components: {
+      Toast
+    },
+    created () {
+<span class="cstat-no" title="statement not covered" >      this.setOptions(SnotifyService.options)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      SnotifyService.$on('optionsChanged', (options) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.setOptions(options)</span>;
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      SnotifyService.$on('notificationsChanged', (notifications) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.notifications = sortNotificationsByPositions(notifications.slice(this.dockSize_a, this.dockSize_b))</span>;
+        const list <span class="cstat-no" title="statement not covered" >= notifications.filter(toast =<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >&gt; toast.config.backdrop &gt;= </span></span>0</span>);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (list.length) {</span>
+<span class="cstat-no" title="statement not covered" >          if (this.backdrop &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this.backdrop = </span>0
+<span class="cstat-no" title="statement not covered" >            setTimeout(() =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >              this.backdrop = list[list.length - 1].config.backdro</span>p
+            }, 10)
+          }
+        } else {
+<span class="cstat-no" title="statement not covered" >          if (this.backdrop &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this.backdrop = </span>0
+<span class="cstat-no" title="statement not covered" >            setTimeout(() =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >              this.backdrop = -</span>1
+            }, 200)
+          }
+        }
+      })
+    }
+  }
+&lt;/script&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Sep 01 2017 12:48:52 GMT+0300 (FLE Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

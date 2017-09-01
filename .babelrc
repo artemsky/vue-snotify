@@ -12,9 +12,9 @@
     "stage-2"
   ],
   "plugins": [
+    "transform-runtime",
     "syntax-class-properties",
     "transform-class-properties",
-    "external-helpers",
     "transform-object-rest-spread"
   ],
   "env": {
