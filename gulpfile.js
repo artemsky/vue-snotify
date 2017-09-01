@@ -59,7 +59,7 @@ gulp.task('rollup:fesm', function () {
       format: 'es',
     })))
     .pipe(inject.prepend(banner))
-    .pipe(rename('vue-snotify.esm.js'))
+    .pipe(rename('vue-snotify.js'))
     .pipe(gulp.dest(distFolder));
 });
 
@@ -76,7 +76,6 @@ gulp.task('rollup:umd', function () {
       moduleName: 'ng-snotify',
     })))
     .pipe(inject.prepend(banner))
-    .pipe(rename('vue-snotify.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
 
@@ -124,9 +123,14 @@ gulp.task('styles:copy', function () {
     .pipe(gulp.dest(`${distFolder}/styles`));
 });
 
+/**
+ * 9. Copy manifest, readme, to our dist folder
+ */
+gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme'));
+
 gulp.task('compile', gulp.series(
   'copy:source',
-  gulp.parallel('rollup:fesm', 'rollup:umd', 'copy:manifest', 'copy:readme'),
+  gulp.parallel('rollup:fesm', 'rollup:umd'),
   'clean:tmp',
   (done) => {
     console.log('LIBRARY: compilation finished successfully');
@@ -139,6 +143,7 @@ gulp.task('compile', gulp.series(
  */
 gulp.task('watch', function () {
   gulp.watch(`${srcFolder}/**/*`, gulp.parallel('compile'));
+  gulp.watch(`${srcFolder}/styles/**`, gulp.parallel('styles:build'));
 });
 
 gulp.task('clean', gulp.parallel('clean:dist', 'clean:tmp'));
@@ -151,6 +156,7 @@ gulp.task('styles:build', gulp.parallel('styles:build', 'styles:copy', (done) =>
 gulp.task('build', gulp.series(
   'clean',
   'compile',
+  'copy',
   'styles:build'
 ));
 

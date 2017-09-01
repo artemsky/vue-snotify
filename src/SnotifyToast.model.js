@@ -2,11 +2,6 @@
  * Toast model
  */
 export class SnotifyToast {
-  id;
-  title;
-  body;
-  config;
-
   /**
    *
    * @param {number} id
@@ -15,9 +10,9 @@ export class SnotifyToast {
    * @param {SnotifyConfig} [config]
    */
   constructor (id, title, body, config) {
-    this.id = id
-    this.title = title
-    this.body = body
-    this.config = config
+    this.id = id;
+    this.title = title;
+    this.body = body;
+    this.config = config;
   }
 }

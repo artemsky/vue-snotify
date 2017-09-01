@@ -1,3 +1,5 @@
+const { resolve } = require('path');
+const chokidar = require('chokidar')
 require('./check-versions')();
 
 const config = require('../config');
@@ -41,6 +43,20 @@ compiler.plugin('compilation', function (compilation) {
     cb()
   })
 });
+
+//force reload on src changes
+const watcher = chokidar.watch([
+  resolve(__dirname, '../node_modules/vue-snotify'),// index.html is on the root folder
+]);
+watcher.on('ready', function() {
+  console.log('Initial scan complete. Ready for changes on "vue-snotify"');
+});
+watcher.on('change', function(path) {
+  console.log('File [' + path + '] changed !');
+  // reload the client on file changes
+  hotMiddleware.publish({ action: 'reload' });
+});
+
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {

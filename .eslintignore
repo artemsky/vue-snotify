@@ -1,6 +1,6 @@
 dist/*.js
 dist-example/*.js
 gulpfile.js
-build/*.js
-config/*.js
+example/build/*.js
+example/config/*.js
 

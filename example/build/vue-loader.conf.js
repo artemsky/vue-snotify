@@ -14,7 +14,10 @@ module.exports = {
       {
         ...babel, ...{
           "plugins": [
-            "transform-runtime"
+            "syntax-class-properties",
+            "transform-class-properties",
+            "transform-runtime",
+            "transform-object-rest-spread",
           ]
         }
       }

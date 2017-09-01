@@ -169,11 +169,6 @@
     destroyed () {
       SnotifyService.$emit(SnotifyAction.destroyed, this.toast, this.value)
     },
-    filters: {
-      truncate: function (value, limit = 40, trail = '...') {
-        return value.length > limit ? value.substring(0, limit) + trail : value
-      }
-    },
     components: {
       SnotifyIcon,
       SnotifyPrompt,

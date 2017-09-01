@@ -2,8 +2,8 @@
   "name": "vue-snotify",
   "version": "1.0.0",
   "description": "A Vue.js toast notifications",
-  "main": "vue-snotify.umd.js",
-  "module": "vue-snotify.esm.js",
+  "main": "index.js",
+  "module": "vue-snotify.js",
   "keywords": [
     "vue",
     "vuejs",
