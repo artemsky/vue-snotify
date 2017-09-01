@@ -9,14 +9,17 @@ _________________
 
 #### Material
 `@import "~vue-snotify/styles/material";`
+
 ![Material Theme](https://artemsky.github.io/vue-snotify/static/material.png)
 
 #### Simple
 `@import "~vue-snotify/styles/simple";`
+
 ![Simple Theme](https://artemsky.github.io/vue-snotify/static/simple.png)
 
 #### Dark
 `@import "~vue-snotify/styles/dark";`
+
 ![Dark Theme](https://artemsky.github.io/vue-snotify/static/dark.png)
 
 If you need something else you can easily create your own theme by duplicating one of this, and writing your own styles.
