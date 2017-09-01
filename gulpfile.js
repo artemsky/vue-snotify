@@ -93,7 +93,7 @@ gulp.task('copy:manifest', function () {
  */
 gulp.task('copy:readme', function () {
   console.log(path.join(rootFolder, 'README.MD'));
-  return gulp.src([path.join(rootFolder, 'README.MD')])
+  return gulp.src([path.join(rootFolder, 'README.md')])
     .pipe(gulp.dest(distFolder));
 });
 
