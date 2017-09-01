@@ -1,0 +1,22 @@
+## Overview
+* [Basic Examples](v1/examples.md)
+* [Installation](v1/install.md)
+* [Animations](v1/animations.md)
+* [Styling](v1/styling.md)
+* [Development Guide](v1/development.md)
+
+## API
+* [SnotifyService](v1/api.md#snotifyservice)
+  * [Methods](v1/api.md#methods)
+  * [Callbacks](v1/api.md#callbacks)
+* [Enums](v1/api.md#enums)
+  * [SnotifyAction](v1/api.md#snotifyaction)
+  * [SnotifyPosition](v1/api.md#snotifyposition)
+  * [SnotifyType](v1/api.md#snotifytype)
+* [Interfaces](v1/api.md#interfaces)
+  * [SnotifyConfig](v1/api.md#snotifyconfig)
+  * [SnotifyOptions](v1/api.md#snotifyoptions)
+  * [SnotifyButton](v1/api.md#snotifybutton)
+  * [SnotifyInfo](v1/api.md#snotifyinfo)
+  * [Snotify](v1/api.md#snotify)
+  * [SnotifyAnimate](v1/api.md#snotifyanimate)
