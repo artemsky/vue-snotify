@@ -164,7 +164,7 @@
       </main>
       <footer>
         <div class="footer">
-          <a href="documentation/index.html" target="_blank">Documentation</a> &#9673;
+          <a href="https://github.com/artemsky/vue-snotify/tree/master/documentation#overview" target="_blank">Documentation</a> &#9673;
           <a href="https://github.com/artemsky/vue-snotify" target="_blank">GitHub</a> &#9673;
           <a href="https://www.npmjs.com/package/vue-snotify" target="_blank">NPM</a>
           <h6>MIT &copy; 2017 <a href="https://github.com/artemsky/">artemsky</a></h6>

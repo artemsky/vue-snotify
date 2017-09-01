@@ -29,18 +29,18 @@
 
 ###### All toast methods returns toast `id`
 > Toast notifications with different classNames and icons. `.snotify-${METHOD_NAME}`
-```javascript
-simple((body: string, title?: string, config?: SnotifyConfig): number
+```typescript
+simple(body: string, title?: string, config?: SnotifyConfig): number
 success(body: string, title?: string, config?: SnotifyConfig): number
 info(body: string, title?: string, config?: SnotifyConfig): number
 warning(body: string, title?: string, config?: SnotifyConfig): number
 error(body: string, title?: string, config?: SnotifyConfig): number
 ```
 
-> Toast notification of style - *info* and loading spinner. It changes style depending on success or error `promise|observable`.  
-> You can change displayed data during the loading process using Observable.next()
+> Toast notification of style - *info* and loading spinner. It changes style depending on success or error `promise`.  
+> Example - [here](examples#async)
 
-`async(body: string, title: string, action: Promise<SnotifyConfig> | Observable<SnotifyConfig>): number`
+`async(body: string, title: string, action: () => Promise<SnotifyConfig>): number`
 
 > Toast notification of style - *confirm* with buttons(configurable)
 
@@ -63,34 +63,19 @@ error(body: string, title?: string, config?: SnotifyConfig): number
 `get(id: number): SnotifyToast`
 > Returns `SnotifyToast` object by id
 
-`remove(id?: number, remove?: boolean): void`
-> If `id` passed, emits toast remove animation, if `id` & `remove` passed, removes toast from notifications array instantly. If no param passed it is the same as `clear()`
+`remove(id?: number): void`
+> If `id` passed, removes toast instantly. If no param passed it's the same as `clear()`
+> If you want to remove toast with exit animation use `SnotifyService.$emit('remove', id)`
 
 `clear(): void`
 > Clear notifications array
 
 ### Callbacks
 
-`onInit(toast?: SnotifyToast) => void`
-> Emits on toast has been initialized
+**Subscribe** - `SnotifyService` - `SnotifyService.$on(event, callback)`  
+**Callback** - `callback(toast: SnotifyToast, value: string)`. `value` returned in case of `Prompt` type.
 
-`onHoverEnter(toast?: SnotifyToast) => void`
-> Emits on `mouseenter`
-
-`onHoverLeave(toast?: SnotifyToast) => void`
-> Emits on `mouseleave`
-
-`onClick(toast?: SnotifyToast) => void`
-> Emits on `click`
-
-`beforeDestroy(toast?: SnotifyToast) => void`
-> Emits before toast starts to hide
-
-`afterDestroy(toast?: SnotifyToast) => void`
-> Emits after toast has been hidden
-
-`onInput: (toast?: SnotifyToast, value?: string) => void`
-> Emits at `prompt` input value change
+Callbacks list - [here](#SnotifyAction)
 
 
 ## Enums
@@ -99,42 +84,47 @@ error(body: string, title?: string, config?: SnotifyConfig): number
 
 ### SnotifyAction
 
-```typescript
-  onInit = 3
-  beforeDestroy = 0
-  afterDestroy = 1
-  onClick = 10
-  onHoverEnter = 11
-  onHoverLeave = 12
+```javascript
+    mounted: 'mounted',
+    destroyed: 'destroyed',
+    beforeDestroy: 'beforeDestroy',
+    onInput: 'onInput',
+    onClick: 'onClick',
+    onHoverEnter: 'onHoverEnter',
+    onHoverLeave: 'onHoverLeave',
+    beforeShow: 'beforeShow',
+    shown: 'shown',
+    beforeHide: 'beforeHide',
+    hidden: 'hidden'
 ```
 
 ### SnotifyPosition
 
-```typescript
-  left_top = 'leftTop'
-  left_center = 'leftCenter'
-  left_bottom = 'leftBottom'
-  
-  right_top = 'rightTop'
-  right_center = 'rightCenter'
-  right_bottom = 'rightBottom'
-  
-  center_top = 'centerTop'
-  center_center = 'centerCenter'
-  center_bottom = 'centerBottom'
+```javascript
+  leftTop: 'leftTop',
+  leftCenter: 'leftCenter',
+  leftBottom: 'leftBottom',
+
+  rightTop: 'rightTop',
+  rightCenter: 'rightCenter',
+  rightBottom: 'rightBottom',
+
+  centerTop: 'centerTop',
+  centerCenter: 'centerCenter',
+  centerBottom: 'centerBottom'
 ```
 
 ### SnotifyType
 
-```typescript
-  SIMPLE = 'simple'
-  SUCCESS = 'success'
-  ERROR = 'error'
-  WARNING = 'warning'
-  INFO = 'info'
-  ASYNC = 'async'
-  CONFIRM = 'confirm'
-  PROMPT = 'prompt'
+```javascript
+  SIMPLE: 'simple',
+  SUCCESS: 'success',
+  ERROR: 'error',
+  WARNING: 'warning',
+  INFO: 'info',
+  ASYNC: 'async',
+  CONFIRM: 'confirm',
+  PROMPT: 'prompt'
 ```
 
 
@@ -327,28 +317,28 @@ For example, if your toast position is TOP-RIGHT. It's not very nice, when items
 ###### Defaults
 
 ```typescript
-case SnotifyPosition.left_top:
+case SnotifyPosition.leftTop:
   {enter: 'fadeInLeft', exit: 'fadeOutLeft', time: 400}
-case SnotifyPosition.left_center:
+case SnotifyPosition.leftCenter:
   {enter: 'fadeInLeft', exit: 'fadeOutLeft', time: 400}
-case SnotifyPosition.left_bottom:
+case SnotifyPosition.leftBottom:
   {enter: 'fadeInLeft', exit: 'fadeOutLeft', time: 400}
 
-case SnotifyPosition.right_top:
+case SnotifyPosition.rightTop:
   {enter: 'fadeInRight', exit: 'fadeOutRight', time: 400}
-case SnotifyPosition.right_center:
+case SnotifyPosition.rightCenter:
   {enter: 'fadeInRight', exit: 'fadeOutRight', time: 400}
-case SnotifyPosition.right_bottom:
+case SnotifyPosition.rightBottom:
   {enter: 'fadeInRight', exit: 'fadeOutRight', time: 400}
 
-case SnotifyPosition.center_top:
+case SnotifyPosition.centerTop:
   {enter: 'fadeInDown', exit: 'fadeOutUp', time: 400}
-case SnotifyPosition.center_center:
+case SnotifyPosition.centerCenter:
   {enter: 'fadeIn', exit: 'fadeOut', time: 400}
-case SnotifyPosition.center_bottom:
+case SnotifyPosition.centerBottom:
   {enter: 'fadeInUp', exit: 'fadeOutDown', time: 400}
 ```
 
 
 _____
-All interfaces can be imported from `ng-snotify` 
+##### `{SnotifyPosition, SnotifyAction, SnotifyType, SnotifyService}` can be imported from `vue-snotify` 

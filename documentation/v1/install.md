@@ -6,47 +6,63 @@
 `yarn add ng-snotify`
 
 
-#### Import Module
-Import SnotifyModule, also you can try SnotifyModule.forRoot() if you have build errors  
-And provide SnotifyService
-```typescript
-// Import your library
-import { SnotifyModule, SnotifyService } from 'ng-snotify';
+#### Import Plugin
+Use `Snotify`, into your core App.
+```javascript
+import Vue from 'vue';
+import App from './App.vue';
+import {Snotify} from 'vue-snotify'; // 1. Import Snotify
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    SnotifyModule
-  ],
-  providers: [SnotifyService]
+Vue.config.productionTip = false
+
+Vue.use(Snotify) // 2. Use Snotify
+
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: { App }
 })
-export class AppModule { }
+
 ```
 
 #### Add selector
-Add `ng-snotify` component to you root component
+Add `vue-snotify` component to you root component
 
 ```html
-<ng-snotify></ng-snotify>
+<template>
+<div>
+  <h1>My app!</h1>
+  <vue-snotify></vue-snotify>
+</div>
+</template>
 ```
 #### Dependency injection
-Now you should inject `SnotifyService`
+Now you should import `SnotifyService` into your root component
 
 ```typescript
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'vue-snotify';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  constructor(private snotifyService: SnotifyService) {}
-}
+ export default {
+    methods: {
+      // ...
+    }
+  }
 
 ```
-
 
 #### Import Styles
 
 You can find this information - [here](styling.md)
+
+
+#### Use it
+```javascript
+export default {
+  methods: {
+    onSuccess () {
+      SnotifyService.success('Example body', 'Example title');
+    }
+  }
+}
+```
+

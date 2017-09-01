@@ -22,7 +22,7 @@ https://artemsky.github.io/vue-snotify/
 
 ####### We have Angular version [here](https://github.com/artemsky/vue-snotify/)
 
-![Snotify Gif](https://thumbs.gfycat.com/SoftGranularDalmatian-size_restricted.gif)
+![Snotify Gif](https://artemsky.github.io/vue-snotify/static/vue-snotify-demo.gif)
 
 ## Installation
 
