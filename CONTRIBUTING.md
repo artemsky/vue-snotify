@@ -9,8 +9,6 @@ We accept contributions via Pull Requests on [Github](https://github.com/artemsk
 
 - **Keep the same style** - make sure eslint passing
 
-- **Tip** to pass lint tests easier use the `npm run lint:fix` command
-
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
 - **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
@@ -24,12 +22,10 @@ We accept contributions via Pull Requests on [Github](https://github.com/artemsk
 - **Send coherent history** - Make sure your commits message means something
 
 
-## Running Tests
-
-Launch visual tests and watch the components at the same time
+## Running Demo App
 
 ``` bash
-$ npm run dev
+$ npm run start
 ```
 
 
