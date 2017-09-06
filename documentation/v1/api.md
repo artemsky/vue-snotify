@@ -75,7 +75,7 @@ error(body: string, title?: string, config?: SnotifyConfig): number
 **Subscribe** - `SnotifyService` - `SnotifyService.$on(event, callback)`  
 **Callback** - `callback(toast: SnotifyToast, value: string)`. `value` returned in case of `Prompt` type.
 
-Callbacks list - [here](#SnotifyAction)
+Event list - [here](#snotifyaction)
 
 
 ## Enums
@@ -203,12 +203,12 @@ Callbacks list - [here](#SnotifyAction)
 **Description:** Backdrop opacity. Range - `0.0 - 1.0`. Disabled `-1` 
 
 > #### html?
-**Type:** `string | SafeHtml`
+**Type:** `string`  
 **Default:** null  
 **Description:** Toast inner html. When set, overrides toast content.
 
 > #### position?
-**Type:** [SnotifyPosition](#snotifyposition) 
+**Type:** [SnotifyPosition](#snotifyposition)  
 **Default:** null  
 **Description:** Toasts position on screen.
 
