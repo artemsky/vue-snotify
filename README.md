@@ -19,6 +19,7 @@ https://artemsky.github.io/vue-snotify/
 - Callbacks
 - Custom HTML
 - 4.7KB minified and gzipped
+- Repository contains Typescript typings
 
 ###### Looking for an Angular version? [Here](https://github.com/artemsky/ng-snotify/)
 

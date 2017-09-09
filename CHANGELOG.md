@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.1.0
+  - add Typescript typings
+  
 ### v1.0.1
   - fix ES module name
 
