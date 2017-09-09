@@ -11,7 +11,6 @@
   * [SnotifyConfig](#snotifyconfig)
   * [SnotifyOptions](#snotifyoptions)
   * [SnotifyButton](#snotifybutton)
-  * [SnotifyInfo](#snotifyinfo)
   * [Snotify](#snotify)
   * [SnotifyAnimate](#snotifyanimate)
 
@@ -264,22 +263,6 @@ For example, if your toast position is TOP-RIGHT. It's not very nice, when items
 **Type:** `Boolean`  
 **Default:** Yes - `true` | No - `false`  
 **Description:** Make button text bold or not
-
-***
-
-### SnotifyInfo
-
-> #### action
-**Type:** [SnotifyAction](#snotifyaction)  
-**Description:** Toast lifecycle action (onInit, onDestroy, etc...)
-
-> #### toast
-**Type:** [SnotifyToast](#snotify)  
-**Description:** Toast which triggered this action
-
-> #### value?
-**Type:** `String`  
-**Description:** Prompt toast input value
 
 ***
 
