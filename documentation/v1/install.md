@@ -11,9 +11,10 @@ Use `Snotify`, into your core App.
 ```javascript
 import Vue from 'vue';
 import App from './App.vue';
-import {Snotify} from 'vue-snotify'; // 1. Import Snotify
-
-Vue.use(Snotify) // 2. Use Snotify
+import Snotify from 'vue-snotify'; // 1. Import Snotify
+// 2. Use Snotify
+// You can pass {config, options} as second argument. Look - setConfig in [API - Others] section 
+Vue.use(Snotify) 
 
 new Vue({
   el: '#app',
@@ -34,19 +35,6 @@ Add `vue-snotify` component to you root component
 </div>
 </template>
 ```
-#### Dependency injection
-Now you should import `SnotifyService` into your root component
-
-```typescript
-import {SnotifyService} from 'vue-snotify';
-
- export default {
-    methods: {
-      // ...
-    }
-  }
-
-```
 
 #### Import Styles
 
@@ -58,7 +46,7 @@ You can find this information - [here](styling.md)
 export default {
   methods: {
     onSuccess () {
-      SnotifyService.success('Example body', 'Example title');
+      this.$snotify.success('Example body', 'Example title');
     }
   }
 }

@@ -8,7 +8,7 @@
 ### Toasts
 #### Simple, Success, Info, Warning, Error
 ```javascript
-SnotifyService.success('Example title!', 'Example body content', {
+this.$snotify.success('Example title!', 'Example body content', {
   timeout: 2000,
   showProgressBar: false,
   closeOnClick: false,
@@ -20,7 +20,7 @@ SnotifyService.success('Example title!', 'Example body content', {
 ###### Success
 You should pass Promise of type SnotifyConfig to change some data or do some other actions  
 ```javascript
-SnotifyService.async('This will resolve with success', 'Async toast 1',
+this.$snotify.async('This will resolve with success', 'Async toast 1',
   // You should pass Promise of type SnotifyConfig to change some data or do some other actions
   () => new Promise((resolve) => {
     setTimeout(() => resolve({
@@ -39,7 +39,7 @@ SnotifyService.async('This will resolve with success', 'Async toast 1',
 ###### Error
 
 ```javascript
-SnotifyService.async('This will resolve with error', 'Async toast 2',
+this.$snotify.async('This will resolve with error', 'Async toast 2',
   // You should pass Promise of type SnotifyConfig to change some data or do some other actions
   () =>  new Promise((resolve, reject) => {
     setTimeout(() => reject({
@@ -58,10 +58,10 @@ SnotifyService.async('This will resolve with error', 'Async toast 2',
 
 #### Prompt
 ```javascript
-SnotifyService.prompt('Example body content', 'Example title', {
+this.$snotify.prompt('Example body content', 'Example title', {
   buttons: [
     {text: 'Yes', action: (toastId, text) => console.log('Said Yes: ' + text + ' ID: ' + toastId)},
-    {text: 'No', action: (toastId, text) => { console.log('Said No: ' + text); SnotifyService.remove(toastId); }},
+    {text: 'No', action: (toastId, text) => { console.log('Said No: ' + text); this.$snotify.remove(toastId); }},
   ],
   placeholder: 'This is the example placeholder which you can pass'
 });
@@ -69,7 +69,7 @@ SnotifyService.prompt('Example body content', 'Example title', {
 
 #### Confirm
 ```javascript
-SnotifyService.confirm('Example body content', 'Example title', {
+this.$snotify.confirm('Example body content', 'Example title', {
   timeout: 5000,
   showProgressBar: true,
   closeOnClick: false,
@@ -77,8 +77,8 @@ SnotifyService.confirm('Example body content', 'Example title', {
   buttons: [
     {text: 'Yes', action: () => console.log('Clicked: Yes'), bold: false},
     {text: 'No', action: () => console.log('Clicked: No')},
-    {text: 'Later', action: (toastId) => {console.log('Clicked: Later'); SnotifyService.remove(toastId); } },
-    {text: 'Close', action: (toastId) => {console.log('Clicked: No'); SnotifyService.remove(toastId); }, bold: true},
+    {text: 'Later', action: (toastId) => {console.log('Clicked: Later'); this.$snotify.remove(toastId); } },
+    {text: 'Close', action: (toastId) => {console.log('Clicked: No'); this.$snotify.remove(toastId); }, bold: true},
   ]
 });
 ```
@@ -86,37 +86,37 @@ SnotifyService.confirm('Example body content', 'Example title', {
 ### Callbacks
 
 ```javascript
-SnotifyService.$on(SnotifyAction.mounted, (toast) => {
+this.$snotify.$on(SnotifyAction.mounted, (toast) => {
   console.log('[CALLBACK]: mounted', toast)
 });
-SnotifyService.$on(SnotifyAction.destroyed, (toast) => {
+this.$snotify.$on(SnotifyAction.destroyed, (toast) => {
   console.log('[CALLBACK]: destroyed', toast)
 });
-SnotifyService.$on(SnotifyAction.beforeDestroy, (toast) => {
+this.$snotify.$on(SnotifyAction.beforeDestroy, (toast) => {
   console.log('[CALLBACK]: beforeDestroy', toast)
 });
-SnotifyService.$on(SnotifyAction.onInput, (toast, value) => {
+this.$snotify.$on(SnotifyAction.onInput, (toast, value) => {
   console.log('[CALLBACK]: onInput', toast, value)
 });
-SnotifyService.$on(SnotifyAction.onClick, (toast) => {
+this.$snotify.$on(SnotifyAction.onClick, (toast) => {
   console.log('[CALLBACK]: onClick', toast)
 });
-SnotifyService.$on(SnotifyAction.onHoverEnter, (toast) => {
+this.$snotify.$on(SnotifyAction.onHoverEnter, (toast) => {
   console.log('[CALLBACK]: onHoverEnter', toast)
 });
-SnotifyService.$on(SnotifyAction.onHoverLeave, (toast) => {
+this.$snotify.$on(SnotifyAction.onHoverLeave, (toast) => {
   console.log('[CALLBACK]: onHoverLeave', toast)
 });
-SnotifyService.$on(SnotifyAction.beforeShow, (toast) => {
+this.$snotify.$on(SnotifyAction.beforeShow, (toast) => {
   console.log('[CALLBACK]: beforeShow', toast)
 });
-SnotifyService.$on(SnotifyAction.shown, (toast) => {
+this.$snotify.$on(SnotifyAction.shown, (toast) => {
   console.log('[CALLBACK]: shown', toast)
 });
-SnotifyService.$on(SnotifyAction.beforeHide, (toast) => {
+this.$snotify.$on(SnotifyAction.beforeHide, (toast) => {
   console.log('[CALLBACK]: beforeHide', toast)
 });
-SnotifyService.$on(SnotifyAction.hidden, (toast) => {
+this.$snotify.$on(SnotifyAction.hidden, (toast) => {
   console.log('[CALLBACK]: hidden', toast)
 })
 ```
@@ -124,7 +124,7 @@ SnotifyService.$on(SnotifyAction.hidden, (toast) => {
 ### Custom icon
 Icon viewport is set to 48x48 pixels.
 ```javascript
-SnotifyService.simple('Example body content', 'Example title!', {
+this.$snotify.simple('Example body content', 'Example title!', {
   timeout: 2000,
   showProgressBar: false,
   closeOnClick: true,

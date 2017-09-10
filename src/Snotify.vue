@@ -10,7 +10,7 @@
 
 <script>
   import Toast from './components/Toast'
-  import {SnotifyService} from './SnotifyService'
+  import SnotifyService from './SnotifyService'
   import SnotifyPosition from './enums/SnotifyPosition'
   import {sortNotificationsByPositions} from './util'
 
@@ -53,14 +53,14 @@
 
         if (list.length) {
           if (this.backdrop < 0) {
-            this.backdrop = 0
+            this.backdrop = 0;
             setTimeout(() => {
               this.backdrop = list[list.length - 1].config.backdrop
             }, 10)
           }
         } else {
           if (this.backdrop > 0) {
-            this.backdrop = 0
+            this.backdrop = 0;
             setTimeout(() => {
               this.backdrop = -1
             }, 200)

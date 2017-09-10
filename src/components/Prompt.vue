@@ -23,8 +23,8 @@
     },
     methods: {
       valueChanged (e) {
-        const value = e.target.value.trim()
-        this.length = value.length
+        const value = e.target.value.trim();
+        this.length = value.length;
         this.$emit('valueChanged', value)
       }
     }

@@ -45,7 +45,7 @@ In this example i just copied one of **[animate.css](https://github.com/daneden/
 2. Now i would call my notification like that
 
 ```javascript
-SnotifyService.success(this.body, this.title, {
+this.$snotify.success(this.body, this.title, {
   animation: {
     enter: 'bounceInDown',
     exit: 'bounceInDown',

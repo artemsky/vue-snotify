@@ -71,7 +71,7 @@ error(body: string, title?: string, config?: SnotifyConfig): number
 
 ### Callbacks
 
-**Subscribe** - `SnotifyService` - `SnotifyService.$on(event, callback)`  
+**Subscribe** - `SnotifyService` - `this.$snotify.$on(event, callback)`  
 **Callback** - `callback(toast: SnotifyToast, value: string)`. `value` returned in case of `Prompt` type.
 
 Event list - [here](#snotifyaction)
@@ -324,4 +324,4 @@ case SnotifyPosition.centerBottom:
 
 
 _____
-##### `{SnotifyPosition, SnotifyAction, SnotifyType, SnotifyService}` can be imported from `vue-snotify` 
+##### `{SnotifyPosition, SnotifyAction, SnotifyType}` can be imported from `vue-snotify` 

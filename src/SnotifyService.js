@@ -7,7 +7,7 @@ import {SnotifyToast} from './SnotifyToast.model'
 
 const animationDefaults = generateAnimationDefaults(400);
 
-export const SnotifyService = new Vue({
+export default new Vue({
   data () {
     return {
       notifications: [],

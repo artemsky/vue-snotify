@@ -52,7 +52,7 @@
   import SnotifyIcon from './SnotifyIcon.vue'
   import SnotifyPrompt from './Prompt.vue'
   import SnotifyButton from './Button.vue'
-  import {SnotifyService} from '../SnotifyService'
+  import SnotifyService from '../SnotifyService'
   import SnotifyType from '../enums/SnotifyType'
   import SnotifyAction from '../enums/SnotifyAction'
 
@@ -71,7 +71,7 @@
     },
     methods: {
       promptValueChanged (value) {
-        this.value = value
+        this.value = value;
         SnotifyService.$emit(SnotifyAction.onInput, this.toast, this.value)
       },
       /**
@@ -98,11 +98,11 @@
        * @param currentProgress {Number}
        */
       startTimeout (currentProgress) {
-        const refreshRate = 10
-        this.progress = currentProgress
-        const step = refreshRate / this.toast.config.timeout * 100
+        const refreshRate = 10;
+        this.progress = currentProgress;
+        const step = refreshRate / this.toast.config.timeout * 100;
         this.interval = setInterval(() => {
-          this.progress += step
+          this.progress += step;
           if (this.progress >= 100) {
             this.opacity = 0
           }
@@ -118,27 +118,27 @@
         SnotifyService.$emit(SnotifyAction.shown, this.toast, this.value)
       },
       beforeLeave () {
-        clearInterval(this.interval)
+        clearInterval(this.interval);
         SnotifyService.$emit(SnotifyAction.beforeHide, this.toast, this.value)
       },
       leave (el, done) {
         setTimeout(() => {
-          SnotifyService.$emit(SnotifyAction.hidden, this.toast, this.value)
-          this.maxHeight = 0
+          SnotifyService.$emit(SnotifyAction.hidden, this.toast, this.value);
+          this.maxHeight = 0;
           setTimeout(() => {
-            SnotifyService.remove(this.toast.id)
+            SnotifyService.remove(this.toast.id);
             done()
           }, this.toast.config.animation.time)
         }, this.toast.config.animation.time)
       },
       onClick () {
-        SnotifyService.$emit(SnotifyAction.onClick, this.toast, this.value)
+        SnotifyService.$emit(SnotifyAction.onClick, this.toast, this.value);
         if (this.toast.config.closeOnClick) {
           this.opacity = 0
         }
       },
       onMouseEnter () {
-        SnotifyService.$emit(SnotifyAction.onHoverEnter, this.toast, this.value)
+        SnotifyService.$emit(SnotifyAction.onHoverEnter, this.toast, this.value);
         if (this.toast.config.pauseOnHover) {
           clearInterval(this.interval)
         }

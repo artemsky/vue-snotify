@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App.vue'
-import {Snotify} from 'vue-snotify'
+import Snotify from 'vue-snotify'
 
 Vue.config.productionTip = false
 

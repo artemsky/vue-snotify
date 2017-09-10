@@ -176,8 +176,7 @@
 </template>
 
 <script>
-  import {SnotifyService, SnotifyPosition, SnotifyAction} from 'vue-snotify'
-
+  import {SnotifyPosition, SnotifyAction} from 'vue-snotify';
   export default {
     data() {
       return {
@@ -203,7 +202,7 @@
        * Change global configuration
        */
       setGlobal () {
-        SnotifyService.setConfig({
+        this.$snotify.setConfig({
           bodyMaxLength: this.bodyMaxLength,
           titleMaxLength: this.titleMaxLength,
           backdrop: this.backdrop
@@ -217,7 +216,7 @@
       },
       onSuccess () {
         this.setGlobal();
-        SnotifyService.success(this.body, this.title, {
+        this.$snotify.success(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -227,7 +226,7 @@
 
       onInfo() {
         this.setGlobal();
-        SnotifyService.info(this.body, this.title, {
+        this.$snotify.info(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -236,7 +235,7 @@
       },
       onError() {
         this.setGlobal();
-        SnotifyService.error(this.body, this.title, {
+        this.$snotify.error(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -245,7 +244,7 @@
       },
       onWarning() {
         this.setGlobal();
-        SnotifyService.warning(this.body, this.title, {
+        this.$snotify.warning(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -258,7 +257,7 @@
         // const icon = `assets/custom-svg.svg`;
         const icon = `https://placehold.it/48x100`;
 
-        SnotifyService.simple(this.body, this.title, {
+        this.$snotify.simple(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -269,7 +268,7 @@
 
       onAsyncLoading() {
         this.setGlobal();
-        SnotifyService.async('This will resolve with success', 'Async toast 1',
+        this.$snotify.async('This will resolve with success', 'Async toast 1',
           // You should pass Promise of type SnotifyConfig to change some data or do some other actions
           () => new Promise((resolve) => {
             setTimeout(() => resolve({
@@ -284,7 +283,7 @@
             }), this.timeout)
           })
         );
-        SnotifyService.async('This will resolve with error', 'Async toast 2',
+        this.$snotify.async('This will resolve with error', 'Async toast 2',
           // You should pass Promise of type SnotifyConfig to change some data or do some other actions
           () =>  new Promise((resolve, reject) => {
             setTimeout(() => reject({
@@ -306,7 +305,7 @@
         /*
         Here we pass an buttons array, which contains of 2 element of type SnotifyButton
          */
-        const id = SnotifyService.confirm(this.body, this.title, {
+        const id = this.$snotify.confirm(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -317,13 +316,13 @@
             {
               text: 'Later', action: (toastId) => {
               console.log('Removed with animation');
-              SnotifyService.$emit('remove', toastId);
+              this.$snotify.$emit('remove', toastId);
             }
             },
             {
               text: 'Remove', action: () => {
               console.log('Removed instantly');
-              SnotifyService.remove(id);
+              this.$snotify.remove(id);
             }, bold: true
             },
           ]
@@ -337,7 +336,7 @@
          At the action of the first button we can get what user entered into input field.
          At the second we can't get it. But we can remove this toast
          */
-        const id = SnotifyService.prompt(this.body, this.title, {
+        const id = this.$snotify.prompt(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
@@ -347,7 +346,7 @@
             {
               text: 'No', action: (toastId, text) => {
               console.log('Said No: ' + text);
-              SnotifyService.remove(id);
+              this.$snotify.remove(id);
             }
             },
           ],
@@ -358,7 +357,7 @@
       onHtml() {
         this.setGlobal();
 
-        SnotifyService.html(`<div class="snotifyToast__title"><b>Html Bold Title</b></div>
+        this.$snotify.html(`<div class="snotifyToast__title"><b>Html Bold Title</b></div>
             <div class="snotifyToast__body"><i>Html</i> <b>toast</b> <u>content</u></div> `, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
@@ -369,41 +368,42 @@
 
 
       onClear() {
-        SnotifyService.clear();
+        this.$snotify.clear();
       }
     },
     created () {
-      SnotifyService.$on(SnotifyAction.mounted, (toast) => {
+      console.log(this)
+      this.$snotify.$on(SnotifyAction.mounted, (toast) => {
         console.log('[CALLBACK]: mounted', toast)
       });
-      SnotifyService.$on(SnotifyAction.destroyed, (toast) => {
+      this.$snotify.$on(SnotifyAction.destroyed, (toast) => {
         console.log('[CALLBACK]: destroyed', toast)
       });
-      SnotifyService.$on(SnotifyAction.beforeDestroy, (toast) => {
+      this.$snotify.$on(SnotifyAction.beforeDestroy, (toast) => {
         console.log('[CALLBACK]: beforeDestroy', toast)
       });
-      SnotifyService.$on(SnotifyAction.onInput, (toast, value) => {
+      this.$snotify.$on(SnotifyAction.onInput, (toast, value) => {
         console.log('[CALLBACK]: onInput', toast, value)
       });
-      SnotifyService.$on(SnotifyAction.onClick, (toast) => {
+      this.$snotify.$on(SnotifyAction.onClick, (toast) => {
         console.log('[CALLBACK]: onClick', toast)
       });
-      SnotifyService.$on(SnotifyAction.onHoverEnter, (toast) => {
+      this.$snotify.$on(SnotifyAction.onHoverEnter, (toast) => {
         console.log('[CALLBACK]: onHoverEnter', toast)
       });
-      SnotifyService.$on(SnotifyAction.onHoverLeave, (toast) => {
+      this.$snotify.$on(SnotifyAction.onHoverLeave, (toast) => {
         console.log('[CALLBACK]: onHoverLeave', toast)
       });
-      SnotifyService.$on(SnotifyAction.beforeShow, (toast) => {
+      this.$snotify.$on(SnotifyAction.beforeShow, (toast) => {
         console.log('[CALLBACK]: beforeShow', toast)
       });
-      SnotifyService.$on(SnotifyAction.shown, (toast) => {
+      this.$snotify.$on(SnotifyAction.shown, (toast) => {
         console.log('[CALLBACK]: shown', toast)
       });
-      SnotifyService.$on(SnotifyAction.beforeHide, (toast) => {
+      this.$snotify.$on(SnotifyAction.beforeHide, (toast) => {
         console.log('[CALLBACK]: beforeHide', toast)
       });
-      SnotifyService.$on(SnotifyAction.hidden, (toast) => {
+      this.$snotify.$on(SnotifyAction.hidden, (toast) => {
         console.log('[CALLBACK]: hidden', toast)
       })
     }
