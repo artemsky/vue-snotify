@@ -3,6 +3,7 @@
 * [Toasts](#toasts)
 * [Callbacks](#callbacks)
 * [Custom icon](#custom-icon)
+* [Typescript app example](https://github.com/artemsky/vue-snotify-typescript-example)
 
 ### Toasts
 #### Simple, Success, Info, Warning, Error
