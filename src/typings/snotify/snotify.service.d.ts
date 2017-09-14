@@ -1,19 +1,19 @@
-import Vue  from 'vue';
 import { SnotifyToast } from './toast/snotify-toast.model';
 import { SnotifyOptions } from './interfaces/SnotifyOptions.interface';
 import { SnotifyConfig } from './interfaces/SnotifyConfig.interface';
+import { SnotifyAction } from './enum/SnotifyAction.enum';
 /**
  * SnotifyService - create, remove, config toasts
  */
-export declare class SnotifyService extends Vue {
-  notifications: SnotifyToast[];
-  readonly config: SnotifyConfig;
-  readonly options: SnotifyOptions;
+export declare class SnotifyService {
+  static notifications: SnotifyToast[];
+  static readonly config: SnotifyConfig;
+  static readonly options: SnotifyOptions;
   static get(id: number): SnotifyToast;
   static getAll(id: number): SnotifyToast[];
-  static emit(): void;
+  private static emit(): void;
   static setConfig(config: SnotifyConfig, options?: SnotifyOptions): void;
-  static add(toast: SnotifyToast);
+  private static add(toast: SnotifyToast);
   static remove(id?: number): void;
   static clear(): void;
   private static create(snotify: SnotifyToast): number;
@@ -80,7 +80,7 @@ export declare class SnotifyService extends Vue {
    * @param action {Promise<SnotifyConfig> | Observable<SnotifyConfig>}
    * @return {number}
    */
-  static async(body: string, title: string, action: () => Promise<SnotifyConfig>): number;
+  static async(body: string, title: string, action: () => Promise<{body: string, title?: string, config?: SnotifyConfig}>): number;
   /**
    * Creates empty toast with html string inside
    * @param {string | SafeHtml} html
@@ -88,4 +88,6 @@ export declare class SnotifyService extends Vue {
    * @returns {number}
    */
   static html(html: string, config?: SnotifyConfig): number;
+  static $on(action: SnotifyAction | string, callback: (toast: SnotifyToast, value?: string) => void)
+  static $emit(action: 'remove', id: number)
 }
