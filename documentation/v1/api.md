@@ -39,7 +39,7 @@ error(body: string, title?: string, config?: SnotifyConfig): number
 > Toast notification of style - *info* and loading spinner. It changes style depending on success or error `promise`.  
 > Example - [here](examples#async)
 
-`async(body: string, title: string, action: () => Promise<SnotifyConfig>): number`
+`async(body: string, title: string, action: () => Promise<{body: string, title?: string, config?: SnotifyConfig}>): number`
 
 > Toast notification of style - *confirm* with buttons(configurable)
 
