@@ -1,7 +1,5 @@
-import { SnotifyButton } from './SnotifyButton.interface';
-import { SnotifyAnimate } from './SnotifyAnimate.interface';
-import { SnotifyType } from '../enum/SnotifyType.enum';
-import { SnotifyPosition } from '../enum/SnotifyPosition.enum';
+import { SnotifyButton, SnotifyAnimate} from './';
+import { SnotifyType, SnotifyPosition } from '../enum';
 export interface SnotifyConfig {
     /**
      * Toast timeout in milliseconds.

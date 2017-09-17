@@ -59,7 +59,7 @@ gulp.task('rollup:fesm', function () {
       format: 'es',
     })))
     .pipe(inject.prepend(banner))
-    .pipe(rename('vue-snotify.js'))
+    .pipe(rename('vue-snotify.esm.js'))
     .pipe(gulp.dest(distFolder));
 });
 
@@ -73,15 +73,34 @@ gulp.task('rollup:umd', function () {
     .pipe(rollup(generateRollupOptions({
       format: 'umd',
       exports: 'named',
-      moduleName: 'vue-snotify',
+      name: 'vue-snotify',
     })))
     .pipe(inject.prepend(banner))
+    .pipe(rename('vue-snotify.js'))
+    .pipe(gulp.dest(distFolder));
+});
+
+/**
+ * 5. Run rollup inside the /build folder to generate our UMD module and place the
+ *    generated file into the /dist folder
+ */
+gulp.task('rollup:cjs', function () {
+  return gulp.src(`${tmpFolder}/**/*.js`)
+  // transform the files here.
+    .pipe(rollup(generateRollupOptions({
+      format: 'cjs',
+      exports: 'named',
+      name: 'vue-snotify',
+    })))
+    .pipe(inject.prepend(banner))
+    .pipe(rename('vue-snotify.common.js'))
     .pipe(gulp.dest(distFolder));
 });
 
 
+
 /**
- * 5. Copy package.json from /src to /dist
+ * 6. Copy package.json from /src to /dist
  */
 gulp.task('copy:manifest', function () {
   return gulp.src([`${srcFolder}/package.json`])
@@ -89,7 +108,7 @@ gulp.task('copy:manifest', function () {
 });
 
 /**
- * 6. Copy README.md from / to /dist
+ * 7. Copy README.md from / to /dist
  */
 gulp.task('copy:readme', function () {
   return gulp.src([path.join(rootFolder, 'README.md')])
@@ -97,14 +116,14 @@ gulp.task('copy:readme', function () {
 });
 
 /**
- * 7. Delete /.tmp folder
+ * 8. Delete /.tmp folder
  */
 gulp.task('clean:tmp', function () {
   return deleteFolders([tmpFolder]);
 });
 
 /**
- * 8. Compile styles into separate bundle
+ * 9. Compile styles into separate bundle
  */
 gulp.task('styles:build', function () {
   return gulp.src([`${srcFolder}/styles/*.scss`])
@@ -116,7 +135,7 @@ gulp.task('styles:build', function () {
 });
 
 /**
- * 9. Copy styles sources to our dist folder
+ * 10. Copy styles sources to our dist folder
  */
 gulp.task('styles:copy', function () {
   return gulp.src([`${srcFolder}/styles/**`])
@@ -124,13 +143,21 @@ gulp.task('styles:copy', function () {
 });
 
 /**
- * 9. Copy manifest, readme, to our dist folder
+ * 11. Copy typings
  */
-gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme'));
+gulp.task('copy:typings', function () {
+  return gulp.src([`${srcFolder}/typings/**`])
+    .pipe(gulp.dest(`${distFolder}/types`));
+});
+
+/**
+ * 12. Copy manifest, readme, to our dist folder
+ */
+gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme', 'copy:typings'));
 
 gulp.task('compile', gulp.series(
   'copy:source',
-  gulp.parallel('rollup:fesm', 'rollup:umd'),
+  gulp.parallel('rollup:fesm', 'rollup:umd', 'rollup:cjs'),
   'clean:tmp',
   (done) => {
     console.log('LIBRARY: compilation finished successfully');
@@ -181,9 +208,10 @@ function deleteFolders(folders) {
  */
 function generateRollupOptions(options) {
   return Object.assign({
+    strict: true,
     // Bundle's entry point
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-    entry: `${tmpFolder}/index.js`,
+    input: `${tmpFolder}/index.js`,
 
     // Allow mixing of hypothetical and actual files. "Actual" files can be files
     // accessed by Rollup or produced by plugins further down the chain.

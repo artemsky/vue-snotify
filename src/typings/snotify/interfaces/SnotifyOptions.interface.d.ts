@@ -1,4 +1,4 @@
-import { SnotifyPosition } from '../enum/SnotifyPosition.enum';
+import { SnotifyPosition } from '../enum';
 /**
  * Global configuration object
  */

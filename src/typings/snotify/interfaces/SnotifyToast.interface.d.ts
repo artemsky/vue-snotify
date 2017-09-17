@@ -1,8 +1,8 @@
-import { SnotifyConfig } from '../interfaces/SnotifyConfig.interface';
+import { SnotifyConfig } from './';
 /**
  * Toast main model
  */
-export declare class SnotifyToast {
+export interface SnotifyToast {
     id: number;
     title: string;
     body: string;

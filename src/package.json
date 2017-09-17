@@ -1,10 +1,18 @@
 {
   "name": "vue-snotify",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "description": "A Vue.js toast notifications",
-  "main": "index.js",
-  "module": "vue-snotify.js",
-  "typings": "ng-snotify.d.ts",
+  "main": "vue-snotify.common.js",
+  "module": "vue-snotify.esm.js",
+  "unpkg": "vue-snotify.js",
+  "typings": "types/index.d.ts",
+  "files": [
+    "styles",
+    "types/*.d.ts",
+    "index.js",
+    "vue-snotify.js",
+    "README.md"
+  ],
   "keywords": [
     "vue",
     "vuejs",
@@ -44,7 +52,7 @@
     "url": "https://artemsky.github.io/vue-snotify/issues"
   },
   "peerDependencies": {
-    "vue": "^2.3.0"
+    "vue": "^2.4.2"
   },
   "engines": {
     "node": ">= 8.0.0",
