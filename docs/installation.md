@@ -5,7 +5,7 @@
 [https://unpkg.com/vue-snotify@latest](https://unpkg.com/vue-snotify@latest)
 
 <!--email_off-->
-[Unpkg.com](https://unpkg.com) provides npm-based CDN links. The above link will always point to the latest release on npm. You can also use a specific version/tag via URLs like `https://unpkg.com/vue-router@2.0.0/dist/vue-router.js`.
+[Unpkg.com](https://unpkg.com) provides npm-based CDN links. The above link will always point to the latest release on npm. You can also use a specific version/tag via URLs like `https://unpkg.com/vue-snotify@2.0.1/vue-snotify.min.js`.
 <!--/email_off-->
 
 Include `vue-snotify` after Vue and it will install itself automatically:
@@ -22,7 +22,7 @@ Include `vue-snotify` after Vue and it will install itself automatically:
 ###### YARN
 `yarn add vue-snotify`
 
-When used with a module system, you must explicitly install the router via `Vue.use()`:
+When used with a module system, you must explicitly install the vue-snotify via `Vue.use()`:
 
 #### Import Plugin 
 ###### You don't need to do this step when using global script tags.

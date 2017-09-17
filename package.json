@@ -1,11 +1,11 @@
 {
   "name": "vue-snotify",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Vue.js toast notifications",
   "scripts": {
     "prestart": "npm run link:src",
     "start": "cross-env NODE_ENV=development npm run link:src && npm run example:dev",
-    "build": "npm run lib:build && npm run link:dist && npm run example:build && docs:deploy",
+    "build": "npm run lib:build && npm run link:dist && npm run example:build",
     "test": "npm run example:unit",
     "docs": "cd documentation && gitbook install && gitbook serve",
     "docs:build": "gitbook build ./documentation ./demo/documentation",
