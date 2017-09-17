@@ -4,7 +4,7 @@
   "description": "A Vue.js toast notifications",
   "scripts": {
     "prestart": "npm run link:src",
-    "start": "cross-env NODE_ENV=development npm run example:dev",
+    "start": "cross-env NODE_ENV=development npm run link:src && npm run example:dev",
     "build": "npm run lib:build && npm run link:dist && npm run example:build && docs:deploy",
     "test": "npm run example:unit",
     "docs": "cd documentation && gitbook install && gitbook serve",
