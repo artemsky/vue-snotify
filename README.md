@@ -8,18 +8,15 @@
 ## Example
 https://artemsky.github.io/vue-snotify/
 
-
 ## Features
 
-- 9 types of toast notifications (async, confirm, prompt and more...)
-- Ability to create toasts in different positions at the same time
-- Many config options (icons, backdrop, timeout, position and much more)
-- Custom fully controlled styling including animations
+- 9 types of toast notifications (async, confirm, prompt, html and more...)
+- Many config options (icons, backdrop, timeout, position and much more...)
 - Repository includes 3 different styles. So you can use on of them, or create your own.
 - Callbacks
-- Custom HTML
-- 4.7KB minified and gzipped
-- Repository contains Typescript typings
+- 5KB minified and gzipped
+- Typescript definitions
+- ESM, CommonJS, UMD versions
 
 ###### Looking for an Angular version? [Here](https://github.com/artemsky/ng-snotify/)
 
@@ -33,11 +30,26 @@ https://artemsky.github.io/vue-snotify/
 ###### yarn
 `yarn add vue-snotify`
 
+[see detailed instruction](https://github.com/artemsky/vue-snotify/tree/master/documentation/v1/install.md#importplugin)
+
 ## Documentation and Examples
 
 Documentation - [here](https://github.com/artemsky/vue-snotify/tree/master/documentation#overview)  
 Example application source - [here](https://github.com/artemsky/vue-snotify/tree/master/example/src)   
 Change Log - [here](https://github.com/artemsky/vue-snotify/blob/master/CHANGELOG.md)
+
+#### CDN
+  - JS
+    - [unpkg.com](unpkg.com/vue-snotify) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/vue-snotify.js)
+  - CSS
+    - material [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/material.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/material.css)
+    - simple [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/simple.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/simple.css)
+    - dark [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/dark.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/dark.css)
+  - SCSS
+    - material [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/material.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/material.css)
+    - simple [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/simple.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/simple.css)
+    - dark [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/dark.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/dark.css)
+
 
 ## License
 

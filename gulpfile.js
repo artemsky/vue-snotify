@@ -12,7 +12,8 @@ const gulp = require('gulp'),
   babel = require('rollup-plugin-babel'),
   cjs = require('rollup-plugin-commonjs'),
   node = require('rollup-plugin-node-resolve'),
-  inject = require('gulp-inject-string');
+  inject = require('gulp-inject-string'),
+  uglify = require('rollup-plugin-uglify');
 
 const {version, license, author, name} = require('./package.json');
 const banner =
@@ -68,20 +69,43 @@ gulp.task('rollup:fesm', function () {
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd', function () {
+  const config = generateRollupOptions({
+    format: 'umd',
+    exports: 'named',
+    name: 'vue-snotify',
+  });
+
   return gulp.src(`${tmpFolder}/**/*.js`)
   // transform the files here.
-    .pipe(rollup(generateRollupOptions({
-      format: 'umd',
-      exports: 'named',
-      name: 'vue-snotify',
-    })))
+
+    .pipe(rollup(config))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.js'))
     .pipe(gulp.dest(distFolder));
 });
 
 /**
- * 5. Run rollup inside the /build folder to generate our UMD module and place the
+ * 4. Run rollup inside the /build folder to generate our UMD module and place the
+ *    generated file into the /dist folder
+ */
+gulp.task('rollup:umd:min', function () {
+  const config = generateRollupOptions({
+    format: 'umd',
+    exports: 'named',
+    name: 'vue-snotify',
+  });
+  config.plugins.push(uglify());
+  return gulp.src(`${tmpFolder}/**/*.js`)
+  // transform the files here.
+
+    .pipe(rollup(config))
+    .pipe(inject.prepend(banner))
+    .pipe(rename('vue-snotify.min.js'))
+    .pipe(gulp.dest(distFolder));
+});
+
+/**
+ * 5. Run rollup inside the /build folder to generate our CommonJS module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:cjs', function () {
@@ -157,7 +181,7 @@ gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme', 'copy:typings'))
 
 gulp.task('compile', gulp.series(
   'copy:source',
-  gulp.parallel('rollup:fesm', 'rollup:umd', 'rollup:cjs'),
+  gulp.parallel('rollup:fesm', 'rollup:umd', 'rollup:cjs', 'rollup:umd:min'),
   'clean:tmp',
   (done) => {
     console.log('LIBRARY: compilation finished successfully');
@@ -228,11 +252,11 @@ function generateRollupOptions(options) {
 
     // Format of generated bundle
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
-    format: 'umd',
+    // format: 'umd',
 
     // Export mode to use
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
-    exports: 'named',
+    // exports: 'named',
 
     // The name to use for the module for UMD/IIFE bundles
     // (required for bundles with exports)
@@ -272,7 +296,8 @@ function generateRollupOptions(options) {
           "plugins": [
             "syntax-class-properties",
             "transform-class-properties",
-            "transform-object-rest-spread"
+            "transform-object-rest-spread",
+            "external-helpers"
           ],
           "env": {
             "test": {

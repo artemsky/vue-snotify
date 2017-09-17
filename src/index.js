@@ -11,6 +11,11 @@ function install (Vue, options = {}) {
   Vue.prototype.$snotify = SnotifyService;
 }
 
+//auto install
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(install);
+}
+
 
 export {
   install as default,
