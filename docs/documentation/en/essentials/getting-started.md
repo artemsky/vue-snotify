@@ -1,3 +1,5 @@
+# Getting Started
+
 # vue-snotify
 
 [![Build Status](https://travis-ci.org/artemsky/vue-snotify.svg?branch=master)](https://travis-ci.org/artemsky/vue-snotify)
@@ -30,11 +32,11 @@ https://artemsky.github.io/vue-snotify/
 ###### yarn
 `yarn add vue-snotify`
 
-[see detailed instruction](https://artemsky.github.io/vue-snotify/documentation/installation.html)
+[see detailed instruction](https://github.com/artemsky/vue-snotify/tree/master/documentation/v1/install.md#importplugin)
 
 ## Documentation and Examples
 
-Documentation - [here](https://artemsky.github.io/vue-snotify/documentation/index.html)  
+Documentation - [here](https://github.com/artemsky/vue-snotify/tree/master/documentation#overview)  
 Example application source - [here](https://github.com/artemsky/vue-snotify/tree/master/example/src)   
 Change Log - [here](https://github.com/artemsky/vue-snotify/blob/master/CHANGELOG.md)
 
@@ -54,3 +56,4 @@ Change Log - [here](https://github.com/artemsky/vue-snotify/blob/master/CHANGELO
 ## License
 
 MIT © [artemsky](mailto:mr.artemsky@gmail.com)
+

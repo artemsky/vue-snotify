@@ -1,5 +1,6 @@
 # Node
 node_modules/*
+documentation/node_modules
 npm-debug.log
 
 # TypeScript
@@ -27,6 +28,7 @@ Desktop.ini
 dist/*
 dist-example
 /src/package-lock.json
+documentation/_book
 
 npm-debug.log*
 yarn-debug.log*

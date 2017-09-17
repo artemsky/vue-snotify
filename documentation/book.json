@@ -1,0 +1,20 @@
+{
+  "title": "vue-snotify",
+  "gitbook": ">3.0.0",
+  "plugins": ["edit-link", "theme-vuejs", "-fontsettings", "github"],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/artemsky/vue-snotify/tree/develop/documentation",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/artemsky/vue-snotify/"
+    }
+  },
+  "links": {
+    "sharing": {
+      "facebook": false,
+      "twitter": false
+    }
+  }
+}

@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=development npm run example:dev",
     "build": "npm run lib:build && npm run link:dist && npm run example:build",
     "test": "npm run example:unit",
+    "docs": "gitbook build ./documentation ./docs/documentation",
     "lib:build": "cross-env NODE_ENV=production gulp build",
     "lib:build:watch": "cross-env NODE_ENV=production gulp",
     "link:src": "npm link ./src",
