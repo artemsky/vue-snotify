@@ -29,6 +29,7 @@ dist/*
 dist-example
 /src/package-lock.json
 /docs/_book
+/docs/node_modules
 /demo
 
 npm-debug.log*
