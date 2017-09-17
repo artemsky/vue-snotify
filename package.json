@@ -5,9 +5,11 @@
   "scripts": {
     "prestart": "npm run link:src",
     "start": "cross-env NODE_ENV=development npm run example:dev",
-    "build": "npm run lib:build && npm run link:dist && npm run example:build",
+    "build": "npm run lib:build && npm run link:dist && npm run example:build && docs:deploy",
     "test": "npm run example:unit",
-    "docs": "gitbook build ./documentation ./docs/documentation",
+    "docs": "cd documentation && gitbook install && gitbook serve",
+    "docs:build": "gitbook build ./documentation ./demo/documentation",
+    "docs:deploy": "bash ./update-docs.sh",
     "lib:build": "cross-env NODE_ENV=production gulp build",
     "lib:build:watch": "cross-env NODE_ENV=production gulp",
     "link:src": "npm link ./src",
