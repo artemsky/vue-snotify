@@ -4,7 +4,7 @@
 ### SnotifyToast
 
 ### id
-- type: 'number'
+- type: `number`
 > Toast id
 
 ### title
@@ -48,11 +48,11 @@
 ### SnotifyAnimate
 
 ### enter
-- type: `string;`  
+- type: `string`  
   > In animation
 
 ### exit
-- type: `string;`  
+- type: `string`  
 > Out animation
 
 ### time
