@@ -280,7 +280,7 @@ export default new Vue({
         this.$emit('toastChanged', latestToast)
       };
       this.$on(SnotifyAction.mounted, (passedToast) => {
-        if (passedToast.id === id) {
+        if (passedToast.id === id && action) {
           action().then((data) => {
             updateToast(SnotifyType.SUCCESS, data)
           }).catch((data) => {
