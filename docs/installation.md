@@ -46,3 +46,9 @@ Add `vue-snotify` component to your template
 </div>
 </template>
 ```
+
+
+#### Import Styles
+
+You can find this information - [here](essentials/styling.md)
+
