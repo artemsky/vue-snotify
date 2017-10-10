@@ -30,8 +30,27 @@ Use `Snotify`, into your core App.
 ```javascript
 import Snotify from 'vue-snotify'; // 1. Import Snotify
 // 2. Use Snotify
-// You can pass {config, options} as second argument. Look - setConfig in [API - Others] section 
-Vue.use(Snotify) 
+// You can pass {config, options} as second argument. See the next example or setConfig in [API - Options] section 
+Vue.use(Snotify)
+
+```
+
+Here is a more advanced example including passing config and options:
+```javascript
+// Place the following into its own module file for easy import.
+import Vue from 'vue'
+import {default as Snotify, SnotifyPosition} from 'vue-snotify'
+
+const configure = {
+  config: {
+    position: SnotifyPosition.rightTop,
+  },
+  options: {
+    maxHeight: 400
+  }
+}
+
+Vue.use(Snotify, configure)
 
 ```
 
