@@ -30,7 +30,7 @@ Use `Snotify`, into your core App.
 ```javascript
 import Snotify from 'vue-snotify'; // 1. Import Snotify
 // 2. Use Snotify
-// You can pass {config, options} as second argument. See the next example or setConfig in [API - Options] section 
+// You can pass {config, options} as second argument. See the next example or setConfig in [API] section 
 Vue.use(Snotify)
 
 ```
