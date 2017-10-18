@@ -40,13 +40,20 @@ $prompt-color: #e0f2f1;
   display: block;
   cursor: pointer;
   background-color: $simple-bg;
-  max-height: 300px;
   height: 100%;
   margin: 5px;
   opacity: 0;
   border-radius: 5px;
   overflow: hidden;
   pointer-events: auto;
+
+  &--in {
+    animation-name: appear;
+  }
+
+  &--out {
+    animation-name: disappear;
+  }
 
   &__inner {
     display: flex;
@@ -100,6 +107,11 @@ $prompt-color: #e0f2f1;
   transform: translate(0, 50%);
   opacity: 0;
 }
+
+.fadeOutRight {
+  animation-name: fadeOutRight;
+}
+
 
 /***************
  ** Modifiers **
@@ -196,9 +208,6 @@ $prompt-color: #e0f2f1;
 
 .snotify-prompt {
   background-color: $prompt-bg;
-  .snotifyToast__inner {
-    padding: 10px 15px;
-  }
   ng-snotify-prompt {
     width: 100%;
   }
@@ -207,5 +216,12 @@ $prompt-color: #e0f2f1;
   }
   .snotifyToast__body {
     color: $prompt-color;
+  }
+}
+
+.snotify-confirm,
+.snotify-prompt {
+  .snotifyToast__inner {
+    padding: 10px 15px;
   }
 }

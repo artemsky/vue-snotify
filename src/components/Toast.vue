@@ -31,7 +31,7 @@
                         :placeholder="toast.config.placeholder"
                         @valueChanged="promptValueChanged">
         </snotify-prompt>
-        <snotify-icon v-if="!toast.config.icon" class="snotify-icon" :type="toast.config.type"></snotify-icon>
+        <div v-if="!toast.config.icon" :class="['snotify-icon', 'snotify-icon--' + toast.config.type]"></div>
         <div v-else>
           <img class="snotify-icon" :src='toast.config.icon'/>
         </div>
@@ -49,7 +49,6 @@
 </template>
 
 <script>
-  import SnotifyIcon from './SnotifyIcon.vue'
   import SnotifyPrompt from './Prompt.vue'
   import SnotifyButton from './Button.vue'
   import SnotifyService from '../SnotifyService'
@@ -175,7 +174,6 @@
       SnotifyService.$emit(SnotifyAction.destroyed, this.toast, this.value)
     },
     components: {
-      SnotifyIcon,
       SnotifyPrompt,
       SnotifyButton
     }

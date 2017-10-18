@@ -24,6 +24,14 @@ $prompt-border-color: $confirm-border-color;
   overflow: hidden;
   pointer-events: auto;
 
+  &--in {
+    animation-name: appear;
+  }
+
+  &--out {
+    animation-name: disappear;
+  }
+
   &__inner {
     display: flex;
     flex-flow: column nowrap;
@@ -112,10 +120,15 @@ $prompt-border-color: $confirm-border-color;
 
 .snotify-prompt {
   border-left: $border-width solid $prompt-border-color;
-  .snotifyToast__inner {
-    padding: 10px 15px;
-  }
   ng-snotify-prompt {
     width: 100%;
   }
 }
+
+.snotify-confirm,
+.snotify-prompt {
+  .snotifyToast__inner {
+    padding: 10px 15px;
+  }
+}
+

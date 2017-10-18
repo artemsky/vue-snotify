@@ -1,0 +1,181 @@
+$animation-name: 'fade';
+
+.snotifyToast {
+  animation-fill-mode: both;
+}
+
+.snotify-leftTop,
+.snotify-leftCenter,
+.snotify-leftBottom {
+  .#{$animation-name}In {
+    animation-name: fadeInLeft;
+  }
+  .#{$animation-name}Out {
+    animation-name: fadeOutLeft;
+  }
+}
+
+.snotify-rightTop,
+.snotify-rightCenter,
+.snotify-rightBottom {
+  .#{$animation-name}In {
+    animation-name: fadeInRight;
+  }
+  .#{$animation-name}Out {
+    animation-name: fadeOutRight;
+  }
+}
+
+.snotify-centerTop {
+  .#{$animation-name}In {
+    animation-name: fadeInDown;
+  }
+  .#{$animation-name}Out {
+    animation-name: fadeOutUp;
+  }
+}
+.snotify-centerCenter {
+  .#{$animation-name}In {
+    animation-name: fadeIn;
+  }
+  .#{$animation-name}Out {
+    animation-name: fadeOut;
+  }
+}
+.snotify-centerBottom {
+  .#{$animation-name}In {
+    animation-name: fadeInUp;
+  }
+  .#{$animation-name}Out {
+    animation-name: fadeOutDown;
+  }
+}
+
+
+// Fade in
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0) scaleX(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0) scaleX(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0) scaleY(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0) scaleY(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+// Fade out
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+// Toast collapse
+
+@keyframes appear {
+  0% {
+    max-height: 0;
+  }
+
+  100% {
+    max-height: 50vh;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    max-height: 50vh;
+  }
+
+  100% {
+    max-height: 0;
+  }
+}
