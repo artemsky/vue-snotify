@@ -1,13 +1,4 @@
 <template>
-  <!--<transition-->
-    <!--:enter-active-class="`animated ${toast.config.animation.enter}`"-->
-    <!--:leave-active-class="`animated ${toast.config.animation.exit}`"-->
-    <!--v-on:before-enter="beforeEnter"-->
-    <!--v-on:enter="enter"-->
-    <!--v-on:after-enter="afterEnter"-->
-    <!--v-on:before-leave="beforeLeave"-->
-    <!--v-on:leave="leave"-->
-    <!--&gt;-->
     <div
          class="snotifyToast animated"
          :class="['snotify-' + toast.config.type,
@@ -37,7 +28,6 @@
       <div class="snotifyToast__inner" v-html="toast.config.html" v-else></div>
       <snotify-button v-if="toast.config.buttons" :toast="toast"></snotify-button>
     </div>
-  <!--</transition>-->
 
 </template>
 
@@ -45,8 +35,6 @@
   import SnotifyPrompt from './Prompt.vue'
   import SnotifyButton from './Button.vue'
   import SnotifyService from '../SnotifyService'
-  import SnotifyType from '../enums/SnotifyType'
-  // import SnotifyAction from '../enums/SnotifyAction'
   import SnotifyStyle from '../enums/SnotifyStyle.enum'
 
   export default {
@@ -73,33 +61,8 @@
         if (this.toast.config.timeout > 0) {
           this.startTimeout(0);
         }
-        // this.opacity = 1
       },
-      // beforeEnter () {
-      //   SnotifyService.$emit(SnotifyAction.beforeShow, this.toast, this.value)
-      // },
-      // enter (el, done) {
-      //   setTimeout(() => done(), this.toast.config.animation.time)
-      // },
-      // afterEnter () {
-      //   SnotifyService.$emit(SnotifyAction.shown, this.toast, this.value)
-      // },
-      // beforeLeave () {
-      //   clearInterval(this.interval);
-      //   SnotifyService.$emit(SnotifyAction.beforeHide, this.toast, this.value)
-      // },
-      // leave (el, done) {
-      //   setTimeout(() => {
-      //     SnotifyService.$emit(SnotifyAction.hidden, this.toast, this.value);
-      //     this.maxHeight = 0;
-      //     setTimeout(() => {
-      //       SnotifyService.remove(this.toast.id);
-      //       done()
-      //     }, this.toast.config.animation.time)
-      //   }, this.toast.config.animation.time)
-      // },
       onClick () {
-        // SnotifyService.$emit(SnotifyAction.onClick, this.toast, this.value);
         this.toast.eventEmitter.$emit('click');
         if (this.toast.config.closeOnClick) {
           SnotifyService.remove(this.toast.id);
@@ -147,7 +110,7 @@
             } else {
               this.state.progress = 1;
               cancelAnimationFrame(this.animationFrame);
-              SnotifyService.$emit('remove', this.toast.id);
+              SnotifyService.emitter.$emit('remove', this.toast.id);
             }
           })
         };
@@ -170,12 +133,12 @@
       }
     },
     created () {
-      SnotifyService.$on('toastChanged', (toast) => {
+      SnotifyService.emitter.$on('toastChanged', (toast) => {
         if (this.toast.id === toast.id) {
           this.initToast()
         }
       });
-      SnotifyService.$on('remove', (id) => {
+      SnotifyService.emitter.$on('remove', (id) => {
         if (this.toast.id === id) {
           this.onRemove()
         }
@@ -195,13 +158,9 @@
           });
       })
     },
-    beforeDestroy () {
-      // SnotifyService.$emit(SnotifyAction.beforeDestroy, this.toast, this.value)
-    },
     destroyed () {
       cancelAnimationFrame(this.animationFrame);
       this.toast.eventEmitter.$emit('destroyed');
-      // SnotifyService.$emit(SnotifyAction.destroyed, this.toast, this.value)
     },
     components: {
       SnotifyPrompt,

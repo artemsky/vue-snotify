@@ -12,7 +12,6 @@
   import Toast from './components/Toast'
   import SnotifyService from './SnotifyService'
   import SnotifyPosition from './enums/SnotifyPosition'
-  import {sortNotificationsByPositions} from './util'
 
   export default {
     data () {
@@ -99,32 +98,10 @@
       Toast
     },
     created () {
-      // this.setOptions(SnotifyService.options);
 
-      SnotifyService.$on('notificationsChanged', (toasts) => {
+      SnotifyService.emitter.$on('notificationsChanged', (toasts) => {
         this.setOptions(toasts);
       });
-
-      // SnotifyService.$on('notificationsChanged', (notifications) => {
-      //   this.notifications = sortNotificationsByPositions(notifications.slice(this.dockSize_a, this.dockSize_b));
-      //   const list = notifications.filter(toast => toast.config.backdrop >= 0);
-      //
-      //   if (list.length) {
-      //     if (this.backdrop < 0) {
-      //       this.backdrop = 0;
-      //       setTimeout(() => {
-      //         this.backdrop = list[list.length - 1].config.backdrop
-      //       }, 10)
-      //     }
-      //   } else {
-      //     if (this.backdrop > 0) {
-      //       this.backdrop = 0;
-      //       setTimeout(() => {
-      //         this.backdrop = -1
-      //       }, 200)
-      //     }
-      //   }
-      // })
     }
   }
 </script>

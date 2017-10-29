@@ -176,7 +176,7 @@
 </template>
 
 <script>
-  import {SnotifyPosition, SnotifyAction} from 'vue-snotify';
+  import {SnotifyPosition/*, SnotifyAction*/} from 'vue-snotify';
   export default {
     data() {
       return {

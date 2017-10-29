@@ -44,27 +44,6 @@ export function uuid () {
 }
 
 /**
- * Split toasts toasts into different objects
- * @param {SnotifyToast[]} toasts
- * @returns {SnotifyNotifications}
- */
-export function sortNotificationsByPositions (toasts) {
-  const result = {}
-
-  for (const property in SnotifyPosition) {
-    if (SnotifyPosition.hasOwnProperty(property)) {
-      result[SnotifyPosition[property]] = []
-    }
-  }
-
-  toasts.forEach((toast) => {
-    result[toast.config.position].push(toast)
-  })
-
-  return result
-}
-
-/**
  * Generate default animation objects
  * @param defaultAnimationTime {number}
  * @returns {{}}

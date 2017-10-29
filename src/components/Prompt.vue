@@ -22,7 +22,7 @@
     methods: {
       valueChanged (e) {
         this.toast.value = e.target.value;
-        this.$emit('valueChanged', this.toast.value)
+        this.toast.eventEmitter.$emit('input')
       }
     }
   }

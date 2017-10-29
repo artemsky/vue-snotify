@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import SnotifyPosition from './enums/SnotifyPosition'
 import SnotifyAction from './enums/SnotifyAction'
@@ -9,23 +10,18 @@ import { ToastDefaults } from './toastDefaults';
 
 const animationDefaults = generateAnimationDefaults(400);
 
-export default new Vue({
-  data () {
-    return {
-      notifications: [],
-      /**
-       * Default toast configuration
-       */
-      config: ToastDefaults
-    }
-  },
-  methods: {
+class SnotifyService {
+  constructor() {
+    this.emitter = new Vue();
+    this.notifications = [];
+    this.config = ToastDefaults;
+  }
     /**
      * emit changes in notifications array
      */
     emit () {
-      this.$emit('notificationsChanged', this.notifications.slice())
-    },
+      this.emitter.$emit('notificationsChanged', this.notifications.slice())
+    }
     /**
      * returns SnotifyToast object
      * @param id {Number}
@@ -33,7 +29,7 @@ export default new Vue({
      */
     get (id) {
       return this.notifications.find(toast => toast.id === id)
-    },
+    }
 
     /**
      * add SnotifyToast to notifications array
@@ -46,7 +42,7 @@ export default new Vue({
         this.notifications.push(toast);
       }
       this.emit();
-    },
+    }
 
     /**
      * If ID passed, emits toast animation remove, if ID & REMOVE passed, removes toast from notifications array
@@ -60,15 +56,15 @@ export default new Vue({
         this.notifications = this.notifications.filter(toast => toast.id !== id);
         return this.emit();
       }
-      this.$emit('remove', id);
-    },
+      this.emitter.$emit('remove', id);
+    }
     /**
      * Clear notifications array
      */
     clear () {
       this.notifications = [];
       this.emit()
-    },
+    }
 
     /**
      * Creates toast and add it to array, returns toast id
@@ -86,7 +82,7 @@ export default new Vue({
       );
       this.add(toast);
       return toast;
-    },
+    }
 
 
     /**
@@ -96,7 +92,7 @@ export default new Vue({
      */
     setDefaults(defaults) {
       return this.config = mergeDeep(this.config, defaults);
-    },
+    }
 
 
 
@@ -113,7 +109,7 @@ export default new Vue({
         body: body,
         config: mergeDeep(this.config, {type: SnotifyType.SUCCESS}, config)
       })
-    },
+    }
     /**
      * Create toast with Error style, returns toast id;
      * @param body {string}
@@ -127,7 +123,7 @@ export default new Vue({
         body: body,
         config: mergeDeep(this.config, {type: SnotifyType.ERROR}, config)
       })
-    },
+    }
 
     /**
      * Create toast with Info style, returns toast id;
@@ -142,7 +138,7 @@ export default new Vue({
         body: body,
         config: mergeDeep(this.config, {type: SnotifyType.INFO}, config)
       })
-    },
+    }
 
     /**
      * Create toast with Warining style, returns toast id;
@@ -157,7 +153,7 @@ export default new Vue({
         body: body,
         config: mergeDeep(this.config, {type: SnotifyType.WARNING}, config)
       })
-    },
+    }
 
     /**
      * Create toast without style, returns toast id;
@@ -172,7 +168,7 @@ export default new Vue({
         body: body,
         config: mergeDeep(this.config, {type: SnotifyType.SIMPLE}, config)
       })
-    },
+    }
 
     /**
      * Create toast with Confirm style {with two buttons}, returns toast id;
@@ -200,7 +196,7 @@ export default new Vue({
         )
       });
       return id
-    },
+    }
 
     /**
      * Create toast with Prompt style {with two buttons}, returns toast id;
@@ -229,7 +225,7 @@ export default new Vue({
         )
       });
       return id
-    },
+    }
 
     /**
      * Creates empty toast with html string inside
@@ -243,7 +239,7 @@ export default new Vue({
         body: null,
         config: mergeDeep(this.config, {type: SnotifyType.SIMPLE, html}, config)
       })
-    },
+    }
 
     /**
      * Creates async toast with Info style. Pass action, and resolve or reject it.
@@ -284,5 +280,7 @@ export default new Vue({
 
       return id
     }
-  }
-});
+
+}
+
+export default new SnotifyService();
