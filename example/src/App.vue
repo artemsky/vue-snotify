@@ -201,73 +201,52 @@
       /**
        * Change global configuration
        */
-      setGlobal () {
-        this.$snotify.setConfig({
+      getConfig() {
+        this.$snotify.setDefaults({
+          global: {
+            newOnTop: this.newTop,
+            maxAtPosition: this.blockMax,
+            maxOnScreen: this.dockMax,
+          }
+        });
+        return {
           bodyMaxLength: this.bodyMaxLength,
           titleMaxLength: this.titleMaxLength,
-          backdrop: this.backdrop
-        }, {
-          newOnTop: this.newTop,
+          backdrop: this.backdrop,
           position: this.position,
-          maxOnScreen: this.dockMax,
-          maxAtPosition: this.blockMax,
-          maxHeight: this.maxHeight
-        });
-      },
-      onSuccess () {
-        this.setGlobal();
-        this.$snotify.success(this.body, this.title, {
           timeout: this.timeout,
           showProgressBar: this.progressBar,
           closeOnClick: this.closeClick,
           pauseOnHover: this.pauseHover
-        });
+        };
+      },
+      onSuccess () {
+        this.$snotify.success(this.body, this.title, this.getConfig());
       },
 
       onInfo() {
-        this.setGlobal();
-        this.$snotify.info(this.body, this.title, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover
-        });
+        this.$snotify.info(this.body, this.title, this.getConfig());
       },
       onError() {
-        this.setGlobal();
-        this.$snotify.error(this.body, this.title, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover
-        });
+        this.$snotify.error(this.body, this.title, this.getConfig());
       },
       onWarning() {
-        this.setGlobal();
-        this.$snotify.warning(this.body, this.title, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover
-        });
+        this.$snotify.warning(this.body, this.title, this.getConfig());
       },
       onSimple() {
-        this.setGlobal();
-
         // const icon = `assets/custom-svg.svg`;
         const icon = `https://placehold.it/48x100`;
 
         this.$snotify.simple(this.body, this.title, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover,
+          ...this.getConfig(),
           icon: icon
         });
       },
 
       onAsyncLoading() {
-        this.setGlobal();
+        // eslint-disable-next-line
+        // const {timeout, ...config} = this.getConfig(); // Omit timeout
+
         this.$snotify.async('This will resolve with success', 'Async toast 1',
           // You should pass Promise of type SnotifyConfig to change some data or do some other actions
           () => new Promise((resolve) => {
@@ -276,9 +255,6 @@
               body: 'Example. Data loaded!',
               config: {
                 closeOnClick: true,
-                timeout: this.timeout,
-                showProgressBar: true,
-                pauseOnHover: true
               }
             }), this.timeout)
           })
@@ -301,27 +277,25 @@
       },
 
       onConfirmation() {
-        this.setGlobal();
+        // eslint-disable-next-line
+        const {timeout, closeOnClick, ...config} = this.getConfig(); // Omit props what i don't need
         /*
         Here we pass an buttons array, which contains of 2 element of type SnotifyButton
          */
         const id = this.$snotify.confirm(this.body, this.title, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover,
+          ...config,
           buttons: [
             {text: 'Yes', action: () => console.log('Clicked: Yes'), bold: false},
             {text: 'No', action: () => console.log('Clicked: No')},
             {
               text: 'Later', action: (toastId) => {
-              console.log('Removed with animation');
+              console.log('Clicked: Later');
               this.$snotify.$emit('remove', toastId);
             }
             },
             {
               text: 'Remove', action: () => {
-              console.log('Removed instantly');
+              console.log('Clicked: Close');
               this.$snotify.remove(id);
             }, bold: true
             },
@@ -330,40 +304,30 @@
       },
 
       onPrompt() {
-        this.setGlobal();
+        // eslint-disable-next-line
+        const {timeout, closeOnClick, ...config} = this.getConfig(); // Omit props what i don't need
         /*
          Here we pass an buttons array, which contains of 2 element of type SnotifyButton
          At the action of the first button we can get what user entered into input field.
          At the second we can't get it. But we can remove this toast
          */
-        const id = this.$snotify.prompt(this.body, this.title, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover,
+        this.$snotify.prompt(this.body, this.title, {
+          ...config,
           buttons: [
-            {text: 'Yes', action: (toastId, text) => console.log('Said Yes: ' + text + ' ID: ' + toastId)},
-            {
-              text: 'No', action: (toastId, text) => {
-              console.log('Said No: ' + text);
-              this.$snotify.remove(id);
-            }
-            },
+            {text: 'Yes', action: (toast) => console.log('Said Yes: ' + toast.value) },
+            {text: 'No', action: (toast) => { console.log('Said No: ' + toast.value); this.$snotify.remove(toast.id); }},
           ],
-          placeholder: 'This is the example placeholder which you can pass' // Max-length = 40
+          placeholder: 'Enter "ng-snotify" to validate this input' // Max-length = 40
+        }).on('input', (toast) => {
+          console.log(toast.value);
+          toast.valid = !!toast.value.match('ng-snotify');
         });
       },
 
       onHtml() {
-        this.setGlobal();
 
         this.$snotify.html(`<div class="snotifyToast__title"><b>Html Bold Title</b></div>
-            <div class="snotifyToast__body"><i>Html</i> <b>toast</b> <u>content</u></div> `, {
-          timeout: this.timeout,
-          showProgressBar: this.progressBar,
-          closeOnClick: this.closeClick,
-          pauseOnHover: this.pauseHover,
-        });
+            <div class="snotifyToast__body"><i>Html</i> <b>toast</b> <u>content</u></div> `, this.getConfig());
       },
 
 

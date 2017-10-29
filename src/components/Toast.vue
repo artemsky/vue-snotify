@@ -1,35 +1,33 @@
 <template>
-  <transition
-    :enter-active-class="`animated ${toast.config.animation.enter}`"
-    :leave-active-class="`animated ${toast.config.animation.exit}`"
-    v-on:before-enter="beforeEnter"
-    v-on:enter="enter"
-    v-on:after-enter="afterEnter"
-    v-on:before-leave="beforeLeave"
-    v-on:leave="leave"
-    >
-    <div v-show="opacity"
-         class="snotifyToast"
-         :class="['snotify-' + toast.config.type]"
+  <!--<transition-->
+    <!--:enter-active-class="`animated ${toast.config.animation.enter}`"-->
+    <!--:leave-active-class="`animated ${toast.config.animation.exit}`"-->
+    <!--v-on:before-enter="beforeEnter"-->
+    <!--v-on:enter="enter"-->
+    <!--v-on:after-enter="afterEnter"-->
+    <!--v-on:before-leave="beforeLeave"-->
+    <!--v-on:leave="leave"-->
+    <!--&gt;-->
+    <div
+         class="snotifyToast animated"
+         :class="['snotify-' + toast.config.type,
+          state.animation, toast.valid === undefined ? '' : (toast.valid ? 'snotifyToast--valid' : 'snotifyToast--invalid')
+          ]"
          :style="{
-            opacity,
-            'max-height': maxHeight + 'px',
             '-webkit-animation-duration': toast.config.animation.time + 'ms',
             'animation-duration': toast.config.animation.time + 'ms',
             '-webkit-transition': toast.config.animation.time + 'ms',
             transition: toast.config.animation.time + 'ms'
           }"
-         @click="onClick" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+         @click="onClick" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @animationend="onExitTransitionEnd">
       <div class="snotifyToast__progressBar" v-if="toast.config.showProgressBar">
-        <span class="snotifyToast__progressBar__percentage" :style="{'width': progress + '%'}"></span>
+        <span class="snotifyToast__progressBar__percentage" :style="{'width': (state.progress * 100) + '%'}"></span>
       </div>
       <div class="snotifyToast__inner" v-if="!toast.config.html">
         <div class="snotifyToast__title" v-if="toast.title">{{toast.title | truncate(toast.config.titleMaxLength)}}
         </div>
-        <div class="snotifyToast__body">{{toast.body | truncate(toast.config.bodyMaxLength)}}</div>
-        <snotify-prompt v-if="toast.config.type === promptType"
-                        :placeholder="toast.config.placeholder"
-                        @valueChanged="promptValueChanged">
+        <div class="snotifyToast__body" v-if="toast.body">{{toast.body | truncate(toast.config.bodyMaxLength)}}</div>
+        <snotify-prompt v-if="toast.config.type === state.promptType" :toast="toast">
         </snotify-prompt>
         <div v-if="!toast.config.icon" :class="['snotify-icon', 'snotify-icon--' + toast.config.type]"></div>
         <div v-else>
@@ -37,14 +35,9 @@
         </div>
       </div>
       <div class="snotifyToast__inner" v-html="toast.config.html" v-else></div>
-      <snotify-button
-        v-if="toast.config.buttons"
-        :buttons="toast.config.buttons"
-        :value="toast.config.type === promptType ? value : null"
-        :id="toast.id"
-      ></snotify-button>
+      <snotify-button v-if="toast.config.buttons" :toast="toast"></snotify-button>
     </div>
-  </transition>
+  <!--</transition>-->
 
 </template>
 
@@ -53,125 +46,162 @@
   import SnotifyButton from './Button.vue'
   import SnotifyService from '../SnotifyService'
   import SnotifyType from '../enums/SnotifyType'
-  import SnotifyAction from '../enums/SnotifyAction'
+  // import SnotifyAction from '../enums/SnotifyAction'
+  import SnotifyStyle from '../enums/SnotifyStyle.enum'
 
   export default {
     props: ['toastData'],
     data () {
       return {
         toast: this.toastData,
-        opacity: 0,
-        interval: null,
-        progress: 0,
-        value: 0,
-        promptType: SnotifyType.PROMPT,
-        maxHeight: SnotifyService.options.maxHeight
+        // opacity: 0,
+        animationFrame: null,
+        state: {
+          paused: false,
+          progress: 0,
+          animation: '',
+          isDestroying: false,
+          promptType: SnotifyStyle.prompt
+        }
       }
     },
     methods: {
-      promptValueChanged (value) {
-        this.value = value;
-        SnotifyService.$emit(SnotifyAction.onInput, this.toast, this.value)
-      },
       /**
        * Initialize base toast config
-       * @param [toast] {SnotifyToast}
        */
-      initToast (toast) {
-        if (toast) {
-          if (this.toast.config.type !== toast.config.type) {
-            clearInterval(this.interval)
-          }
-          this.toast = toast
-        }
+      initToast () {
         if (this.toast.config.timeout > 0) {
-          this.startTimeout(0)
-        } else {
-          this.toast.config.showProgressBar = false
-          this.toast.config.pauseOnHover = false
+          this.startTimeout(0);
         }
-        this.opacity = 1
+        // this.opacity = 1
       },
-      /**
-       * Start progress bar
-       * @param currentProgress {Number}
-       */
-      startTimeout (currentProgress) {
-        const refreshRate = 10;
-        this.progress = currentProgress;
-        const step = refreshRate / this.toast.config.timeout * 100;
-        this.interval = setInterval(() => {
-          this.progress += step;
-          if (this.progress >= 100) {
-            this.opacity = 0
-          }
-        }, refreshRate)
-      },
-      beforeEnter () {
-        SnotifyService.$emit(SnotifyAction.beforeShow, this.toast, this.value)
-      },
-      enter (el, done) {
-        setTimeout(() => done(), this.toast.config.animation.time)
-      },
-      afterEnter () {
-        SnotifyService.$emit(SnotifyAction.shown, this.toast, this.value)
-      },
-      beforeLeave () {
-        clearInterval(this.interval);
-        SnotifyService.$emit(SnotifyAction.beforeHide, this.toast, this.value)
-      },
-      leave (el, done) {
-        setTimeout(() => {
-          SnotifyService.$emit(SnotifyAction.hidden, this.toast, this.value);
-          this.maxHeight = 0;
-          setTimeout(() => {
-            SnotifyService.remove(this.toast.id);
-            done()
-          }, this.toast.config.animation.time)
-        }, this.toast.config.animation.time)
-      },
+      // beforeEnter () {
+      //   SnotifyService.$emit(SnotifyAction.beforeShow, this.toast, this.value)
+      // },
+      // enter (el, done) {
+      //   setTimeout(() => done(), this.toast.config.animation.time)
+      // },
+      // afterEnter () {
+      //   SnotifyService.$emit(SnotifyAction.shown, this.toast, this.value)
+      // },
+      // beforeLeave () {
+      //   clearInterval(this.interval);
+      //   SnotifyService.$emit(SnotifyAction.beforeHide, this.toast, this.value)
+      // },
+      // leave (el, done) {
+      //   setTimeout(() => {
+      //     SnotifyService.$emit(SnotifyAction.hidden, this.toast, this.value);
+      //     this.maxHeight = 0;
+      //     setTimeout(() => {
+      //       SnotifyService.remove(this.toast.id);
+      //       done()
+      //     }, this.toast.config.animation.time)
+      //   }, this.toast.config.animation.time)
+      // },
       onClick () {
-        SnotifyService.$emit(SnotifyAction.onClick, this.toast, this.value);
+        // SnotifyService.$emit(SnotifyAction.onClick, this.toast, this.value);
+        this.toast.eventEmitter.$emit('click');
         if (this.toast.config.closeOnClick) {
-          this.opacity = 0
+          SnotifyService.remove(this.toast.id);
         }
       },
       onMouseEnter () {
-        SnotifyService.$emit(SnotifyAction.onHoverEnter, this.toast, this.value);
+        this.toast.eventEmitter.$emit('mouseenter');
         if (this.toast.config.pauseOnHover) {
-          clearInterval(this.interval)
+          this.state.paused = true;
         }
       },
       onMouseLeave () {
-        if (this.toast.config.pauseOnHover && this.type !== SnotifyType.PROMPT) {
-          this.startTimeout(this.progress)
+        if (this.toast.config.pauseOnHover && this.toast.config.timeout) {
+          this.state.paused = false;
+          this.startTimeout(this.toast.config.timeout * this.state.progress);
         }
-        SnotifyService.$emit(SnotifyAction.onHoverLeave, this.toast, this.value)
+        this.toast.eventEmitter.$emit('mouseleave');
+      },
+      /**
+       * Remove toast completely after animation
+       */
+      onExitTransitionEnd () {
+        if (this.state.isDestroying) {
+          return;
+        }
+        this.initToast();
+        this.toast.eventEmitter.$emit('shown');
+      },
+      /**
+       * Start progress bar
+       * @param startTime {number}
+       * @default 0
+       */
+      startTimeout(startTime = 0) {
+        const start = performance.now();
+        const calculate = () => {
+          this.animationFrame = requestAnimationFrame((timestamp) => {
+            const runtime = timestamp + startTime - start;
+            const progress = Math.min(runtime / this.toast.config.timeout, 1);
+            if (this.state.paused) {
+              cancelAnimationFrame(this.animationFrame);
+            } else if (runtime < this.toast.config.timeout) {
+              this.state.progress = progress;
+              calculate();
+            } else {
+              this.state.progress = 1;
+              cancelAnimationFrame(this.animationFrame);
+              SnotifyService.$emit('remove', this.toast.id);
+            }
+          })
+        };
+        calculate();
+      },
+      /**
+       * Trigger beforeDestroy lifecycle. Removes toast
+       */
+      onRemove () {
+        this.state.isDestroying = true;
+        this.$emit('beforeHide');
+        this.toast.eventEmitter.$emit('beforeHide');
+        this.state.animation = this.toast.config.animation.exit;
+        setTimeout(() => {
+          this.$emit('hidden');
+          this.state.animation = 'snotifyToast--out';
+          this.toast.eventEmitter.$emit('hidden');
+          setTimeout(() => SnotifyService.remove(this.toast.id, true), this.toast.config.animation.time / 2);
+        }, this.toast.config.animation.time / 2);
       }
     },
     created () {
       SnotifyService.$on('toastChanged', (toast) => {
         if (this.toast.id === toast.id) {
-          this.initToast(toast)
+          this.initToast()
         }
       });
       SnotifyService.$on('remove', (id) => {
         if (this.toast.id === id) {
-          this.opacity = 0
+          this.onRemove()
         }
       });
-      this.initToast()
     },
     mounted: function () {
-      this.$nextTick(function () {
-        SnotifyService.$emit(SnotifyAction.mounted, this.toast, this.value)
+      this.$nextTick(() => {
+        // SnotifyService.$emit(SnotifyAction.mounted, this.toast, this.value)
+        this.toast.eventEmitter.$emit('mounted');
+        this.state.animation = 'snotifyToast--in';
+          this.$nextTick(() => {
+            setTimeout(() => {
+              this.$emit('beforeShow');
+              this.toast.eventEmitter.$emit('beforeShow');
+              this.state.animation = this.toast.config.animation.enter;
+            }, this.toast.config.animation.time / 5); // time to show toast push animation (snotifyToast--in)
+          });
       })
     },
     beforeDestroy () {
-      SnotifyService.$emit(SnotifyAction.beforeDestroy, this.toast, this.value)
+      // SnotifyService.$emit(SnotifyAction.beforeDestroy, this.toast, this.value)
     },
     destroyed () {
-      SnotifyService.$emit(SnotifyAction.destroyed, this.toast, this.value)
+      cancelAnimationFrame(this.animationFrame);
+      this.toast.eventEmitter.$emit('destroyed');
+      // SnotifyService.$emit(SnotifyAction.destroyed, this.toast, this.value)
     },
     components: {
       SnotifyPrompt,

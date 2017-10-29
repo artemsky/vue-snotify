@@ -2,30 +2,27 @@
   <span class="snotifyToast__input" :class="{'snotifyToast__input--filled': isPromptFocused}">
     <input @input="valueChanged"
            class="snotifyToast__input__field" type="text"
-           :id="id"
+           :id="toast.id"
            @focus="isPromptFocused = true"
-           @blur="isPromptFocused = !!length"/>
-    <label class="snotifyToast__input__label" :for="id">
-      <span class="snotifyToast__input__labelContent">{{placeholder | truncate}}</span>
+           @blur="isPromptFocused = !!toast.value.length"/>
+    <label class="snotifyToast__input__label" :for="toast.id">
+      <span class="snotifyToast__input__labelContent">{{toast.config.placeholder | truncate}}</span>
     </label>
   </span>
 </template>
 
 <script>
   export default {
-    props: ['placeholder'],
+    props: ['toast'],
     data () {
       return {
-        id: 545,
-        isPromptFocused: false,
-        length: 0
+        isPromptFocused: false
       }
     },
     methods: {
       valueChanged (e) {
-        const value = e.target.value.trim();
-        this.length = value.length;
-        this.$emit('valueChanged', value)
+        this.toast.value = e.target.value;
+        this.$emit('valueChanged', this.toast.value)
       }
     }
   }

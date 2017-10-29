@@ -7,7 +7,7 @@ function install (Vue, options = {}) {
     return value.length > limit ? value.substring(0, limit) + trail : value
   });
   Vue.component('vue-snotify', SnotifyToast);
-  SnotifyService.setConfig(options.config || null, options.options || null);
+  // SnotifyService.setConfig(options.config || null, options.options || null);
   Vue.prototype.$snotify = SnotifyService;
 }
 

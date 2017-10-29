@@ -2,8 +2,10 @@ import Vue from 'vue'
 import SnotifyPosition from './enums/SnotifyPosition'
 import SnotifyAction from './enums/SnotifyAction'
 import SnotifyType from './enums/SnotifyType'
-import {generateAnimationDefaults, generateRandomId, mergeDeep} from './util'
+import {generateAnimationDefaults, uuid, mergeDeep} from './util'
 import {SnotifyToast} from './SnotifyToast.model'
+
+import { ToastDefaults } from './toastDefaults';
 
 const animationDefaults = generateAnimationDefaults(400);
 
@@ -14,29 +16,16 @@ export default new Vue({
       /**
        * Default toast configuration
        */
-      config: {
-        showProgressBar: true,
-        timeout: 2000,
-        closeOnClick: true,
-        pauseOnHover: true,
-        bodyMaxLength: 150,
-        titleMaxLength: 16,
-        backdrop: -1,
-        animation: animationDefaults[SnotifyPosition.rightBottom]
-      },
-      /**
-       * Default vue-snotify options
-       */
-      options: {
-        newOnTop: true,
-        position: SnotifyPosition.rightBottom,
-        maxOnScreen: 8,
-        maxAtPosition: 8,
-        maxHeight: 300
-      }
+      config: ToastDefaults
     }
   },
   methods: {
+    /**
+     * emit changes in notifications array
+     */
+    emit () {
+      this.$emit('notificationsChanged', this.notifications.slice())
+    },
     /**
      * returns SnotifyToast object
      * @param id {Number}
@@ -45,49 +34,33 @@ export default new Vue({
     get (id) {
       return this.notifications.find(toast => toast.id === id)
     },
-    getAll () {
-      return this.notifications.slice()
-    },
-    /**
-     * emit changes in notifications array
-     */
-    emit () {
-      this.$emit('notificationsChanged', this.getAll())
-    },
-    /**
-     * Set global config
-     * @param config {SnotifyConfig}
-     * @param options {SnotifyOptions}
-     */
-    setConfig (config, options) {
-      this.options = mergeDeep(this.options, options)
-      this.config = mergeDeep(this.config, {animation: animationDefaults[this.options.position]}, config)
-      this.$emit('optionsChanged', this.options)
-    },
+
     /**
      * add SnotifyToast to notifications array
      * @param toast {SnotifyToast}
      */
     add (toast) {
-      toast.config.position = toast.config.position || this.options.position;
-      if (this.options.newOnTop) {
-        this.notifications.unshift(toast)
+      if (this.config.global.newOnTop) {
+        this.notifications.unshift(toast);
       } else {
-        this.notifications.push(toast)
+        this.notifications.push(toast);
       }
-      this.emit()
+      this.emit();
     },
+
     /**
      * If ID passed, emits toast animation remove, if ID & REMOVE passed, removes toast from notifications array
      * @param [id] {number}
+     * @param [remove] {boolean}
      */
-    remove (id) {
+    remove (id, remove) {
       if (!id) {
-        return this.clear()
-      } else {
+        return this.clear();
+      } else if (remove) {
         this.notifications = this.notifications.filter(toast => toast.id !== id);
-        return this.emit()
+        return this.emit();
       }
+      this.$emit('remove', id);
     },
     /**
      * Clear notifications array
@@ -96,16 +69,36 @@ export default new Vue({
       this.notifications = [];
       this.emit()
     },
+
     /**
      * Creates toast and add it to array, returns toast id
      * @param {{title, body, config}} snotify
      * @return {number}
      */
     create (snotify) {
-      const id = generateRandomId();
-      this.add(new SnotifyToast(id, snotify.title, snotify.body, snotify.config || null));
-      return id
+      const config =
+        mergeDeep(this.config.toast, this.config.type[snotify.config.type], snotify.config);
+      const toast = new SnotifyToast(
+        uuid(),
+        snotify.title,
+        snotify.body,
+        config
+      );
+      this.add(toast);
+      return toast;
     },
+
+
+    /**
+     * Set global config
+     * @param defaults {SnotifyDefaults}
+     * @returns options {Object<SnotifyDefaults>}
+     */
+    setDefaults(defaults) {
+      return this.config = mergeDeep(this.config, defaults);
+    },
+
+
 
     /**
      * Create toast with Success style, returns toast id;

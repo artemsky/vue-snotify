@@ -39,7 +39,7 @@ export function mergeDeep (...sources) {
  * Generates random id
  * @return {number}
  */
-export function generateRandomId () {
+export function uuid () {
   return Math.floor(Math.random() * (Date.now() - 1)) + 1
 }
 
