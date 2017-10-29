@@ -282,21 +282,21 @@
         /*
         Here we pass an buttons array, which contains of 2 element of type SnotifyButton
          */
-        const id = this.$snotify.confirm(this.body, this.title, {
+        this.$snotify.confirm(this.body, this.title, {
           ...config,
           buttons: [
             {text: 'Yes', action: () => console.log('Clicked: Yes'), bold: false},
             {text: 'No', action: () => console.log('Clicked: No')},
             {
-              text: 'Later', action: (toastId) => {
+              text: 'Later', action: (toast) => {
               console.log('Clicked: Later');
-              this.$snotify.$emit('remove', toastId);
+              this.$snotify.$emit('remove', toast.id);
             }
             },
             {
-              text: 'Remove', action: () => {
+              text: 'Remove', action: (toast) => {
               console.log('Clicked: Close');
-              this.$snotify.remove(id);
+              this.$snotify.remove(toast.id);
             }, bold: true
             },
           ]
@@ -334,42 +334,6 @@
       onClear() {
         this.$snotify.clear();
       }
-    },
-    created () {
-      console.log(this)
-      this.$snotify.$on(SnotifyAction.mounted, (toast) => {
-        console.log('[CALLBACK]: mounted', toast)
-      });
-      this.$snotify.$on(SnotifyAction.destroyed, (toast) => {
-        console.log('[CALLBACK]: destroyed', toast)
-      });
-      this.$snotify.$on(SnotifyAction.beforeDestroy, (toast) => {
-        console.log('[CALLBACK]: beforeDestroy', toast)
-      });
-      this.$snotify.$on(SnotifyAction.onInput, (toast, value) => {
-        console.log('[CALLBACK]: onInput', toast, value)
-      });
-      this.$snotify.$on(SnotifyAction.onClick, (toast) => {
-        console.log('[CALLBACK]: onClick', toast)
-      });
-      this.$snotify.$on(SnotifyAction.onHoverEnter, (toast) => {
-        console.log('[CALLBACK]: onHoverEnter', toast)
-      });
-      this.$snotify.$on(SnotifyAction.onHoverLeave, (toast) => {
-        console.log('[CALLBACK]: onHoverLeave', toast)
-      });
-      this.$snotify.$on(SnotifyAction.beforeShow, (toast) => {
-        console.log('[CALLBACK]: beforeShow', toast)
-      });
-      this.$snotify.$on(SnotifyAction.shown, (toast) => {
-        console.log('[CALLBACK]: shown', toast)
-      });
-      this.$snotify.$on(SnotifyAction.beforeHide, (toast) => {
-        console.log('[CALLBACK]: beforeHide', toast)
-      });
-      this.$snotify.$on(SnotifyAction.hidden, (toast) => {
-        console.log('[CALLBACK]: hidden', toast)
-      })
     }
   }
 </script>
