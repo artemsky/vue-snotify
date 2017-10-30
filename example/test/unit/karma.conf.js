@@ -14,7 +14,7 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
-    files: ['./index.js'],
+    files: ['./index.ts'],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
