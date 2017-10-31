@@ -14,10 +14,9 @@
     "lib:build:watch": "cross-env NODE_ENV=production gulp",
     "link:src": "npm link ./src",
     "link:dist": "npm link ./dist",
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint --ext .js,.vue src src",
+    "lint": "npm run lint:ts && npm run lint:css",
     "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
-    "lint:js:fix": "npm run lint:js --fix",
+    "lint:ts:fix": "npm run lint:ts --fix",
     "lint:css": "stylelint src/**/*.scss",
     "lint:staged": "lint-staged",
     "example:dev": "node example/build/dev-server.js",
@@ -25,7 +24,7 @@
     "example:unit": "cross-env BABEL_ENV=test karma start example/test/unit/karma.conf.js --single-run",
     "example:e2e": "node example/test/e2e/runner.js",
     "example:test": "npm run unit && npm run e2e",
-    "example:lint": "eslint --ext .js,.vue src example/src example/test/unit/specs example/test/e2e/specs"
+    "example:lint": "tslint -c tslint.json 'example/src'"
   },
   "keywords": [
     "vue",
@@ -74,8 +73,6 @@
     "autoprefixer": "^7.1.6",
     "awesome-typescript-loader": "^3.2.3",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-loader": "^7.1.2",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-syntax-class-properties": "^6.13.0",
@@ -99,15 +96,6 @@
     "css-loader": "^0.28.7",
     "cssnano": "^3.10.0",
     "del": "^3.0.0",
-    "eslint": "^4.10.0",
-    "eslint-config-recommended": "^1.5.0",
-    "eslint-config-vue": "^2.0.2",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^3.2.2",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^2.1.0",
     "event-stream": "^3.3.4",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.2",
@@ -133,7 +121,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.5",
-    "lint-staged": "^4.3.0",
     "mocha": "^4.0.1",
     "nightwatch": "^0.9.16",
     "node-sass": "^4.5.3",
@@ -173,24 +160,13 @@
     "url-loader": "^0.6.2",
     "vue": "^2.5.2",
     "vue-class-component": "^6.0.0",
-    "vue-loader": "^13.3.0",
     "vue-property-decorator": "^6.0.0",
-    "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.20.0",
     "webpack-merge": "^4.1.0"
-  },
-  "lint-staged": {
-    "*.{vue,js}": [
-      "eslint --fix"
-    ],
-    "*.{vue,css}": [
-      "stylefmt",
-      "stylelint"
-    ]
   },
   "browserslist": [
     "last 2 versions",
