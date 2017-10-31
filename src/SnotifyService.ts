@@ -1,14 +1,12 @@
 import Vue from 'vue';
 import {SnotifyToast} from './SnotifyToast.model';
 import {ToastDefaults} from './toastDefaults';
-import {SnotifyToastConfig} from './interfaces/SnotifyToastConfig.interface';
-import {Snotify} from './interfaces/Snotify.interface';
-import {SnotifyStyle} from './enums/SnotifyStyle.enum';
-import {SnotifyType} from './types/snotify.type';
+import {SnotifyToastConfig, Snotify, SnotifyDefaults} from './interfaces';
+import {SnotifyStyle} from './enums';
+import {SnotifyType} from './types';
 import {TransformArgument} from './decorators/transform-argument.decorator';
 import {mergeDeep, uuid} from './utils';
 import {SetToastType} from './decorators/set-toast-type.decorator';
-import {SnotifyDefaults} from './interfaces/SnotifyDefaults.interface';
 
 /**
  * SnotifyService - create, remove, config toasts

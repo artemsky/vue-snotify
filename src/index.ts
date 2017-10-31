@@ -1,6 +1,6 @@
 import {Snotify} from './Snotify';
 import {SnotifyService} from './SnotifyService';
-import {SnotifyType, SnotifyAction, SnotifyPosition} from './enums/index';
+import {SnotifyPosition} from './enums';
 
 // declare global {
 //   interface Window { Vue: any; }
@@ -24,7 +24,5 @@ function install (Vue, options = {}) {
 
 export {
   install as default,
-  SnotifyType,
-  SnotifyAction,
   SnotifyPosition
 };

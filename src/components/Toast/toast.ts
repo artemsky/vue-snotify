@@ -2,7 +2,7 @@ import Vue from 'vue';
 import {SnotifyPrompt} from '../Prompt';
 import {SnotifyButton} from '../SnotifyButton';
 import {SnotifyService} from '../../SnotifyService';
-import {SnotifyStyle} from '../../enums/SnotifyStyle.enum';
+import {SnotifyStyle} from '../../enums';
 import { Component } from 'vue-property-decorator';
 import {SnotifyToast} from '../../SnotifyToast.model';
 
@@ -18,7 +18,7 @@ export class Toast extends Vue {
   toastData: SnotifyToast;
   toast = this.toastData;
   animationFrame= null;
-  state= {
+  state = {
     paused: false,
     progress: 0,
     animation: '',
@@ -116,7 +116,6 @@ export class Toast extends Vue {
   }
   mounted() {
     this.$nextTick(() => {
-      // SnotifyService.$emit(SnotifyAction.mounted, this.toast, this.value)
       this.toast.eventEmitter.$emit('mounted');
       this.state.animation = 'snotifyToast--in';
       this.$nextTick(() => {

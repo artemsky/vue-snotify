@@ -1,5 +1,4 @@
-import {SnotifyPosition} from './enums/SnotifyPosition.enum';
-import {SnotifyStyle} from './enums/SnotifyStyle.enum';
+import {SnotifyPosition, SnotifyStyle} from './enums';
 
 /**
  * Snotify default configuration object

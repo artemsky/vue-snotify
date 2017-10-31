@@ -1,5 +1,5 @@
-import {SnotifyType} from '../types/snotify.type';
-import {Snotify} from '../interfaces/Snotify.interface';
+import {SnotifyType} from '../types';
+import {Snotify} from '../interfaces';
 
 /**
  * Defines toast style depending on method name

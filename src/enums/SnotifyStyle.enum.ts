@@ -1,4 +1,4 @@
-import {SnotifyStyles} from '../interfaces/SnotifyStyles.interface';
+import {SnotifyStyles} from '../interfaces';
 /**
  * Toast style.
  */

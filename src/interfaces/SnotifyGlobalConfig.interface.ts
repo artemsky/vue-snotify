@@ -1,5 +1,3 @@
-import {SnotifyPosition} from '../enums/SnotifyPosition.enum';
-
 /**
  * Toast dock configuration
  */

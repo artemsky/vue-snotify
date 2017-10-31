@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import {SnotifyToast} from '../SnotifyToast.model';
-import {SnotifyToastConfig} from './SnotifyToastConfig.interface';
-import {Snotify} from './Snotify.interface';
-import {SnotifyType} from '../types/snotify.type';
-import {SnotifyDefaults} from './SnotifyDefaults.interface';
+import {Snotify, SnotifyToastConfig, SnotifyDefaults} from '.';
+import {SnotifyType} from '../types/';
 
 /**
  * SnotifyService - create, remove, config toasts

@@ -1,6 +1,6 @@
-import {Snotify} from '../interfaces/Snotify.interface';
-import {SnotifyStyle} from '../enums/SnotifyStyle.enum';
-import {SnotifyType} from '../types/snotify.type';
+import {Snotify} from '../interfaces';
+import {SnotifyStyle} from '../enums';
+import {SnotifyType} from '../types';
 
 /**
  * Transform arguments to Snotify object
