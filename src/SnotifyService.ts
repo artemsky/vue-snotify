@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {SnotifyToast} from './components/SnotifyToast/SnotifyToast.model';
+import {SnotifyToast} from './components/SnotifyToast/toast.model';
 import {ToastDefaults} from './toastDefaults';
 import {SnotifyToastConfig, Snotify, SnotifyDefaults} from './interfaces';
 import {SnotifyStyle} from './enums';
@@ -421,7 +421,7 @@ class Service {
     toast.on('mounted',
       () => {
       async()
-        .then((next: Snotify) => this.mergeToast(toast, next))
+        .then((next: Snotify) => this.mergeToast(toast, next, SnotifyStyle.success))
         .catch((error?: Snotify) => this.mergeToast(toast, error, SnotifyStyle.error));
       }
     );

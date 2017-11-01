@@ -4,7 +4,7 @@ import {SnotifyButton} from '../SnotifyButton';
 import {SnotifyService} from '../../SnotifyService';
 import {SnotifyStyle} from '../../enums';
 import { Component } from 'vue-property-decorator';
-import {SnotifyToast} from './SnotifyToast.model';
+import {SnotifyToast} from './toast.model';
 
 @Component({
   template: require('./toast.html'),

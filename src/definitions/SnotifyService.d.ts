@@ -1,13 +1,13 @@
 import Vue from 'vue';
-import {SnotifyToast} from '../components/SnotifyToast/SnotifyToast.model';
-import {Snotify, SnotifyToastConfig, SnotifyDefaults} from '.';
-import {SnotifyType} from '../types/';
+import {SnotifyToast} from '../components/SnotifyToast/toast.model';
+import {Snotify, SnotifyToastConfig, SnotifyDefaults} from '../interfaces/index';
+import {SnotifyType} from '../types';
 
 /**
  * SnotifyService - create, remove, config toasts
  */
 // tslint:disable:unified-signatures
-export declare interface SnotifyService {
+export declare class SnotifyService {
   readonly emitter: Vue;
   notifications: SnotifyToast[];
   config: SnotifyDefaults;

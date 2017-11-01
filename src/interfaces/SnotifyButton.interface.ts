@@ -1,4 +1,4 @@
-import {SnotifyToast} from '../components/SnotifyToast/SnotifyToast.model';
+import {SnotifyToast} from '../components/SnotifyToast/toast.model';
 /**
  * Buttons config.
  */

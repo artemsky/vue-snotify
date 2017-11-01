@@ -1,4 +1,4 @@
-export { SnotifyService } from './SnotifyService';
+export { SnotifyService } from '../definitions/SnotifyService';
 export { Snotify } from './Snotify.interface';
 export { SnotifyAnimate } from './SnotifyAnimate.interface';
 export { SnotifyButton } from './SnotifyButton.interface';
