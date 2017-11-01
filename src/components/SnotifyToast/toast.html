@@ -10,7 +10,7 @@
             transition: toast.config.animation.time + 'ms'
           }"
   @click="onClick" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @animationend="onExitTransitionEnd">
-  <div class="snotifyToast__progressBar" v-if="toast.config.showProgressBar">
+  <div class="snotifyToast__progressBar" v-if="toast.config.showProgressBar && toast.config.timeout > 0">
     <span class="snotifyToast__progressBar__percentage" :style="{'width': (state.progress * 100) + '%'}"></span>
   </div>
   <div class="snotifyToast__inner" v-if="!toast.config.html">

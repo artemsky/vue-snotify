@@ -17,7 +17,7 @@ import {SnotifyToast} from './toast.model';
 export class Toast extends Vue {
   toastData: SnotifyToast;
   toast = this.toastData;
-  animationFrame= null;
+  animationFrame = null;
   state = {
     paused: false,
     progress: 0,
