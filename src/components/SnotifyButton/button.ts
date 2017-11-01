@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {SnotifyService} from '../../SnotifyService';
 import { Component } from 'vue-property-decorator';
-import {SnotifyToast} from '../../SnotifyToast.model';
+import {SnotifyToast} from '../SnotifyToast/toast.model';
 
 @Component({
   template: require('./button.html'),

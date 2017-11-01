@@ -275,40 +275,7 @@ function generateRollupOptions(options) {
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      cjs(),
-      vue({
-        compileTemplate: true
-      }),
-      babel({
-          babelrc: false,
-          "presets": [
-            [
-              "env",
-              {
-                "modules": false,
-                "targets": {
-                  "browsers": ["last 2 versions", "safari >= 7", "not ie <= 8"]
-                }
-              }
-            ],
-            "stage-2"
-          ],
-          "plugins": [
-            "syntax-class-properties",
-            "transform-class-properties",
-            "transform-object-rest-spread",
-            "external-helpers"
-          ],
-          "env": {
-            "test": {
-              "presets": ["env", "stage-2"],
-              "plugins": [
-                "istanbul"
-              ]
-            }
-          }
-        }
-      )
+      cjs()
     ]
 
   }, options)

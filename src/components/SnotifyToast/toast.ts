@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import {SnotifyPrompt} from '../Prompt';
+import {SnotifyPrompt} from '../SnotifyPrompt';
 import {SnotifyButton} from '../SnotifyButton';
 import {SnotifyService} from '../../SnotifyService';
 import {SnotifyStyle} from '../../enums';
 import { Component } from 'vue-property-decorator';
-import {SnotifyToast} from '../../SnotifyToast.model';
+import {SnotifyToast} from './SnotifyToast.model';
 
 @Component({
   template: require('./toast.html'),

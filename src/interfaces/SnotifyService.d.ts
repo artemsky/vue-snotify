@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {SnotifyToast} from '../SnotifyToast.model';
+import {SnotifyToast} from '../components/SnotifyToast/SnotifyToast.model';
 import {Snotify, SnotifyToastConfig, SnotifyDefaults} from '.';
 import {SnotifyType} from '../types/';
 

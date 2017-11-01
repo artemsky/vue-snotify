@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import {SnotifyToast} from '../../SnotifyToast.model';
+import {SnotifyToast} from '../SnotifyToast/toast.model';
 
 @Component({
     template: require('./prompt.html'),

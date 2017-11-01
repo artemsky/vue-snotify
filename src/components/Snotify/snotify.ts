@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import {SnotifyService} from '../SnotifyService';
-import {SnotifyToast} from '../SnotifyToast.model';
-import {SnotifyNotifications} from '../interfaces';
-import {SnotifyPosition} from '../enums';
-import {SnotifyEvent} from '../types';
-import {Toast} from '../components/Toast';
+import {SnotifyService} from '../../SnotifyService';
+import {SnotifyToast} from '../SnotifyToast/toast.model';
+import {SnotifyNotifications} from '../../interfaces';
+import {SnotifyPosition} from '../../enums/';
+import {SnotifyEvent} from '../../types';
+import {Toast} from '../SnotifyToast';
 import {Component} from 'vue-property-decorator';
 
 @Component({

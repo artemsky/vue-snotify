@@ -1,4 +1,4 @@
-import {Snotify} from './Snotify';
+import {Snotify} from './components/Snotify';
 import {SnotifyService} from './SnotifyService';
 import {SnotifyPosition} from './enums';
 
