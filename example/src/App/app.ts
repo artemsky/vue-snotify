@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {SnotifyPosition/*, SnotifyAction*/} from 'vue-snotify';
+import { SnotifyPosition } from 'vue-snotify';
 import { Component } from 'vue-property-decorator';
 
 import './app.scss';

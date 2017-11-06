@@ -12,7 +12,6 @@ import {Component} from 'vue-property-decorator';
   components: {
     Toast
   }
-
 })
 export class Snotify extends Vue {
 

@@ -1,6 +1,6 @@
 {
   "name": "vue-snotify",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "A Vue.js toast notifications",
   "scripts": {
     "prestart": "npm run link:src",
@@ -24,7 +24,8 @@
     "example:unit": "cross-env BABEL_ENV=test karma start example/test/unit/karma.conf.js --single-run",
     "example:e2e": "node example/test/e2e/runner.js",
     "example:test": "npm run unit && npm run e2e",
-    "example:lint": "tslint -c tslint.json 'example/src'"
+    "example:lint": "tslint -c tslint.json 'example/src'",
+    "ttt": "gulp ttt"
   },
   "keywords": [
     "vue",
@@ -107,8 +108,10 @@
     "gulp-inject-string": "^1.1.0",
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
     "gulp-rollup": "^2.15.0",
     "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.2.3",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.4",
     "inject-loader": "^3.0.1",
@@ -121,6 +124,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.5",
+    "merge2": "^1.2.0",
     "mocha": "^4.0.1",
     "nightwatch": "^0.9.16",
     "node-sass": "^4.5.3",
@@ -134,14 +138,11 @@
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-buble": "^0.16.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^0.5.5",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "rollup-plugin-vue": "^2.5.2",
     "sass-loader": "^6.0.6",
     "selenium-server": "^3.6.0",
     "semver": "^5.4.1",
@@ -156,7 +157,7 @@
     "ts-loader": "^3.1.1",
     "tslint": "^5.8.0",
     "tslint-loader": "^3.5.3",
-    "typescript": "^2.6.1",
+    "typescript": "^2.4.2",
     "url-loader": "^0.6.2",
     "vue": "^2.5.2",
     "vue-class-component": "^6.0.0",
@@ -172,5 +173,8 @@
     "last 2 versions",
     "safari >= 7",
     "not ie <= 8"
-  ]
+  ],
+  "dependencies": {
+    "rollup-plugin-typescript2": "^0.8.0"
+  }
 }
