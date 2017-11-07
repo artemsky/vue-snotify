@@ -19,5 +19,8 @@
       "es2016",
       "dom"
     ]
-  }
+  },
+  "exclude": [
+    "src/vue.d.ts"
+  ]
 }

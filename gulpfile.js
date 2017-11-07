@@ -79,9 +79,10 @@ gulp.task('inline-resources', function () {
 });
 
 /**
- * 4. Run the Angular compiler, ngc, on the /.tmp folder. This will output all
+ * 4. Run the typescript compiler, on the /.tmp folder. This will output all
  *    compiled modules to the /build folder.
  */
+
 gulp.task('typescript', function () {
   const tsResult = gulp.src(`${tmpFolder}/**/*.ts`)
   .pipe(tsProject());
@@ -92,21 +93,21 @@ gulp.task('typescript', function () {
   ]);
 });
 
-gulp.task('typescript', function () {
-  const tsResult = gulp.src(`${tmpFolder}/**/*.ts`)
-    .pipe(tsProject());
 
-  return merge([
-    tsResult.dts.pipe(gulp.dest(buildFolder)),
-    tsResult.js.pipe(gulp.dest(buildFolder))
-  ]);
-});
+/**
+ * 5. Replace static keyword in /.build declarations files? just because Vue interface doesn't accept that
+ *    compiled modules to the /build folder.
+ */
 
 gulp.task('replaceService', function(){
   return gulp.src(`${buildFolder}/SnotifyService.d.ts`)
     .pipe(greplace('static', ''))
     .pipe(gulp.dest(buildFolder));
 });
+
+/**
+ * 5. Inject Vue interface override
+ */
 
 gulp.task('injectDefinitions', function(){
   const fs = require('fs');
@@ -117,7 +118,7 @@ gulp.task('injectDefinitions', function(){
 
 
 /**
- * 3. Run rollup inside the /build folder to generate our Flat ES module and place the
+ * 6. Run rollup inside the /build folder to generate our Flat ES module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:fesm', function () {
@@ -132,7 +133,7 @@ gulp.task('rollup:fesm', function () {
 });
 
 /**
- * 4. Run rollup inside the /build folder to generate our UMD module and place the
+ * 7. Run rollup inside the /build folder to generate our UMD module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd', function () {
@@ -151,7 +152,7 @@ gulp.task('rollup:umd', function () {
 });
 
 /**
- * 4. Run rollup inside the /build folder to generate our UMD module and place the
+ * 8. Run rollup inside the /build folder to generate our UMD module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd:min', function () {
@@ -171,7 +172,7 @@ gulp.task('rollup:umd:min', function () {
 });
 
 /**
- * 5. Run rollup inside the /build folder to generate our CommonJS module and place the
+ * 9. Run rollup inside the /build folder to generate our CommonJS module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:cjs', function () {
@@ -189,9 +190,9 @@ gulp.task('rollup:cjs', function () {
 
 
 /**
- * 7. Copy all the files from /build to /dist, except .js files. We ignore all .js from /build
+ * 10. Copy all the files from /build to /dist, except .js files. We ignore all .js from /build
  *    because with don't need individual modules anymore, just the Flat ES module generated
- *    on step 5.
+ *    on steps 6,7,8,9.
  */
 gulp.task('copy:build', function () {
   return gulp.src([`${buildFolder}/**/*`, `!${buildFolder}/**/*.js`])
@@ -199,7 +200,7 @@ gulp.task('copy:build', function () {
 });
 
 /**
- * 6. Copy package.json from /src to /dist
+ * 11. Copy package.json from /src to /dist
  */
 gulp.task('copy:manifest', function () {
   return gulp.src([`${srcFolder}/package.json`])
@@ -207,7 +208,7 @@ gulp.task('copy:manifest', function () {
 });
 
 /**
- * 7. Copy README.md from / to /dist
+ * 12. Copy README.md from / to /dist
  */
 gulp.task('copy:readme', function () {
   return gulp.src([path.join(rootFolder, 'README.md')])
@@ -215,21 +216,21 @@ gulp.task('copy:readme', function () {
 });
 
 /**
- * 8. Delete /.tmp folder
+ * 13. Delete /.tmp folder
  */
 gulp.task('clean:tmp', function () {
   return deleteFolders([tmpFolder]);
 });
 
 /**
- * 8. Delete /build folder
+ * 14. Delete /build folder
  */
 gulp.task('clean:build', function () {
   return deleteFolders([buildFolder]);
 });
 
 /**
- * 9. Compile styles into separate bundle
+ * 15. Compile styles into separate bundle
  */
 gulp.task('styles:compile', function () {
   return gulp.src([`${srcFolder}/styles/*.scss`])
@@ -241,23 +242,16 @@ gulp.task('styles:compile', function () {
 });
 
 /**
- * 10. Copy styles sources to our dist folder
+ * 16. Copy styles sources to our dist folder
  */
 gulp.task('styles:copy', function () {
   return gulp.src([`${srcFolder}/styles/**`])
     .pipe(gulp.dest(`${distFolder}/styles`));
 });
 
-/**
- * 11. Copy typings
- */
-// gulp.task('copy:typings', function () {
-//   return gulp.src([`${srcFolder}/typings/**`])
-//     .pipe(gulp.dest(`${distFolder}/types`));
-// });
 
 /**
- * 12. Copy manifest, readme, to our dist folder
+ * 17. Copy manifest, readme, to our dist folder
  */
 gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme'));
 
