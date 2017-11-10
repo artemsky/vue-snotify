@@ -31,6 +31,7 @@ dist-example
 /docs/_book
 /docs/node_modules
 /demo
+/example/test/unit/coverage
 
 npm-debug.log*
 yarn-debug.log*

@@ -1,5 +1,6 @@
 // This is the webpack config used for unit tests.
 
+const path = require('path');
 const utils = require('./utils');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -8,7 +9,22 @@ const baseConfig = require('./webpack.base.conf');
 const webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
   module: {
-    rules: utils.styleLoaders()
+    rules: [
+      {
+        test: /\.ts$/,
+        enforce: "pre",
+        loader: 'istanbul-instrumenter-loader',
+        include: path.resolve('../src'),
+        options: {
+          // esModules: true,
+          compilerOptions: {
+            sourceMap: false,
+            inlineSourceMap: true
+          }
+        }
+      },
+      ...utils.styleLoaders()
+    ]
   },
   devtool: '#inline-source-map',
   resolveLoader: {

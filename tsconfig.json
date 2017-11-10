@@ -12,15 +12,25 @@
     "module": "es2015",
     "target": "es5",
     "noStrictGenericChecks": true,
+    "types": [
+      "jasmine",
+      "node"
+    ],
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@/*": ["./example/src"]
+    }
   },
   "exclude": [
     "src/vue.d.ts"
+  ],
+  "include": [
+    "example/test/**/*.ts"
   ]
 }

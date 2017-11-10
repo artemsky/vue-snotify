@@ -3,7 +3,7 @@
 // we are also using it with karma-webpack
 //   https://github.com/webpack/karma-webpack
 
-var webpackConfig = require('../../build/webpack.test.conf')
+const webpackConfig = require('../../build/webpack.test.conf');
 
 module.exports = function (config) {
   config.set({
@@ -12,19 +12,20 @@ module.exports = function (config) {
     //    http://karma-runner.github.io/0.13/config/browsers.html
     // 2. add it to the `browsers` array below.
     browsers: ['Chrome'],
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['jasmine'],
     reporters: ['spec', 'coverage'],
-    files: ['./index.ts'],
+    files: [
+      {pattern: 'specs/**/*.spec.ts', watch: false}
+    ],
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap']
+      'specs/**/*.spec.ts': ['webpack', 'sourcemap']
     },
     plugins: [
       // Launchers
       'karma-chrome-launcher',
 
       // Test Libraries
-      'karma-mocha',
-      'karma-sinon-chai',
+      'karma-jasmine',
 
       // Preprocessors
       'karma-webpack',
@@ -34,9 +35,16 @@ module.exports = function (config) {
       'karma-spec-reporter',
       'karma-coverage'
     ],
+    port: 9876,
+    autoWatch: true,
+    singleRun: true,
+    concurrency: Infinity,
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
+    },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
     },
     coverageReporter: {
       dir: './coverage',
@@ -46,4 +54,4 @@ module.exports = function (config) {
       ]
     }
   })
-}
+};
