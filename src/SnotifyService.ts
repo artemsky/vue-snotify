@@ -75,9 +75,9 @@ export class SnotifyService {
    */
    create(snotify: Snotify): SnotifyToast {
     const config =
-      mergeDeep(this.config.toast, this.config.type[snotify.config.type], snotify.config);
+      mergeDeep(this.config.toast, this.config.type[snotify.config.type], snotify.config) as SnotifyToastConfig;
     const toast = new SnotifyToast(
-      uuid(),
+      config.id ? config.id : uuid(),
       snotify.title,
       snotify.body,
       config

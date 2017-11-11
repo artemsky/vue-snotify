@@ -6,7 +6,10 @@ import {SnotifyPosition} from '../enums/';
  * Toast configuration object
  */
 export interface SnotifyToastConfig {
-
+  /**
+   * Toast custom id.
+   */
+  id?: number | string;
   /**
    * Toast timeout in milliseconds.
    * Disable timeout = 0

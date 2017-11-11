@@ -27,12 +27,12 @@ export class SnotifyToast {
   valid: boolean = undefined;
   /**
    *
-   * @param {number} id
+   * @param {number|string} id
    * @param {string} title
    * @param {string} body
    * @param {SnotifyToastConfig} [config]
    */
-  constructor (public id: number,
+  constructor (public id: number | string,
                public title: string,
                public body: string,
                public config: SnotifyToastConfig) {
