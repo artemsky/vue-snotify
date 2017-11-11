@@ -5,7 +5,7 @@ $toast-progressBarPercentage: #4c4c4c;
 
 $border-width: 4px;
 $simple-border-color: #000;
-$success-border-color: #4CAF50;
+$success-border-color: #4caf50;
 $info-border-color: #1e88e5;
 $warning-border-color: #ff9800;
 $error-border-color: #f44336;
@@ -71,7 +71,6 @@ $prompt-border-color: $confirm-border-color;
     font-size: 1em;
     color: $toast-color;
   }
-
 }
 
 .snotifyToast-show {
@@ -120,9 +119,6 @@ $prompt-border-color: $confirm-border-color;
 
 .snotify-prompt {
   border-left: $border-width solid $prompt-border-color;
-  ng-snotify-prompt {
-    width: 100%;
-  }
 }
 
 .snotify-confirm,

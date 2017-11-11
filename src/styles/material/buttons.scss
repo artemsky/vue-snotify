@@ -2,12 +2,13 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  border-top: 1px solid rgba(0,0,0,.1);
+  border-top: 1px solid rgba(0, 0, 0, .1);
+
   button {
     position: relative;
     width: 100%;
-    border-right: 1px solid rgba(0,0,0,.1);
-    border-left: 1px solid rgba(0,0,0,.1);
+    border-right: 1px solid rgba(0, 0, 0, .1);
+    border-left: 1px solid rgba(0, 0, 0, .1);
     border-top: none;
     border-bottom: none;
     background: transparent;
@@ -35,15 +36,14 @@
       animation: ripple 1s ease-out;
     }
 
-
     &:hover,
     &:focus {
-      background: rgba(0,0,0,.1);
+      background: rgba(0, 0, 0, .1);
       outline: none;
     }
 
     &:active {
-      background: rgba(0,0,0,.15);
+      background: rgba(0, 0, 0, .15);
     }
 
     &:last-child {
@@ -65,10 +65,12 @@
     transform: scale(0, 0);
     opacity: 1;
   }
+
   20% {
     transform: scale(25, 25);
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     transform: scale(40, 40);

@@ -4,13 +4,15 @@ $warning: $warning-border-color;
 $error: $error-border-color;
 $async: $async-border-color;
 
-$icons: -generate-icons((
-  error: $error,
-  warning: $warning,
-  info: $info,
-  success: $success,
-  async: $async
-));
+$icons: -generate-icons(
+  (
+    error: $error,
+    warning: $warning,
+    info: $info,
+    success: $success,
+    async: $async
+  )
+);
 
 .snotify-icon {
   position: absolute;
@@ -42,16 +44,4 @@ $icons: -generate-icons((
   background-image: url('#{map-get($icons, async)}');
   animation: async 3s infinite linear;
   transform-origin: 50% 50%;
-}
-
-
-@keyframes async {
-  0% {
-    -webkit-transform: translate(0, -50%) rotate(0deg);
-    transform: translate(0, -50%) rotate(0deg);
-  }
-  100% {
-    -webkit-transform: translate(0, -50%) rotate(360deg);
-    transform: translate(0, -50%) rotate(360deg);
-  }
 }

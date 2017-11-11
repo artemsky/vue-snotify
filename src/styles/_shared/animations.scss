@@ -10,6 +10,7 @@ $animation-name: 'fade';
   .#{$animation-name}In {
     animation-name: fadeInLeft;
   }
+
   .#{$animation-name}Out {
     animation-name: fadeOutLeft;
   }
@@ -21,6 +22,7 @@ $animation-name: 'fade';
   .#{$animation-name}In {
     animation-name: fadeInRight;
   }
+
   .#{$animation-name}Out {
     animation-name: fadeOutRight;
   }
@@ -30,27 +32,31 @@ $animation-name: 'fade';
   .#{$animation-name}In {
     animation-name: fadeInDown;
   }
+
   .#{$animation-name}Out {
     animation-name: fadeOutUp;
   }
 }
+
 .snotify-centerCenter {
   .#{$animation-name}In {
     animation-name: fadeIn;
   }
+
   .#{$animation-name}Out {
     animation-name: fadeOut;
   }
 }
+
 .snotify-centerBottom {
   .#{$animation-name}In {
     animation-name: fadeInUp;
   }
+
   .#{$animation-name}Out {
     animation-name: fadeOutDown;
   }
 }
-
 
 // Fade in
 
@@ -103,15 +109,15 @@ $animation-name: 'fade';
 }
 
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 // Fade out
 
 @keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes fadeOutDown {
@@ -177,5 +183,17 @@ $animation-name: 'fade';
 
   100% {
     max-height: 0;
+  }
+}
+
+@keyframes async {
+  0% {
+    -webkit-transform: translate(0, -50%) rotate(0deg);
+    transform: translate(0, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(0, -50%) rotate(360deg);
+    transform: translate(0, -50%) rotate(360deg);
   }
 }

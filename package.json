@@ -151,7 +151,7 @@
     "stylefmt": "^6.0.0",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
-    "stylelint-processor-html": "^1.0.0",
+    "stylelint-scss": "^2.1.0",
     "ts-loader": "^3.1.1",
     "tslint": "^5.8.0",
     "tslint-loader": "^3.5.3",
