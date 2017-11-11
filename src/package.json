@@ -1,20 +1,11 @@
 {
   "name": "vue-snotify",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "A Vue.js toast notifications",
   "main": "vue-snotify.common.js",
   "module": "vue-snotify.esm.js",
   "unpkg": "vue-snotify.js",
-  "typings": "types/index.d.ts",
-  "files": [
-    "styles",
-    "types",
-    "vue-snotify.common.js",
-    "vue-snotify.esm.js",
-    "vue-snotify.js",
-    "vue-snotify.min.js",
-    "README.md"
-  ],
+  "typings": "index.d.ts",
   "keywords": [
     "vue",
     "vuejs",

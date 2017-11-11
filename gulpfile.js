@@ -8,12 +8,14 @@ const gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   autoprefixer = require('autoprefixer'),
   replace = require('rollup-plugin-replace'),
-  vue = require('rollup-plugin-vue'),
-  babel = require('rollup-plugin-babel'),
   cjs = require('rollup-plugin-commonjs'),
   node = require('rollup-plugin-node-resolve'),
   inject = require('gulp-inject-string'),
-  uglify = require('rollup-plugin-uglify');
+  uglify = require('rollup-plugin-uglify'),
+  inlineResources = require('./tools/gulp/inline-resources'),
+  ts = require("gulp-typescript"),
+  merge = require('merge2'),
+  greplace = require('gulp-replace');
 
 const {version, license, author, name} = require('./package.json');
 const banner =
@@ -27,6 +29,25 @@ const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
 const tmpFolder = path.join(rootFolder, '.tmp');
 const distFolder = path.join(rootFolder, 'dist');
+const buildFolder = path.join(rootFolder, 'build');
+const tsProject = ts.createProject( {
+      "declaration": true,
+      "module": "es2015",
+      "target": "es5",
+      "baseUrl": ".",
+      "stripInternal": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "moduleResolution": "node",
+      "outDir": "./build",
+      "rootDir": ".",
+      "lib": [
+        "es2015",
+        "dom"
+      ],
+      "skipLibCheck": true
+    }
+);
 
 /**
  * 1. Delete /dist folder
@@ -48,13 +69,60 @@ gulp.task('copy:source', function () {
     .pipe(gulp.dest(tmpFolder));
 });
 
+/**
+ * 3. Inline template (.html) and style (.css) files into the the component .ts files.
+ *    We do this on the /.tmp folder to avoid editing the original /src files
+ */
+gulp.task('inline-resources', function () {
+  return Promise.resolve()
+    .then(() => inlineResources(tmpFolder));
+});
 
 /**
- * 3. Run rollup inside the /build folder to generate our Flat ES module and place the
+ * 4. Run the typescript compiler, on the /.tmp folder. This will output all
+ *    compiled modules to the /build folder.
+ */
+
+gulp.task('typescript', function () {
+  const tsResult = gulp.src(`${tmpFolder}/**/*.ts`)
+  .pipe(tsProject());
+
+  return merge([
+    tsResult.dts.pipe(gulp.dest(buildFolder)),
+    tsResult.js.pipe(gulp.dest(buildFolder))
+  ]);
+});
+
+
+/**
+ * 5. Replace static keyword in /.build declarations files? just because Vue interface doesn't accept that
+ *    compiled modules to the /build folder.
+ */
+
+gulp.task('replaceService', function(){
+  return gulp.src(`${buildFolder}/SnotifyService.d.ts`)
+    .pipe(greplace('static', ''))
+    .pipe(gulp.dest(buildFolder));
+});
+
+/**
+ * 5. Inject Vue interface override
+ */
+
+gulp.task('injectDefinitions', function(){
+  const fs = require('fs');
+  return gulp.src(`${buildFolder}/index.d.ts`)
+    .pipe(inject.prepend(fs.readFileSync(`${srcFolder}/vue.d.ts`, "utf8")))
+    .pipe(gulp.dest(buildFolder));
+});
+
+
+/**
+ * 6. Run rollup inside the /build folder to generate our Flat ES module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:fesm', function () {
-  return gulp.src(`${tmpFolder}/**/*.js`)
+  return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
     .pipe(rollup(generateRollupOptions({
       format: 'es',
@@ -65,7 +133,7 @@ gulp.task('rollup:fesm', function () {
 });
 
 /**
- * 4. Run rollup inside the /build folder to generate our UMD module and place the
+ * 7. Run rollup inside the /build folder to generate our UMD module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd', function () {
@@ -75,9 +143,8 @@ gulp.task('rollup:umd', function () {
     name: 'vue-snotify',
   });
 
-  return gulp.src(`${tmpFolder}/**/*.js`)
+  return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
-
     .pipe(rollup(config))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.js'))
@@ -85,7 +152,7 @@ gulp.task('rollup:umd', function () {
 });
 
 /**
- * 4. Run rollup inside the /build folder to generate our UMD module and place the
+ * 8. Run rollup inside the /build folder to generate our UMD module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd:min', function () {
@@ -95,7 +162,7 @@ gulp.task('rollup:umd:min', function () {
     name: 'vue-snotify',
   });
   config.plugins.push(uglify());
-  return gulp.src(`${tmpFolder}/**/*.js`)
+  return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
 
     .pipe(rollup(config))
@@ -105,7 +172,7 @@ gulp.task('rollup:umd:min', function () {
 });
 
 /**
- * 5. Run rollup inside the /build folder to generate our CommonJS module and place the
+ * 9. Run rollup inside the /build folder to generate our CommonJS module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:cjs', function () {
@@ -122,9 +189,18 @@ gulp.task('rollup:cjs', function () {
 });
 
 
+/**
+ * 10. Copy all the files from /build to /dist, except .js files. We ignore all .js from /build
+ *    because with don't need individual modules anymore, just the Flat ES module generated
+ *    on steps 6,7,8,9.
+ */
+gulp.task('copy:build', function () {
+  return gulp.src([`${buildFolder}/**/*`, `!${buildFolder}/**/*.js`])
+    .pipe(gulp.dest(distFolder));
+});
 
 /**
- * 6. Copy package.json from /src to /dist
+ * 11. Copy package.json from /src to /dist
  */
 gulp.task('copy:manifest', function () {
   return gulp.src([`${srcFolder}/package.json`])
@@ -132,7 +208,7 @@ gulp.task('copy:manifest', function () {
 });
 
 /**
- * 7. Copy README.md from / to /dist
+ * 12. Copy README.md from / to /dist
  */
 gulp.task('copy:readme', function () {
   return gulp.src([path.join(rootFolder, 'README.md')])
@@ -140,16 +216,23 @@ gulp.task('copy:readme', function () {
 });
 
 /**
- * 8. Delete /.tmp folder
+ * 13. Delete /.tmp folder
  */
 gulp.task('clean:tmp', function () {
   return deleteFolders([tmpFolder]);
 });
 
 /**
- * 9. Compile styles into separate bundle
+ * 14. Delete /build folder
  */
-gulp.task('styles:build', function () {
+gulp.task('clean:build', function () {
+  return deleteFolders([buildFolder]);
+});
+
+/**
+ * 15. Compile styles into separate bundle
+ */
+gulp.task('styles:compile', function () {
   return gulp.src([`${srcFolder}/styles/*.scss`])
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
@@ -159,30 +242,25 @@ gulp.task('styles:build', function () {
 });
 
 /**
- * 10. Copy styles sources to our dist folder
+ * 16. Copy styles sources to our dist folder
  */
 gulp.task('styles:copy', function () {
   return gulp.src([`${srcFolder}/styles/**`])
     .pipe(gulp.dest(`${distFolder}/styles`));
 });
 
-/**
- * 11. Copy typings
- */
-gulp.task('copy:typings', function () {
-  return gulp.src([`${srcFolder}/typings/**`])
-    .pipe(gulp.dest(`${distFolder}/types`));
-});
 
 /**
- * 12. Copy manifest, readme, to our dist folder
+ * 17. Copy manifest, readme, to our dist folder
  */
-gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme', 'copy:typings'));
+gulp.task('copy', gulp.parallel('copy:manifest', 'copy:readme'));
 
 gulp.task('compile', gulp.series(
   'copy:source',
+  'inline-resources',
+  'typescript',
+  'copy:build',
   gulp.parallel('rollup:fesm', 'rollup:umd', 'rollup:cjs', 'rollup:umd:min'),
-  'clean:tmp',
   (done) => {
     console.log('LIBRARY: compilation finished successfully');
     done();
@@ -197,9 +275,9 @@ gulp.task('watch', function () {
   gulp.watch(`${srcFolder}/styles/**`, gulp.parallel('styles:build'));
 });
 
-gulp.task('clean', gulp.parallel('clean:dist', 'clean:tmp'));
+gulp.task('clean', gulp.parallel('clean:dist', 'clean:tmp', 'clean:build'));
 
-gulp.task('styles:build', gulp.parallel('styles:build', 'styles:copy', (done) => {
+gulp.task('styles:build', gulp.parallel('styles:compile', 'styles:copy', (done) => {
   console.log('STYLES: compilation finished successfully');
   done();
 }));
@@ -208,6 +286,8 @@ gulp.task('build', gulp.series(
   'clean',
   'compile',
   'copy',
+  'clean:build',
+  'clean:tmp',
   'styles:build'
 ));
 
@@ -235,7 +315,7 @@ function generateRollupOptions(options) {
     strict: true,
     // Bundle's entry point
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-    input: `${tmpFolder}/index.js`,
+    input: `${buildFolder}/index.js`,
 
     // Allow mixing of hypothetical and actual files. "Actual" files can be files
     // accessed by Rollup or produced by plugins further down the chain.
@@ -250,65 +330,30 @@ function generateRollupOptions(options) {
       'Vue'
     ],
 
-    // Format of generated bundle
-    // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
-    // format: 'umd',
-
-    // Export mode to use
-    // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
-    // exports: 'named',
-
-    // The name to use for the module for UMD/IIFE bundles
-    // (required for bundles with exports)
-    // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-    // moduleName: 'vue-snotify',
-
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
     globals: {
+      typescript: 'ts',
       vue: 'Vue'
     },
 
     plugins: [
       node({
-        extensions: ['.js', '.vue']
+        jsnext: true,
+        module: true,
+        main: true,  // for commonjs modules that have an index.js
+        browser: true
+      }),
+      cjs({
+        namedExports: {
+          // left-hand side can be an absolute path, a path
+          // relative to the current directory, or the name
+          // of a module in node_modules
+          'vue-property-decorator': [ 'Component' ]
+        }
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      cjs(),
-      vue({
-        compileTemplate: true
-      }),
-      babel({
-          babelrc: false,
-          "presets": [
-            [
-              "env",
-              {
-                "modules": false,
-                "targets": {
-                  "browsers": ["last 2 versions", "safari >= 7", "not ie <= 8"]
-                }
-              }
-            ],
-            "stage-2"
-          ],
-          "plugins": [
-            "syntax-class-properties",
-            "transform-class-properties",
-            "transform-object-rest-spread",
-            "external-helpers"
-          ],
-          "env": {
-            "test": {
-              "presets": ["env", "stage-2"],
-              "plugins": [
-                "istanbul"
-              ]
-            }
-          }
-        }
-      )
     ]
 
   }, options)

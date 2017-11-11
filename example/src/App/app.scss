@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+.material {
+  @import "~vue-snotify/styles/material";
+}
+.simple {
+  @import "~vue-snotify/styles/simple";
+}
+.dark {
+  @import "~vue-snotify/styles/dark";
+}
+.snotify-icon {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+}
+.wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  @media (max-width: 767px) {
+    flex-flow: column nowrap;
+    height: auto;
+    font-size: 12px;
+  }
+  aside {
+    flex: 0 0 350px;
+    padding: 10px 15px;
+    overflow-y: auto;
+    z-index: 5;
+    .btn-group {
+      .btn {
+        padding: 6px 9px;
+      }
+    }
+    h3 {
+      margin: 0;
+    }
+    @media (max-width: 767px) {
+      order: 1;
+      overflow: initial;
+    }
+  }
+  .content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    background: #EA5C54; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #EA5C54), color-stop(100%, #bb6dec)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%); /* IE10+ */
+    background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EA5C54 ', endColorstr='#bb6dec', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+    main {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .brand {
+        position: absolute;
+        color: #ffffff;
+        h1 {
+          font-family: 'Audiowide', cursive;
+          font-display: swap;
+          font-size: 6em;
+        }
+        p {
+          font-size: 2em;
+          text-align: center;
+        }
+        @media (max-width: 992px) {
+          h1 {
+            font-size: 4.5em;
+          }
+          p {
+            font-size: 1.8em;
+          }
+          @media (max-width: 767px) {
+            h1 {
+              font-size: 4em;
+            }
+            p {
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+      @media (max-width: 767px) {
+        flex-flow: column nowrap;
+        order: 0;
+        height: 110px;
+      }
+    }
+    footer {
+      flex: 0 0 65px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 1em;
+      a {
+        color: #fff;
+      }
+      h6 {
+        font-size: .9em;
+      }
+      @media (max-width: 767px) {
+        flex: 0 0 40px;
+      }
+    }
+  }
+}
+.buttons {
+  margin: 20px 0;
+}
+.btn-group {
+  margin: 5px 0 0;
+}
+.btn-black {
+  color: #f8f8f8;
+  background-color: #2d2d2d;
+  border-color: #000000;
+  &:hover {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+  }
+}
+.btn-blue {
+  color: #f8f8f8;
+  background-color: #2095F2;
+  border-color: #1a80d1;
+  &:hover {
+    color: #fff;
+    background-color: #1a80d1;
+    border-color: #1a80d1;
+  }
+}
+.btn-teal {
+  color: #f8f8f8;
+  background-color: #009587;
+  border-color: #018175;
+  &:hover {
+    color: #fff;
+    background-color: #018175;
+    border-color: #018175;
+  }
+}
+.switch-wrapper {
+  width: 50%;
+}
+.switch-group-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 5px 0 10px;
+}
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  padding: 2px;
+  width: 60px;
+  height: 30px;
+  visibility: hidden;
+  + label {
+    display: block;
+    position: relative;
+    padding: 2px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &::before,
+    &::after {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      color: #fff;
+      font-family: "Roboto Slab", serif;
+      font-size: 20px;
+      text-align: center;
+      line-height: 30px;
+    }
+    &::before {
+      background-color: #dddddd;
+      content: attr(data-off);
+      transition: transform 0.5s;
+      backface-visibility: hidden;
+    }
+    &::after {
+      background-color: #8ce196;
+      content: attr(data-on);
+      transition: transform 0.5s;
+      transform: rotateY(180deg);
+      backface-visibility: hidden;
+    }
+  }
+  &:checked {
+    + label {
+      &::before {
+        transform: rotateY(180deg);
+      }
+      &::after {
+        transform: rotateY(0);
+      }
+    }
+  }
+}

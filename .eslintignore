@@ -1,7 +1,0 @@
-dist/*.js
-dist-example/*.js
-gulpfile.js
-example/build/*.js
-example/config/*.js
-example/test/**/*.js
-

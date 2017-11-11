@@ -1,0 +1,28 @@
+<div
+  class="snotifyToast animated"
+  :class="['snotify-' + toast.config.type,
+          state.animation, toast.valid === undefined ? '' : (toast.valid ? 'snotifyToast--valid' : 'snotifyToast--invalid')
+          ]"
+  :style="{
+            '-webkit-animation-duration': toast.config.animation.time + 'ms',
+            'animation-duration': toast.config.animation.time + 'ms',
+            '-webkit-transition': toast.config.animation.time + 'ms',
+            transition: toast.config.animation.time + 'ms'
+          }"
+  @click="onClick" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave" @animationend="onExitTransitionEnd">
+  <div class="snotifyToast__progressBar" v-if="toast.config.showProgressBar && toast.config.timeout > 0">
+    <span class="snotifyToast__progressBar__percentage" :style="{'width': (state.progress * 100) + '%'}"></span>
+  </div>
+  <div class="snotifyToast__inner" v-if="!toast.config.html">
+    <div class="snotifyToast__title" v-if="toast.title">{{toast.title | truncate(toast.config.titleMaxLength)}}</div>
+    <div class="snotifyToast__body" v-if="toast.body">{{toast.body | truncate(toast.config.bodyMaxLength)}}</div>
+    <snotify-prompt v-if="toast.config.type === state.promptType" :toast="toast">
+    </snotify-prompt>
+    <div v-if="!toast.config.icon" :class="['snotify-icon', 'snotify-icon--' + toast.config.type]"></div>
+    <div v-else>
+      <img class="snotify-icon" :src='toast.config.icon'/>
+    </div>
+  </div>
+  <div class="snotifyToast__inner" v-html="toast.config.html" v-else></div>
+  <snotify-button v-if="toast.config.buttons" :toast="toast"></snotify-button>
+</div>

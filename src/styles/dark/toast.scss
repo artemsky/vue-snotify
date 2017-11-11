@@ -14,6 +14,14 @@ $toast-progressBarPercentage: #4c4c4c;
   overflow: hidden;
   pointer-events: auto;
 
+  &--in {
+    animation-name: appear;
+  }
+
+  &--out {
+    animation-name: disappear;
+  }
+
   &__inner {
     display: flex;
     flex-flow: column nowrap;
@@ -73,10 +81,14 @@ $toast-progressBarPercentage: #4c4c4c;
  **************/
 
 .snotify-prompt {
-  .snotifyToast__inner {
-    padding: 10px 15px;
-  }
   ng-snotify-prompt {
     width: 100%;
+  }
+}
+
+.snotify-confirm,
+.snotify-prompt {
+  .snotifyToast__inner {
+    padding: 10px 15px;
   }
 }

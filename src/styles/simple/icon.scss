@@ -4,6 +4,14 @@ $warning: $warning-border-color;
 $error: $error-border-color;
 $async: $async-border-color;
 
+$icons: -generate-icons((
+  error: $error,
+  warning: $warning,
+  info: $info,
+  success: $success,
+  async: $async
+));
+
 .snotify-icon {
   position: absolute;
   right: 10px;
@@ -14,24 +22,24 @@ $async: $async-border-color;
   max-width: 48px;
 }
 
-.snotify-icon__error {
-  fill: $error;
+.snotify-icon--error {
+  background-image: url('#{map-get($icons, error)}');
 }
 
-.snotify-icon__warning {
-  fill: $warning;
+.snotify-icon--warning {
+  background-image: url('#{map-get($icons, warning)}');
 }
 
-.snotify-icon__info {
-  fill: $info;
+.snotify-icon--info {
+  background-image: url('#{map-get($icons, info)}');
 }
 
-.snotify-icon__success {
-  fill: $success;
+.snotify-icon--success {
+  background-image: url('#{map-get($icons, success)}');
 }
 
-.snotify-icon__async {
-  fill: $async;
+.snotify-icon--async {
+  background-image: url('#{map-get($icons, async)}');
   animation: async 3s infinite linear;
   transform-origin: 50% 50%;
 }
@@ -39,12 +47,11 @@ $async: $async-border-color;
 
 @keyframes async {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+    -webkit-transform: translate(0, -50%) rotate(0deg);
+    transform: translate(0, -50%) rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: translate(0, -50%) rotate(360deg);
+    transform: translate(0, -50%) rotate(360deg);
   }
 }
-

@@ -1,0 +1,169 @@
+<div class="wrapper">
+  <aside>
+    <h3 class="text-center">Toast config</h3>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input v-model="title" type="text" id="title" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="body">Body</label>
+      <textarea v-model="body" id="body" rows="2" class="form-control"></textarea>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="titlemaxlen">Title max-length</label>
+          <input v-model.number="titleMaxLength" type="text" min="0" id="titlemaxlen" class="form-control">
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="bodymaxlen">Body max-length</label>
+          <input v-model.number="bodyMaxLength" type="text" min="0" id="bodymaxlen" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="timeout">Timeout</label>
+          <input v-model.number="timeout" type="number" min="0" id="timeout" class="form-control">
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="backdrop">
+            Backdrop (0.0 - 1.0)
+          </label>
+          <input v-model="backdrop" type="number" id="backdrop" class="form-control" min="-1" max="1" step="0.1">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="position">Position</label>
+      <div class="row">
+        <div class="col-sm-12">
+
+          <select v-model="position" id="position" class="form-control">
+            <option value="leftTop">LEFT - TOP</option>
+            <option value="leftCenter">LEFT - CENTER</option>
+            <option value="leftBottom">LEFT - BOTTOM</option>
+            <option value="rightTop">RIGHT - TOP</option>
+            <option value="rightCenter">RIGHT - CENTER</option>
+            <option value="rightBottom">RIGHT - BOTTOM</option>
+            <option value="centerTop">CENTER - TOP</option>
+            <option value="centerCenter">CENTER - CENTER</option>
+            <option value="centerBottom">CENTER - BOTTOM</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="switch-group-wrapper">
+      <div class="switch-wrapper">
+        <strong>Show progress bar?</strong>
+        <div class="switch">
+          <input v-model="progressBar" id="progressBar" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+          <label for="progressBar" data-on="On" data-off="Off"></label>
+        </div>
+      </div>
+      <div class="switch-wrapper">
+        <strong>Close on click?</strong>
+        <div class="switch">
+          <input v-model="closeClick" id="closeClick" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+          <label for="closeClick" data-on="On" data-off="Off"></label>
+        </div>
+      </div>
+      <div class="switch-wrapper">
+        <strong>Pause on hover?</strong>
+        <div class="switch">
+          <input v-model="pauseHover" id="pauseHover" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+          <label for="pauseHover" data-on="On" data-off="Off"></label>
+        </div>
+      </div>
+      <div class="switch-wrapper">
+        <strong>New items on top?</strong>
+        <div class="switch">
+          <input v-model="newTop" id="newTop" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+          <label for="newTop" data-on="On" data-off="Off"></label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="dockMax">
+            Max on screen
+          </label>
+          <input v-model="dockMax" type="number" id="dockMax" class="form-control" min="1">
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="blockMax">
+            Max at position
+          </label>
+          <input v-model="blockMax" type="number" id="blockMax" class="form-control" min="1">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="style">Toast Style</label>
+      <div class="row">
+        <div class="col-sm-12">
+          <select v-model="style" id="style" class="form-control">
+            <option value="material">Material</option>
+            <option value="dark">Dark</option>
+            <option value="simple">Simple</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="buttons">
+        <div class="btn-group btn-group-justified">
+          <div class="btn btn-success" @click="onSuccess">Success</div>
+          <div class="btn btn-info" @click="onInfo">Info</div>
+          <div class="btn btn-danger" @click="onError">Error</div>
+          <div class="btn btn-warning" @click="onWarning">Warning</div>
+
+        </div>
+        <div class="btn-group btn-group-justified">
+          <div class="btn btn-default" @click="onSimple">Simple</div>
+          <div class="btn btn-blue" @click="onAsyncLoading">Async</div>
+          <div class="btn btn-teal" @click="onConfirmation">Confirm</div>
+          <div class="btn btn-black" @click="onPrompt">Prompt</div>
+        </div>
+        <div class="btn-group btn-group-justified">
+          <div class="btn btn-default" @click="onHtml">HTML</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn btn-block btn-primary" @click="onClear">Clear all</div>
+
+
+  </aside>
+  <div class="content">
+    <main>
+      <div class="brand">
+        <h1>Vue-Snotify</h1>
+        <p>Vue.js 2 Notification Center</p>
+      </div>
+    </main>
+    <footer>
+      <div class="footer">
+        <a href="https://github.com/artemsky/vue-snotify" target="_blank">GitHub</a> &#9673;
+        <a href="https://artemsky.github.io/vue-snotify/documentation/index.html" target="_blank">Documentation</a> &#9673;
+        <a href="https://www.npmjs.com/package/vue-snotify" target="_blank">NPM</a>
+        <h6>MIT &copy; 2017 <a href="https://github.com/artemsky/">artemsky</a></h6>
+      </div>
+    </footer>
+    <vue-snotify :class="style"></vue-snotify>
+  </div>
+</div>
