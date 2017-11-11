@@ -45,11 +45,6 @@ Change Log - [here](https://github.com/artemsky/vue-snotify/blob/master/CHANGELO
     - material [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/material.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/material.css)
     - simple [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/simple.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/simple.css)
     - dark [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/dark.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/dark.css)
-  - SCSS
-    - material [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/material.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/material.css)
-    - simple [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/simple.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/simple.css)
-    - dark [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/dark.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/dark.css)
-
 
 ## License
 

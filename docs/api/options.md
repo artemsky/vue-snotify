@@ -1,12 +1,28 @@
-# Config & Options
+# Configuration
 
-> `SnotifyConfig` object - changes single toast config.  
-> But if it passed into [vm.$snotify.setConfig](snotify.md#other) it changes default toast config.
- 
- `SnotifyOptions` object - changes default options.
- </p>
+> `SnotifyToastConfig` - changes toasts configuration.  
+> `SnotifyGlobalConfig` - changes toast dock configuration.
+
+## Setting default configuration
+> Default configuration looks like this - [toastDefaults](https://github.com/artemsky/ng-snotify/blob/master/src/snotify/toastDefaults.ts)  
+> Of course you can use it like json, just omit imports, and replace `SnotifyStyle` & `SnotifyPosition` with string values.
+> Just be sure that you are follow [SnotifyDefaults](interfaces.md#snotifydefaults) interface.  
+
+###### Example
+```typescript
+import Snotify from 'vue-snotify';
+
+
+Vue.use(Snotify, {
+  toast: {
+    timeout: 2000
+  }
+})
+```
+
+> If you want to change default config in runtime you can use [vm.$snotify.setDefaults()](snotify.md#setdefaults) method
   
-## SnotifyConfig
+## SnotifyToastConfig
 
 ### timeout
 
@@ -22,7 +38,7 @@
   
 ### type
 
-- type: [SnotifyType](interfaces.md#snotifytype)
+- type: [SnotifyType](types.md#snotifytype)
   > Depends on toast type - success | async | error | etc...
   > Actually it changes only toast class name
   
@@ -40,14 +56,13 @@
   
 ### buttons
 
-- type: Array<[SnotifyButton](interfaces.md#snotifybutton)>
+- type: [SnotifyButton[]](interfaces.md#snotifybutton)
 - default: 
-  ```js
+  ```typescript
     [
       {text: 'Ok', action: null, bold: true},
-      {text: 'Cancel', action: () => this.remove(id), bold: false},
+      {text: 'Cancel', action: null, bold: false},
     ]
-    // this.remove(id) - removes toast
   ```
   > Buttons config for Confirmation & Prompt types
   > You can pass, unlimited number of buttons. Just be sure you can handle it)
@@ -77,7 +92,7 @@
   > Custom icon url.
   ```js
     const icon = `https://placehold.it/48x100`;
-    vm.$snotify.simple('Example body', null, {
+    vm.$snotify.simple('Example body', {
       icon: icon
     });
   ```
@@ -92,28 +107,7 @@
 ### animation
 
 - type: [SnotifyAnimate](interfaces.md#snotifyanimate)  
-- default: 
-  ```js
-  case SnotifyPosition.leftTop:
-    {enter: 'fadeInLeft', exit: 'fadeOutLeft', time: 400}
-  case SnotifyPosition.leftCenter:
-    {enter: 'fadeInLeft', exit: 'fadeOutLeft', time: 400}
-  case SnotifyPosition.leftBottom:
-    {enter: 'fadeInLeft', exit: 'fadeOutLeft', time: 400}
-  
-  case SnotifyPosition.rightTop:
-    {enter: 'fadeInRight', exit: 'fadeOutRight', time: 400}
-  case SnotifyPosition.rightCenter:
-    {enter: 'fadeInRight', exit: 'fadeOutRight', time: 400}
-  case SnotifyPosition.rightBottom:
-    {enter: 'fadeInRight', exit: 'fadeOutRight', time: 400}
-  
-  case SnotifyPosition.centerTop:
-    {enter: 'fadeInDown', exit: 'fadeOutUp', time: 400}
-  case SnotifyPosition.centerCenter:
-    {enter: 'fadeIn', exit: 'fadeOut', time: 400}
-  case SnotifyPosition.centerBottom:
-    {enter: 'fadeInUp', exit: 'fadeOutDown', time: 400}
+- default: `{enter: 'fadeIn', exit: 'fadeOut', time: 400}`
   ```
  > Animation configuration object. Time in milliseconds
   
@@ -126,11 +120,12 @@
 ### position
 
 - type: [SnotifyPosition](enums.md#snotifyposition)
-- default: `150`
-  > Toast body maximum length
+- default: `rightBottom`
+  > Toasts position on screen
   
   
-## SnotifyOptions
+  
+## SnotifyGlobalConfig
   
 ### maxOnScreen
 
@@ -145,7 +140,7 @@
 
 - type: `number`
 - default: `8`
-  > Max toast items at position.    
+  > Max toast items at position.  
     Same as `maxOnScreen` but affects only current toast position block.
 
   
@@ -153,19 +148,7 @@
 
 - type: `true`
 - default: `150`
-  > Should new items come from top or bottom side.   
+  > Should new items come from top or bottom side.  
   > This option created for styling purposes.  
   > For example, if your toast position is TOP-RIGHT. It's not very nice, when items comes from top and pulls down all other toasts
- 
-  
-### position
-
-- type: [SnotifyPosition](interfaces.md#snotifyposition)
-- default: `rightBottom`
-  > Toasts position on screen
-  
-### maxHeight
-
-- type: `number`
-- default: `300`
-  > Toast maximum height in pixels
+    

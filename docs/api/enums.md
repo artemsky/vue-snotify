@@ -1,20 +1,7 @@
 # Enumerators
 
-> Each enum can be imported from`"vue-snotify` 
+> Each enum can be imported from `vue-snotify` 
 
-### SnotifyAction
-
-  - mounted:`"mounted"`
-  - destroyed:`"destroyed"`
-  - beforeDestroy:`"beforeDestroy"`
-  - onInput:`"onInput"`
-  - onClick:`"onClick"`
-  - onHoverEnter:`"onHoverEnter"`
-  - onHoverLeave:`"onHoverLeave"`
-  - beforeShow:`"beforeShow"`
-  - shown:`"shown"`
-  - beforeHide:`"beforeHide"`
-  - hidden:`"hidden"`
 
 ### SnotifyPosition
 
@@ -28,14 +15,28 @@
   - centerCenter:`"centerCenter"`
   - centerBottom:`"centerBottom"`
 
+### SnotifyStyle
 
-### SnotifyType
+  - simple:`"simple"`
+  - success:`"success"`
+  - error:`"error"`
+  - warning:`"warning"`
+  - info:`"info"`
+  - async:`"async"`
+  - confirm:`"confirm"`
+  - prompt:`"prompt"`
+  
+  
+###### Example
+  ```typescript
+  import {SnotifyPosition, SnotifyStyle} from 'ng-snotify';
 
-  - SIMPLE:`"simple"`
-  - SUCCESS:`"success"`
-  - ERROR:`"error"`
-  - WARNING:`"warning"`
-  - INFO:`"info"`
-  - ASYNC:`"async"`
-  - CONFIRM:`"confirm"`
-  - PROMPT:`"prompt"`
+  snotifyvm.$snotify.create({
+    title: 'Example title',
+    body: null,
+    config: {
+      position: SnotifyPosition.rightTop,
+      type: SnotifyStyle.info,
+    }
+  })
+  ```

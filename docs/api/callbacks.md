@@ -1,45 +1,38 @@
 # Callbacks
 
+## toast.on( event, callback )
+
+> You can chain callbacks `on(e, func).on(e, func)...`
 
 ### Callback
-
-> vm.$on( event, callback )
-> See Vue [instance methods](https://vuejs.org/v2/api/#Instance-Methods-Events)
 
 - type: `Function`
 
   Signature:
 
   ```
-  (
-    toast: SnotifyToast,
-    value?: string
-  ) => void
+  (toast: Snotify) => void
   ```
   
-  > [Event list](#events)
-  > [SnotifyToast](interfaces.md#snotifytoast)
-  
-  > `value` passed only in case toast type === `prompt`
+  > [Snotify](interfaces.md#snotify)
   
 # Events
 
  - `"mounted"`
- - `"destroyed"`
- - `"beforeDestroy"`
- - `"onInput"`
- - `"onClick"`
- - `"onHoverEnter"`
- - `"onHoverLeave"`
  - `"beforeShow"`
  - `"shown"`
+ - `"input"`
+ - `"click"`
+ - `"mouseenter"`
+ - `"mouseleave"`
  - `"beforeHide"`
  - `"hidden"`
+ - `"destroyed"`
  
- > Event can be passed with `enum` helper [SnotifyAction](enums.md#snotifyaction)
+ > Events type - [SnotifyEvent](types.md#snotifyevent) 
  
   ```js
-    vm.$on( SnotifyAction.mounted, (toast, value) => {
-      
+    toast.on( "click", (toast: Snotify) => {
+      toast.body = "Change body...";
     } )
   ```

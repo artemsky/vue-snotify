@@ -20,6 +20,7 @@ export function isObject(item): boolean {
  * @param sources {Array<Object<any>>}
  * @returns {Object<any>}
  */
+
 export function mergeDeep(...sources) {
   const target = {};
   if (!sources.length) {

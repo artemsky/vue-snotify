@@ -39,18 +39,15 @@ Here is a more advanced example including passing config and options:
 ```javascript
 // Place the following into its own module file for easy import.
 import Vue from 'vue'
-import {default as Snotify, SnotifyPosition} from 'vue-snotify'
+import Snotify, { SnotifyPosition } from 'vue-snotify'
 
-const configure = {
-  config: {
-    position: SnotifyPosition.rightTop,
-  },
-  options: {
-    maxHeight: 400
+const options = {
+  toast: {
+    position: SnotifyPosition.rightTop
   }
 }
 
-Vue.use(Snotify, configure)
+Vue.use(Snotify, options)
 
 ```
 
@@ -59,10 +56,10 @@ Add `vue-snotify` component to your template
 
 ```html
 <template>
-<div>
-  <h1>My app!</h1>
-  <vue-snotify></vue-snotify>
-</div>
+  <div>
+    <h1>My app!</h1>
+    <vue-snotify></vue-snotify>
+  </div>
 </template>
 ```
 

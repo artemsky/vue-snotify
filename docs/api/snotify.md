@@ -1,7 +1,9 @@
-# Snotify
+# SnotifyService
 
-> All methods return toast `id`
-> Toast notifications with different classNames and icons. `.snotify-${METHOD_NAME}`
+> All methods return toast [SnotifyToast](model.md#snotifytoast)
+> Toast methods creates notifications with different class names `.snotify-${METHOD_NAME}`  
+> You can style them as you want.
+> Look more in [advanced section].
 
 ## Core
 
@@ -12,14 +14,11 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title?: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ```
-
- 
   
 ### success
 
@@ -28,11 +27,10 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title?: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ``` 
   
 ### info
@@ -42,11 +40,10 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title?: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ```
   
 ### warning
@@ -56,11 +53,10 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title?: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ```  
   
 ### error
@@ -70,29 +66,12 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title?: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ```
-  
-### async
 
-- type: `Function`
-
-  Signature:
-
-  ```
-  (
-    body: string,
-    title: string,
-    action: () => Promise<{body: string, title?: string, config?: SnotifyConfig}>
-  ) => number
-  ```
-  > Toast notification of style - *info* and loading spinner. It changes style depending on success or error `promise`.  
-  > Example - [here](../essentials/examples.md#async)  
-  
 ### confirm
 
 - type: `Function`
@@ -100,11 +79,10 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ```
   > Toast notification with buttons  
   > Example - [here](../essentials/examples.md#confirm) 
@@ -116,15 +94,32 @@
   Signature:
 
   ```
-  (
-    body: string,
-    title: string,
-    config?: SnotifyConfig
-  ) => number
+  (body: string): SnotifyToast
+  (body: string, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string): SnotifyToast
+  (body: string, title: string, config: SnotifyToastConfig): SnotifyToast
   ```
   > Toast notification with buttons and input field
   > Example - [here](../essentials/examples.md#prompt)   
   
+  
+### async
+
+- type: `Function`
+
+  Signature:
+
+  ```
+  (body: string, action: Promise<Snotify> | Observable<Snotify>): SnotifyToast
+  (body: string, title: string, action: Promise<Snotify> | Observable<Snotify>): SnotifyToast
+  (body: string, action: Promise<Snotify> | Observable<Snotify>, config: SnotifyToastConfig): SnotifyToast
+  (body: string, title: string, action: Promise<Snotify> | Observable<Snotify>, config: SnotifyToastConfig): SnotifyToast
+  ```
+  > Toast notification of style - *info* and loading spinner. It changes style depending on complete or error `Observable`.  
+  > Example - [here](../essentials/examples.md#async)  
+  
+
+
 ### html
 
 - type: `Function`
@@ -132,10 +127,7 @@
   Signature:
 
   ```
-  (
-    html: string,
-    config?: SnotifyConfig
-  ) => number
+   html(html: string | SafeHtml, config?: SnotifyToastConfig): SnotifyToast
   ```
   > Toast notification of custom style(default - Simple). 
   > Renders your html string inside `.snotifyToast__inner`
@@ -143,7 +135,7 @@
 
 ## Other
 
-### setConfig
+### setDefaults
 
 - type: `Function`
 
@@ -151,9 +143,8 @@
 
   ```
   (
-    config?: SnotifyConfig,
-    options?: SnotifyOptions
-  ) => void
+    defaults: SnotifyDefaults
+  ) => SnotifyDefaults
   ```
   > Set global configuration object  
   
@@ -168,7 +159,7 @@
     id: number
   ) => SnotifyToast
   ```
-  > [SnotifyToast](interfaces.md#snotifytoast)
+  > [SnotifyToast](model.md#snotifytoast)
   > Returns SnotifyToast object by id  
     
   
@@ -180,11 +171,13 @@
 
   ```
   (
-    id?: number
+    id?: number,
+    remove?: boolean
   ) => void
   ```
   > If id passed, removes toast instantly. 
-  > If no param passed it's the same as [clear()](#clear) If you want to remove toast with exit animation use `vm.$snotify.$emit('remove', id`)
+  > If no param passed it's the same as [clear()](#clear).  
+  > If you want to remove toast instantly pass `true` as second argument
   
     
   
@@ -198,4 +191,20 @@
   () => void
   ```
   > Clear notifications array instantly
+      
+  
+### create
+
+- type: `Function`
+
+  Signature:
+
+  ```
+  (
+  snotify: Snotify
+  ) => SnotifyToast
+  ```
+  > [Snotify](interfaces.md#snotify)
+  > [SnotifyToast](model.md#snotifytoast)
+  > Creates custom notification object
   
