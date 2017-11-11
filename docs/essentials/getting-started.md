@@ -17,7 +17,7 @@ https://artemsky.github.io/vue-snotify/
 - Repository includes 3 different styles. So you can use on of them, or create your own.
 - Callbacks
 - 5KB minified and gzipped
-- Typescript definitions
+- Typescript based
 - ESM, CommonJS, UMD versions
 
 ###### Looking for an Angular version? [Here](https://github.com/artemsky/ng-snotify/)
