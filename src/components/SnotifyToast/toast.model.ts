@@ -16,7 +16,7 @@ export class SnotifyToast {
    * @type {Vue[]}
    * @private
    */
-  private _eventsHolder: {event: string, action: () => void}[] = [];
+  private _eventsHolder: {event: string, action: (toast: any) => void}[] = [];
   /**
    * Toast prompt value
    */
@@ -59,7 +59,7 @@ export class SnotifyToast {
    * @param  {SnotifyToast~action} action
    * @returns {SnotifyToast}
    */
-  on (event, action) {
+  on (event: SnotifyEvent, action: (toast: this) => void) {
     this._eventsHolder.push({event, action});
     this.eventEmitter.$on(event, () => action(this));
     return this;

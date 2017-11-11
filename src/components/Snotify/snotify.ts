@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import {SnotifyService} from '../../SnotifyService';
 import {SnotifyToast} from '../SnotifyToast/toast.model';
 import {SnotifyNotifications} from '../../interfaces';
 import {SnotifyPosition} from '../../enums/';
@@ -14,7 +13,6 @@ import {Component} from 'vue-property-decorator';
   }
 })
 export class Snotify extends Vue {
-
   /**
    * Toasts array
    */
@@ -58,17 +56,17 @@ export class Snotify extends Vue {
 
 
   setOptions(toasts) {
-    if (SnotifyService.config.global.newOnTop) {
-      this.dockSize_a = -SnotifyService.config.global.maxOnScreen;
+    if (this.$snotify.config.global.newOnTop) {
+      this.dockSize_a = -this.$snotify.config.global.maxOnScreen;
       this.dockSize_b = undefined;
-      this.blockSize_a = -SnotifyService.config.global.maxAtPosition;
+      this.blockSize_a = -this.$snotify.config.global.maxAtPosition;
       this.blockSize_b = undefined;
       this.withBackdrop = toasts.filter(toast => toast.config.backdrop >= 0);
     } else {
       this.dockSize_a = 0;
-      this.dockSize_b = SnotifyService.config.global.maxOnScreen;
+      this.dockSize_b = this.$snotify.config.global.maxOnScreen;
       this.blockSize_a = 0;
-      this.blockSize_b = SnotifyService.config.global.maxAtPosition;
+      this.blockSize_b = this.$snotify.config.global.maxAtPosition;
       this.withBackdrop = toasts.filter(toast => toast.config.backdrop >= 0).reverse();
     }
     this.notifications = this.splitToasts(toasts.slice(this.dockSize_a, this.dockSize_b));
@@ -130,7 +128,7 @@ export class Snotify extends Vue {
 
 
   created() {
-    SnotifyService.emitter.$on('snotify', (toasts) => {
+    this.$snotify.emitter.$on('snotify', (toasts) => {
       this.setOptions(toasts);
     });
   }

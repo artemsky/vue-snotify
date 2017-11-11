@@ -259,8 +259,6 @@ gulp.task('compile', gulp.series(
   'copy:source',
   'inline-resources',
   'typescript',
-  'replaceService',
-  'injectDefinitions',
   'copy:build',
   gulp.parallel('rollup:fesm', 'rollup:umd', 'rollup:cjs', 'rollup:umd:min'),
   (done) => {

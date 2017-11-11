@@ -1,25 +1,37 @@
 import {Snotify} from './components/Snotify';
-import {SnotifyService} from './SnotifyService';
+import {Service} from './Service';
 import {SnotifyDefaults} from './interfaces';
+import {SnotifyService} from './SnotifyService';
+import Vue from 'vue';
 
-declare global {
-  interface Window { Vue: any; }
+const Plugin = {
+  install (Vue, options: SnotifyDefaults = {}) {
+    Vue.filter('truncate', (value, limit = 40, trail = '...') =>
+      value.length > limit ? value.substring(0, limit) + trail : value
+    );
+    const service =  new Service();
+    service.setDefaults(options);
+    Vue.prototype.$snotify = service;
+    Vue.component('vue-snotify', Snotify);
+
+  }
+};
+
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $snotify: SnotifyService | any;
+  }
 }
 
-export default function install (Vue, options: SnotifyDefaults = {}) {
-  Vue.filter('truncate', (value, limit = 40, trail = '...') =>
-    value.length > limit ? value.substring(0, limit) + trail : value
-  );
-  Vue.component('vue-snotify', Snotify);
-  SnotifyService.setDefaults(options);
-  Vue.prototype.$snotify = SnotifyService;
-}
+
 
 // auto install
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(install);
+if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
+  (window as any).Vue.use(Plugin.install);
 }
 
+export default Plugin;
 export {SnotifyDefaults} from './interfaces/SnotifyDefaults.interface';
 export {SnotifyToastConfig} from './interfaces/SnotifyToastConfig.interface';
 export {SnotifyStyles} from './interfaces/SnotifyStyles.interface';
@@ -32,3 +44,5 @@ export {SnotifyPosition} from './enums/SnotifyPosition.enum';
 export {SnotifyStyle} from './enums/SnotifyStyle.enum';
 export {SnotifyType} from './types/snotify.type';
 export {SnotifyEvent} from './types/event.type';
+export {SnotifyToast} from './components/SnotifyToast/toast.model';
+

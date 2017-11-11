@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { SnotifyPosition } from 'vue-snotify';
+import { SnotifyPosition, SnotifyToast } from 'vue-snotify';
 import { Component } from 'vue-property-decorator';
 
 import './app.scss';
@@ -44,8 +44,22 @@ export class App extends Vue {
       pauseOnHover: this.pauseHover
     };
   }
+
+  mapCallbacks(toast: SnotifyToast) {
+    toast.on('beforeShow', (toast) => { console.log(`${toast.title} - beforeShow`); });
+    toast.on('mounted', (toast) => { console.log(`${toast.title} - mounted`); });
+    toast.on('shown', (toast) => { console.log(`${toast.title} - shown`); });
+    toast.on('beforeHide', (toast) => { console.log(`${toast.title} - beforeHide`); });
+    toast.on('click', (toast) => { console.log(`${toast.title} - click`); });
+    toast.on('destroyed', (toast) => { console.log(`${toast.title} - destroyed`); });
+    toast.on('hidden', (toast) => { console.log(`${toast.title} - hidden`); });
+    toast.on('input', (toast) => { console.log(`${toast.title} - input`); });
+    toast.on('mouseenter', (toast) => { console.log(`${toast.title} - mouseenter`); });
+    toast.on('mouseleave', (toast) => { console.log(`${toast.title} - mouseleave`); });
+  }
   onSuccess() {
-    this.$snotify.success(this.body, this.title, this.getConfig());
+    const toast = this.$snotify.success(this.body, this.title, this.getConfig());
+    this.mapCallbacks(toast);
   }
   onInfo() {
     this.$snotify.info(this.body, this.title, this.getConfig());
@@ -118,7 +132,7 @@ export class App extends Vue {
      At the second we can't get it. But we can remove this toast
      */
     const {timeout, closeOnClick, ...config} = this.getConfig(); // Omit props what i don't need
-    this.$snotify.prompt(this.body, this.title, {
+    const toast = this.$snotify.prompt(this.body, this.title, {
       ...config,
       buttons: [
         {text: 'Yes', action: (toast) => console.log('Said Yes: ' + toast.value) },
@@ -129,6 +143,9 @@ export class App extends Vue {
       console.log(toast.value);
       toast.valid = !!toast.value.match('ng-snotify');
     });
+
+
+    this.mapCallbacks(toast);
   }
 
   onHtml() {

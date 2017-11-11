@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import {SnotifyPrompt} from '../SnotifyPrompt';
 import {SnotifyButton} from '../SnotifyButton';
-import {SnotifyService} from '../../SnotifyService';
 import {SnotifyStyle} from '../../enums';
 import { Component } from 'vue-property-decorator';
 import {SnotifyToast} from './toast.model';
@@ -36,7 +35,7 @@ export class Toast extends Vue {
   onClick () {
     this.toast.eventEmitter.$emit('click');
     if (this.toast.config.closeOnClick) {
-      SnotifyService.remove(this.toast.id);
+      this.$snotify.remove(this.toast.id);
     }
   }
   onMouseEnter () {
@@ -81,7 +80,7 @@ export class Toast extends Vue {
         } else {
           this.state.progress = 1;
           cancelAnimationFrame(this.animationFrame);
-          SnotifyService.emitter.$emit('remove', this.toast.id);
+          this.$snotify.emitter.$emit('remove', this.toast.id);
         }
       });
     };
@@ -99,16 +98,16 @@ export class Toast extends Vue {
       this.$emit('hidden');
       this.state.animation = 'snotifyToast--out';
       this.toast.eventEmitter.$emit('hidden');
-      setTimeout(() => SnotifyService.remove(this.toast.id, true), this.toast.config.animation.time / 2);
+      setTimeout(() => this.$snotify.remove(this.toast.id, true), this.toast.config.animation.time / 2);
     }, this.toast.config.animation.time / 2);
   }
   created () {
-    SnotifyService.emitter.$on('toastChanged', (toast) => {
+    this.$snotify.emitter.$on('toastChanged', (toast) => {
       if (this.toast.id === toast.id) {
         this.initToast();
       }
     });
-    SnotifyService.emitter.$on('remove', (id) => {
+    this.$snotify.emitter.$on('remove', (id) => {
       if (this.toast.id === id) {
         this.onRemove();
       }

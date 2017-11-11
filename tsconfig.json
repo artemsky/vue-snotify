@@ -22,13 +22,11 @@
     "lib": [
       "es2016",
       "dom"
-    ],
-    "paths": {
-      "@/*": ["./example/src"]
-    }
+    ]
   },
   "exclude": [
-    "src/vue.d.ts"
+    "src/vue.d.ts",
+    "dist/**/*.ts"
   ],
   "include": [
     "example/test/**/*.ts"
