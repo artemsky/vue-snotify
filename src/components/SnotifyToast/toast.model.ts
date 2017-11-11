@@ -24,7 +24,7 @@ export class SnotifyToast {
   /**
    * Toast validator
    */
-  valid: boolean;
+  valid: boolean = undefined;
   /**
    *
    * @param {number} id
@@ -36,7 +36,6 @@ export class SnotifyToast {
                public title: string,
                public body: string,
                public config: SnotifyToastConfig) {
-
     if (this.config.type === SnotifyStyle.prompt) {
       this.value = '';
     }

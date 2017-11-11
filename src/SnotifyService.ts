@@ -12,7 +12,7 @@ import {SetToastType} from './decorators/set-toast-type.decorator';
  * this - create, remove, config toasts
  */
 // tslint:disable:unified-signatures
-export class Service {
+export class SnotifyService {
    readonly emitter = new Vue();
    notifications: SnotifyToast[] = [];
    config: SnotifyDefaults = ToastDefaults;

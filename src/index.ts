@@ -1,5 +1,5 @@
 import {Snotify} from './components/Snotify';
-import {Service} from './Service';
+
 import {SnotifyDefaults} from './interfaces';
 import {SnotifyService} from './SnotifyService';
 import Vue from 'vue';
@@ -9,7 +9,7 @@ const Plugin = {
     Vue.filter('truncate', (value, limit = 40, trail = '...') =>
       value.length > limit ? value.substring(0, limit) + trail : value
     );
-    const service =  new Service();
+    const service =  new SnotifyService();
     service.setDefaults(options);
     Vue.prototype.$snotify = service;
     Vue.component('vue-snotify', Snotify);
