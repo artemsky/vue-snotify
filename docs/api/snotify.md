@@ -206,5 +206,24 @@
   ```
   > [Snotify](interfaces.md#snotify)
   > [SnotifyToast](model.md#snotifytoast)
-  > Creates custom notification object
+  > Creates custom notification object      
+  
+
+### button
+
+- type: `Function`
+
+  Signature:
+
+  ```
+  (
+  text: string,
+  closeOnClick: boolean = true,
+  action: (toast?: SnotifyToast) => void = null,
+  bold: boolean = false
+  ) => SnotifyButton
+  ```
+  > [SnotifyButton](interfaces.md#snotyfybutton)
+  > [SnotifyToast](model.md#snotifytoast)
+  > Button create helper
   

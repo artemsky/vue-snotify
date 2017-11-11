@@ -123,6 +123,16 @@ export class App extends Vue {
         {text: 'Close', action: (toast) => {console.log('Clicked: Close'); this.$snotify.remove(toast.id); }, bold: true},
       ]
     });
+
+    this.$snotify.confirm(this.body, this.title, {
+      ...config,
+      buttons: [
+        this.$snotify.button('Yes', false, () => console.log('Clicked: Yes')),
+        this.$snotify.button('No', false, () => console.log('Clicked: No')),
+        this.$snotify.button('Later', true, () => console.log('Clicked: Later'), true),
+        this.$snotify.button('Close', true, () => console.log('Clicked: Close'), true),
+      ]
+    });
   }
 
   onPrompt() {

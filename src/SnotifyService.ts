@@ -50,7 +50,7 @@ export class SnotifyService {
    * @param id {number}
    * @param remove {boolean}
    */
-   remove(id?: number, remove?: boolean): void {
+   remove(id?: number| string, remove?: boolean): void {
     if (!id) {
       return this.clear();
     } else if (remove) {
@@ -66,6 +66,17 @@ export class SnotifyService {
    clear(): void {
     this.notifications = [];
     this.emit();
+  }
+
+  button(text: string, closeOnClick: boolean = true, action: (toast?: SnotifyToast) => void = null, bold: boolean = false) {
+     return {
+       text,
+       action: closeOnClick ? (toast: SnotifyToast) => {
+         action(toast);
+         this.remove(toast.id);
+       } : action,
+       bold
+     };
   }
 
   /**
