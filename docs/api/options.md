@@ -24,6 +24,12 @@ Vue.use(Snotify, {
   
 ## SnotifyToastConfig
 
+### id
+
+- type: `number|string`
+- default: `<Automatically generated value>`
+  > Toast identity
+
 ### timeout
 
 - type: `number`

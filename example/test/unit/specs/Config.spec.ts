@@ -1,7 +1,7 @@
 import {load, unload} from '../loader';
 
 
-describe('App.vue', () => {
+describe('Test options', () => {
   let vm = null;
   beforeEach(() => {
     vm = load();
