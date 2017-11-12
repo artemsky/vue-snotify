@@ -5,7 +5,7 @@
   "scripts": {
     "prestart": "npm run link:src",
     "start": "cross-env NODE_ENV=development npm run link:src && npm run example:dev",
-    "build": "npm run lib:build && npm run link:dist && npm run example:build",
+    "build": "cross-env NODE_ENV=production npm run lib:build && npm run link:dist && npm run example:build",
     "test": "npm run example:unit",
     "docs": "cd documentation && gitbook install && gitbook serve",
     "docs:build": "gitbook build ./documentation ./demo/documentation",
@@ -17,12 +17,12 @@
     "lint": "npm run lint:ts && npm run lint:css",
     "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:ts:fix": "npm run lint:ts --fix",
-    "lint:css": "stylelint src/**/*.scss",
+    "lint:scss": "stylelint src/**/*.scss",
+    "lint:scss:fix": "stylelint src/**/*.scss --fix",
     "example:dev": "node example/build/dev-server.js",
     "example:build": "node example/build/build.js",
     "example:unit": "cross-env karma start example/test/unit/karma.conf.js --single-run",
-    "example:e2e": "node example/test/e2e/runner.js",
-    "example:test": "npm run unit && npm run e2e",
+    "example:test": "npm run unit",
     "example:lint": "tslint -c tslint.json 'example/src'"
   },
   "keywords": [
@@ -113,7 +113,6 @@
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.6",
     "merge2": "^1.2.0",
-    "nightwatch": "^0.9.16",
     "node-sass": "^4.6.0",
     "node-sass-tilde-importer": "^1.0.0",
     "node-watch": "^0.5.5",
