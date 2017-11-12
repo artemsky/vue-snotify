@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production npm run lib:build && npm run link:dist && npm run example:build",
     "test": "npm run example:unit",
     "docs": "cd documentation && gitbook install && gitbook serve",
-    "docs:build": "gitbook build ./documentation ./demo/documentation",
+    "docs:build": "gitbook install && gitbook build ./docs ./demo/documentation",
     "docs:deploy": "bash ./update-docs.sh",
     "lib:build": "cross-env NODE_ENV=production gulp build",
     "lib:build:watch": "cross-env NODE_ENV=production gulp",
