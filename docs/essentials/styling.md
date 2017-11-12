@@ -7,17 +7,17 @@ You should import one of this in your global style.scss like this `@import "~vue
 **Snotify** offers you 3 themes.
 
 #### Material
-`@import "~ng-snotify/styles/material";`
+`@import "~vue-snotify/styles/material";`
 
 ![Material Theme](https://artemsky.github.io/vue-snotify/static/material.png)
 
 #### Simple
-`@import "~ng-snotify/styles/simple";`
+`@import "~vue-snotify/styles/simple";`
 
 ![Simple Theme](https://artemsky.github.io/vue-snotify/static/simple.png)
 
 #### Dark
-`@import "~ng-snotify/styles/dark";`
+`@import "~vue-snotify/styles/dark";`
 
 ![Dark Theme](https://artemsky.github.io/vue-snotify/static/dark.png)
 

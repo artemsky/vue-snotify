@@ -29,9 +29,9 @@
   
 ###### Example
   ```typescript
-  import {SnotifyPosition, SnotifyStyle} from 'ng-snotify';
+  import {SnotifyPosition, SnotifyStyle} from 'vue-snotify';
 
-  snotifyvm.$snotify.create({
+  vm.$snotify.create({
     title: 'Example title',
     body: null,
     config: {

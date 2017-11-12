@@ -204,8 +204,8 @@
   snotify: Snotify
   ) => SnotifyToast
   ```
-  > [Snotify](interfaces.md#snotify)
-  > [SnotifyToast](model.md#snotifytoast)
+  > [Snotify](interfaces.md#snotify)  
+  > [SnotifyToast](model.md#snotifytoast)  
   > Creates custom notification object      
   
 
@@ -223,7 +223,7 @@
   bold: boolean = false
   ) => SnotifyButton
   ```
-  > [SnotifyButton](interfaces.md#snotyfybutton)
-  > [SnotifyToast](model.md#snotifytoast)
+  > [SnotifyButton](interfaces.md#snotyfybutton)  
+  > [SnotifyToast](model.md#snotifytoast)  
   > Button create helper
   
