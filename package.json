@@ -14,7 +14,7 @@
     "lib:build:watch": "cross-env NODE_ENV=production gulp",
     "link:src": "npm link ./src",
     "link:dist": "npm link ./dist",
-    "lint": "npm run lint:ts && npm run lint:css",
+    "lint": "npm run lint:ts && npm run lint:scss",
     "lint:ts": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:ts:fix": "npm run lint:ts --fix",
     "lint:scss": "stylelint src/**/*.scss",
