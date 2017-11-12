@@ -42,7 +42,7 @@ Change Log - [here](https://github.com/artemsky/vue-snotify/blob/master/CHANGELO
 
 #### CDN
   - JS
-    - [unpkg.com](unpkg.com/vue-snotify) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/vue-snotify.js)
+    - [unpkg.com](https://unpkg.com/vue-snotify@latest/vue-snotify.min.js) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/vue-snotify.min.js)
   - CSS
     - material [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/material.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/material.css)
     - simple [unpkg.com](https://unpkg.com/vue-snotify@latest/styles/simple.css) | [jsDelivr.com](https://cdn.jsdelivr.net/npm/vue-snotify@latest/styles/simple.css)
