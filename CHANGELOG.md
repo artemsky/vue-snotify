@@ -1,5 +1,8 @@
 ## Change Log
 
+### v3.0.1
+  - improve documentation
+  - escape SVG icons for Safari, Firefox
 ### v3.0.0
 - **Breaking changes -** [Look migration guide](https://artemsky.github.io/vue-snotify/documentation/essentials/upgrade.html)
 - **Features**
