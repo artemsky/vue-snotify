@@ -1,5 +1,30 @@
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
 @function -svg($svg, $color, $viewBox: '0 0 512 512') {
-  @return 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="#{$viewBox}" fill="#{$color}">#{$svg}</svg>';
+  $result: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="#{$viewBox}" fill="#{$color}">#{$svg}</svg>';
+  $result: str-replace($result, '%', '%25');
+  $result: str-replace($result, '"', '%22');
+  $result: str-replace($result, "'", '%27');
+  $result: str-replace($result, ' ', '%20');
+  $result: str-replace($result, '<', '%3C');
+  $result: str-replace($result, '>', '%3E');
+  $result: str-replace($result, '#', '%23');
+
+  @return $result;
 }
 
 @function -generate-icons($colors-map) {
