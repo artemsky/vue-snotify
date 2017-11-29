@@ -26,7 +26,7 @@
     * [SnotifyToastConfig](api/options.md#snotifytoastconfig)
       * [id](api/options.md#id)
       * [timeout](api/options.md#timeout)
-      * [showProgressBar](api/options.md#showProgressBar)
+      * [showProgressBar](api/options.md#showprogressbar)
       * [type](api/options.md#type)
       * [closeOnClick](api/options.md#closeonclick)
       * [pauseOnHover](api/options.md#pauseonhover)
