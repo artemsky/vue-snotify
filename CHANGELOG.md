@@ -1,5 +1,7 @@
 ## Change Log
 
+### v3.0.2
+  - fix backdrop [#16](https://github.com/artemsky/vue-snotify/issues/16)
 ### v3.0.1
   - improve documentation
   - escape SVG icons for Safari, Firefox
