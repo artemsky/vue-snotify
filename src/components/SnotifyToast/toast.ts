@@ -91,11 +91,11 @@ export class Toast extends Vue {
    */
   onRemove () {
     this.state.isDestroying = true;
-    this.$emit('beforeHide');
+    this.$emit('stateChanged', 'beforeHide');
     this.toast.eventEmitter.$emit('beforeHide');
     this.state.animation = this.toast.config.animation.exit;
     setTimeout(() => {
-      this.$emit('hidden');
+      this.$emit('stateChanged', 'hidden');
       this.state.animation = 'snotifyToast--out';
       this.toast.eventEmitter.$emit('hidden');
       setTimeout(() => this.$snotify.remove(this.toast.id, true), this.toast.config.animation.time / 2);
@@ -119,7 +119,7 @@ export class Toast extends Vue {
       this.state.animation = 'snotifyToast--in';
       this.$nextTick(() => {
         setTimeout(() => {
-          this.$emit('beforeShow');
+          this.$emit('stateChanged', 'beforeShow');
           this.toast.eventEmitter.$emit('beforeShow');
           this.state.animation = this.toast.config.animation.enter;
         }, this.toast.config.animation.time / 5); // time to show toast push animation (snotifyToast--in)
