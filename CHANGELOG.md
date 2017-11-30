@@ -1,5 +1,7 @@
 ## Change Log
 
+### v3.0.3
+  - fix icons [#15](https://github.com/artemsky/vue-snotify/issues/15)
 ### v3.0.2
   - fix backdrop [#16](https://github.com/artemsky/vue-snotify/issues/16)
 ### v3.0.1
