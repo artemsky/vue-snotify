@@ -1,5 +1,7 @@
 ## Change Log
 
+### v3.0.4
+  - fix icons [#17](https://github.com/artemsky/vue-snotify/issues/15)
 ### v3.0.3
   - fix icons [#15](https://github.com/artemsky/vue-snotify/issues/15)
 ### v3.0.2

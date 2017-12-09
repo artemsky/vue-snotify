@@ -178,10 +178,12 @@ $animation-name: 'fade';
 
 @keyframes disappear {
   0% {
+    opacity: 0;
     max-height: 50vh;
   }
 
   100% {
+    opacity: 0;
     max-height: 0;
   }
 }
