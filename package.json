@@ -113,7 +113,7 @@
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.6",
     "merge2": "^1.2.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.0",
     "node-sass-tilde-importer": "^1.0.0",
     "node-watch": "^0.5.5",
     "opn": "^5.1.0",
