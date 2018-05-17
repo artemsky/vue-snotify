@@ -453,6 +453,7 @@ export class SnotifyService {
       toast.config.html = next.html;
     }
     this.emit();
+    this.emitter.$emit('toastChanged', toast);
   }
 
   /**

@@ -87,13 +87,15 @@ export class App extends Vue {
       More information how to work with observables:
       https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/create.md
      */
-    const {timeout, ...config} = this.getConfig(); // Omit timeout
+    const config = this.getConfig(); // Omit timeout
     this.$snotify.async('Called with promise', 'Error async', () => new Promise((resolve, reject) => {
       setTimeout(() => reject({
         title: 'Error!!!',
         body: 'We got an example error!',
         config: {
-          closeOnClick: true
+          ...config,
+          closeOnClick: true,
+          timeout: 8000
         }
       }), 2000);
     }));
@@ -103,6 +105,7 @@ export class App extends Vue {
         title: 'Success!!!',
         body: 'We got an example success!',
         config: {
+          ...config,
           closeOnClick: true
         }
       }), 2000);
