@@ -44,6 +44,10 @@
 - type: `boolean`  
 > Should button text be bold or not
 
+### className
+- type: `string`  
+> Add custom className
+
 
 ### SnotifyAnimate
 

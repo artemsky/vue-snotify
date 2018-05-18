@@ -24,4 +24,8 @@ export interface SnotifyButton {
    * Should button text be bold.
    */
   bold?: boolean;
+  /**
+   * Additional className.
+   */
+  className?: string;
 }
