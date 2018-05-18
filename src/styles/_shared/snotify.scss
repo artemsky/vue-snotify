@@ -1,4 +1,4 @@
-$backdrop-color: #000;
+$snotify-backdrop-color: #000;
 
 .snotify {
   display: block;
@@ -56,7 +56,7 @@ $backdrop-color: #000;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: $backdrop-color;
+  background-color: $snotify-backdrop-color;
   opacity: 0;
   z-index: 9998;
   transition: opacity .3s;

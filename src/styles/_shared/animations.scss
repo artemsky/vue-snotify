@@ -1,4 +1,4 @@
-$animation-name: 'fade';
+$snotify-animation-name: 'fade';
 
 .snotifyToast {
   animation-fill-mode: both;
@@ -7,11 +7,11 @@ $animation-name: 'fade';
 .snotify-leftTop,
 .snotify-leftCenter,
 .snotify-leftBottom {
-  .#{$animation-name}In {
+  .#{$snotify-animation-name}In {
     animation-name: fadeInLeft;
   }
 
-  .#{$animation-name}Out {
+  .#{$snotify-animation-name}Out {
     animation-name: fadeOutLeft;
   }
 }
@@ -19,41 +19,41 @@ $animation-name: 'fade';
 .snotify-rightTop,
 .snotify-rightCenter,
 .snotify-rightBottom {
-  .#{$animation-name}In {
+  .#{$snotify-animation-name}In {
     animation-name: fadeInRight;
   }
 
-  .#{$animation-name}Out {
+  .#{$snotify-animation-name}Out {
     animation-name: fadeOutRight;
   }
 }
 
 .snotify-centerTop {
-  .#{$animation-name}In {
+  .#{$snotify-animation-name}In {
     animation-name: fadeInDown;
   }
 
-  .#{$animation-name}Out {
+  .#{$snotify-animation-name}Out {
     animation-name: fadeOutUp;
   }
 }
 
 .snotify-centerCenter {
-  .#{$animation-name}In {
+  .#{$snotify-animation-name}In {
     animation-name: fadeIn;
   }
 
-  .#{$animation-name}Out {
+  .#{$snotify-animation-name}Out {
     animation-name: fadeOut;
   }
 }
 
 .snotify-centerBottom {
-  .#{$animation-name}In {
+  .#{$snotify-animation-name}In {
     animation-name: fadeInUp;
   }
 
-  .#{$animation-name}Out {
+  .#{$snotify-animation-name}Out {
     animation-name: fadeOutDown;
   }
 }

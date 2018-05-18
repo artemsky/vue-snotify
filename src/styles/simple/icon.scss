@@ -1,16 +1,16 @@
-$success: $success-border-color;
-$info: $info-border-color;
-$warning: $warning-border-color;
-$error: $error-border-color;
-$async: $async-border-color;
+$snotify-success: $snotify-success-border-color;
+$snotify-info: $snotify-info-border-color;
+$snotify-warning: $snotify-warning-border-color;
+$snotify-error: $snotify-error-border-color;
+$snotify-async: $snotify-async-border-color;
 
-$icons: -generate-icons(
+$snotify-icons: -generate-icons(
   (
-    error: $error,
-    warning: $warning,
-    info: $info,
-    success: $success,
-    async: $async
+    error: $snotify-error,
+    warning: $snotify-warning,
+    info: $snotify-info,
+    success: $snotify-success,
+    async: $snotify-async
   )
 );
 
@@ -27,23 +27,23 @@ $icons: -generate-icons(
 }
 
 .snotify-icon--error {
-  background-image: url('#{map-get($icons, error)}');
+  background-image: url('#{map-get($snotify-icons, error)}');
 }
 
 .snotify-icon--warning {
-  background-image: url('#{map-get($icons, warning)}');
+  background-image: url('#{map-get($snotify-icons, warning)}');
 }
 
 .snotify-icon--info {
-  background-image: url('#{map-get($icons, info)}');
+  background-image: url('#{map-get($snotify-icons, info)}');
 }
 
 .snotify-icon--success {
-  background-image: url('#{map-get($icons, success)}');
+  background-image: url('#{map-get($snotify-icons, success)}');
 }
 
 .snotify-icon--async {
-  background-image: url('#{map-get($icons, async)}');
+  background-image: url('#{map-get($snotify-icons, async)}');
   animation: async 3s infinite linear;
   transform-origin: 50% 50%;
 }

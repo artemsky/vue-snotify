@@ -63,7 +63,7 @@
     }
 
     &::before {
-      border-top: 2px solid $prompt-border-color;
+      border-top: 2px solid $snotify-prompt-border-color;
       transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
       transition-delay: .3s;
     }
@@ -121,13 +121,13 @@
 .snotifyToast {
   &--invalid {
     .snotifyToast__input__label::before {
-      border-color: $error-border-color;
+      border-color: $snotify-error-border-color;
     }
   }
 
   &--valid {
     .snotifyToast__input__label::before {
-      border-color: $success-border-color;
+      border-color: $snotify-success-border-color;
     }
   }
 }

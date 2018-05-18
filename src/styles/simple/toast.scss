@@ -1,22 +1,22 @@
-$toast-bg: #fff;
-$toast-color: #000;
-$toast-progressBar: #c7c7c7;
-$toast-progressBarPercentage: #4c4c4c;
+$snotify-toast-bg: #fff;
+$snotify-toast-color: #000;
+$snotify-toast-progressBar: #c7c7c7;
+$snotify-toast-progressBarPercentage: #4c4c4c;
 
-$border-width: 4px;
-$simple-border-color: #000;
-$success-border-color: #4caf50;
-$info-border-color: #1e88e5;
-$warning-border-color: #ff9800;
-$error-border-color: #f44336;
-$async-border-color: $info-border-color;
-$confirm-border-color: #009688;
-$prompt-border-color: $confirm-border-color;
+$snotify-border-width: 4px;
+$snotify-simple-border-color: #000;
+$snotify-success-border-color: #4caf50;
+$snotify-info-border-color: #1e88e5;
+$snotify-warning-border-color: #ff9800;
+$snotify-error-border-color: #f44336;
+$snotify-async-border-color: $snotify-info-border-color;
+$snotify-confirm-border-color: #009688;
+$snotify-prompt-border-color: $snotify-confirm-border-color;
 
 .snotifyToast {
   display: block;
   cursor: pointer;
-  background-color: $toast-bg;
+  background-color: $snotify-toast-bg;
   max-height: 300px;
   height: 100%;
   margin: 5px;
@@ -41,21 +41,21 @@ $prompt-border-color: $confirm-border-color;
     padding: 5px 65px 5px 15px;
     min-height: 78px;
     font-size: 16px;
-    color: $toast-color;
+    color: $snotify-toast-color;
   }
 
   &__progressBar {
     position: relative;
     width: 100%;
     height: 5px;
-    background-color: $toast-progressBar;
+    background-color: $snotify-toast-progressBar;
 
     &__percentage {
       position: absolute;
       top: 0;
       left: 0;
       height: 5px;
-      background-color: $toast-progressBarPercentage;
+      background-color: $snotify-toast-progressBarPercentage;
       max-width: 100%;
     }
   }
@@ -64,12 +64,12 @@ $prompt-border-color: $confirm-border-color;
     font-size: 1.8em;
     line-height: 1.2em;
     margin-bottom: 5px;
-    color: $toast-color;
+    color: $snotify-toast-color;
   }
 
   &__body {
     font-size: 1em;
-    color: $toast-color;
+    color: $snotify-toast-color;
   }
 }
 
@@ -90,35 +90,35 @@ $prompt-border-color: $confirm-border-color;
  **************/
 
 .snotify-simple {
-  border-left: $border-width solid $simple-border-color;
+  border-left: $snotify-border-width solid $snotify-simple-border-color;
 }
 
 .snotify-success {
-  border-left: $border-width solid $success-border-color;
+  border-left: $snotify-border-width solid $snotify-success-border-color;
 }
 
 .snotify-info {
-  border-left: $border-width solid $info-border-color;
+  border-left: $snotify-border-width solid $snotify-info-border-color;
 }
 
 .snotify-warning {
-  border-left: $border-width solid $warning-border-color;
+  border-left: $snotify-border-width solid $snotify-warning-border-color;
 }
 
 .snotify-error {
-  border-left: $border-width solid $error-border-color;
+  border-left: $snotify-border-width solid $snotify-error-border-color;
 }
 
 .snotify-async {
-  border-left: $border-width solid $async-border-color;
+  border-left: $snotify-border-width solid $snotify-async-border-color;
 }
 
 .snotify-confirm {
-  border-left: $border-width solid $confirm-border-color;
+  border-left: $snotify-border-width solid $snotify-confirm-border-color;
 }
 
 .snotify-prompt {
-  border-left: $border-width solid $prompt-border-color;
+  border-left: $snotify-border-width solid $snotify-prompt-border-color;
 }
 
 .snotify-confirm,

@@ -121,13 +121,13 @@
 .snotifyToast {
   &--invalid {
     .snotifyToast__input__label::before {
-      border-color: $error-bg;
+      border-color: $snotify-error-bg;
     }
   }
 
   &--valid {
     .snotifyToast__input__label::before {
-      border-color: $success-bg;
+      border-color: $snotify-success-bg;
     }
   }
 }

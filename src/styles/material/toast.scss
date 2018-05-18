@@ -1,45 +1,45 @@
-$simple-bg: #fff;
-$simple-color: #000;
-$simple-progressBar: #c7c7c7;
-$simple-progressBarPercentage: #4c4c4c;
+$snotify-simple-bg: #fff;
+$snotify-simple-color: #000;
+$snotify-simple-progressBar: #c7c7c7;
+$snotify-simple-progressBarPercentage: #4c4c4c;
 
-$success-bg: #4caf50;
-$success-color: #c8e6c9;
-$success-progressBar: #388e3c;
-$success-progressBarPercentage: #81c784;
+$snotify-success-bg: #4caf50;
+$snotify-success-color: #c8e6c9;
+$snotify-success-progressBar: #388e3c;
+$snotify-success-progressBarPercentage: #81c784;
 
-$info-bg: #1e88e5;
-$info-color: #e3f2fd;
-$info-progressBar: #1565c0;
-$info-progressBarPercentage: #64b5f6;
+$snotify-info-bg: #1e88e5;
+$snotify-info-color: #e3f2fd;
+$snotify-info-progressBar: #1565c0;
+$snotify-info-progressBarPercentage: #64b5f6;
 
-$warning-bg: #ff9800;
-$warning-color: #fff3e0;
-$warning-progressBar: #ef6c00;
-$warning-progressBarPercentage: #ffcc80;
+$snotify-warning-bg: #ff9800;
+$snotify-warning-color: #fff3e0;
+$snotify-warning-progressBar: #ef6c00;
+$snotify-warning-progressBarPercentage: #ffcc80;
 
-$error-bg: #f44336;
-$error-color: #ffebee;
-$error-progressBar: #c62828;
-$error-progressBarPercentage: #ef9a9a;
+$snotify-error-bg: #f44336;
+$snotify-error-color: #ffebee;
+$snotify-error-progressBar: #c62828;
+$snotify-error-progressBarPercentage: #ef9a9a;
 
-$async-bg: $info-bg;
-$async-color: $info-color;
-$async-progressBar: $info-progressBar;
-$async-progressBarPercentage: $info-progressBarPercentage;
+$snotify-async-bg: $snotify-info-bg;
+$snotify-async-color: $snotify-info-color;
+$snotify-async-progressBar: $snotify-info-progressBar;
+$snotify-async-progressBarPercentage: $snotify-info-progressBarPercentage;
 
-$confirm-bg: #009688;
-$confirm-color: #e0f2f1;
-$confirm-progressBar: #4db6ac;
-$confirm-progressBarPercentage: #80cbc4;
+$snotify-confirm-bg: #009688;
+$snotify-confirm-color: #e0f2f1;
+$snotify-confirm-progressBar: #4db6ac;
+$snotify-confirm-progressBarPercentage: #80cbc4;
 
-$prompt-bg: #009688;
-$prompt-color: #e0f2f1;
+$snotify-prompt-bg: #009688;
+$snotify-prompt-color: #e0f2f1;
 
 .snotifyToast {
   display: block;
   cursor: pointer;
-  background-color: $simple-bg;
+  background-color: $snotify-simple-bg;
   height: 100%;
   margin: 5px;
   opacity: 0;
@@ -64,21 +64,21 @@ $prompt-color: #e0f2f1;
     padding: 5px 65px 5px 15px;
     min-height: 78px;
     font-size: 16px;
-    color: $simple-color;
+    color: $snotify-simple-color;
   }
 
   &__progressBar {
     position: relative;
     width: 100%;
     height: 10px;
-    background-color: $simple-progressBar;
+    background-color: $snotify-simple-progressBar;
 
     &__percentage {
       position: absolute;
       top: 0;
       left: 0;
       height: 10px;
-      background-color: $simple-progressBarPercentage;
+      background-color: $snotify-simple-progressBarPercentage;
       max-width: 100%;
     }
   }
@@ -118,115 +118,115 @@ $prompt-color: #e0f2f1;
 .snotify-simple {
   .snotifyToast__title,
   .snotifyToast__body {
-    color: $simple-color;
+    color: $snotify-simple-color;
   }
 }
 
 .snotify-success {
-  background-color: $success-bg;
+  background-color: $snotify-success-bg;
 
   .snotifyToast__progressBar {
-    background-color: $success-progressBar;
+    background-color: $snotify-success-progressBar;
   }
 
   .snotifyToast__progressBar__percentage {
-    background-color: $success-progressBarPercentage;
+    background-color: $snotify-success-progressBarPercentage;
   }
 
   .snotifyToast__body {
-    color: $success-color;
+    color: $snotify-success-color;
   }
 }
 
 .snotify-info {
-  background-color: $info-bg;
+  background-color: $snotify-info-bg;
 
   .snotifyToast__progressBar {
-    background-color: $info-progressBar;
+    background-color: $snotify-info-progressBar;
   }
 
   .snotifyToast__progressBar__percentage {
-    background-color: $info-progressBarPercentage;
+    background-color: $snotify-info-progressBarPercentage;
   }
 
   .snotifyToast__body {
-    color: $info-color;
+    color: $snotify-info-color;
   }
 }
 
 .snotify-warning {
-  background-color: $warning-bg;
+  background-color: $snotify-warning-bg;
 
   .snotifyToast__progressBar {
-    background-color: $warning-progressBar;
+    background-color: $snotify-warning-progressBar;
   }
 
   .snotifyToast__progressBar__percentage {
-    background-color: $warning-progressBarPercentage;
+    background-color: $snotify-warning-progressBarPercentage;
   }
 
   .snotifyToast__body {
-    color: $warning-color;
+    color: $snotify-warning-color;
   }
 }
 
 .snotify-error {
-  background-color: $error-bg;
+  background-color: $snotify-error-bg;
 
   .snotifyToast__progressBar {
-    background-color: $error-progressBar;
+    background-color: $snotify-error-progressBar;
   }
 
   .snotifyToast__progressBar__percentage {
-    background-color: $error-progressBarPercentage;
+    background-color: $snotify-error-progressBarPercentage;
   }
 
   .snotifyToast__body {
-    color: $error-color;
+    color: $snotify-error-color;
   }
 }
 
 .snotify-async {
-  background-color: $async-bg;
+  background-color: $snotify-async-bg;
 
   .snotifyToast__progressBar {
-    background-color: $async-progressBar;
+    background-color: $snotify-async-progressBar;
   }
 
   .snotifyToast__progressBar__percentage {
-    background-color: $async-progressBarPercentage;
+    background-color: $snotify-async-progressBarPercentage;
   }
 
   .snotifyToast__body {
-    color: $async-color;
+    color: $snotify-async-color;
   }
 }
 
 .snotify-confirm {
-  background-color: $confirm-bg;
+  background-color: $snotify-confirm-bg;
 
   .snotifyToast__progressBar {
-    background-color: $confirm-progressBar;
+    background-color: $snotify-confirm-progressBar;
   }
 
   .snotifyToast__progressBar__percentage {
-    background-color: $confirm-progressBarPercentage;
+    background-color: $snotify-confirm-progressBarPercentage;
   }
 
   .snotifyToast__body {
-    color: $confirm-color;
+    color: $snotify-confirm-color;
   }
 }
 
 .snotify-prompt {
-  background-color: $prompt-bg;
+  background-color: $snotify-prompt-bg;
 
   .snotifyToast__title {
     margin-bottom: 0;
   }
 
   .snotifyToast__body {
-    color: $prompt-color;
+    color: $snotify-prompt-color;
   }
 }
 
