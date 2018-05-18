@@ -22,6 +22,8 @@ export class App extends Vue {
   pauseHover = true;
   titleMaxLength = 15;
   bodyMaxLength = 80;
+  oneAtTime = false;
+  preventDuplicates = false;
   /*
  Change global configuration
   */
@@ -31,6 +33,8 @@ export class App extends Vue {
         newOnTop: this.newTop,
         maxAtPosition: this.blockMax,
         maxOnScreen: this.dockMax,
+        oneAtTime: this.oneAtTime,
+        preventDuplicates: this.preventDuplicates,
       }
     });
     return {

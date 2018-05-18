@@ -2,23 +2,23 @@
   <aside>
     <h3 class="text-center">Toast config</h3>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label for="title">Title</label>
       <input v-model="title" type="text" id="title" class="form-control">
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label for="body">Body</label>
       <textarea v-model="body" id="body" rows="2" class="form-control"></textarea>
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <div class="form-group">
+        <div class="form-group form-group-sm">
           <label for="titlemaxlen">Title max-length</label>
           <input v-model.number="titleMaxLength" type="text" min="0" id="titlemaxlen" class="form-control">
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="form-group">
+        <div class="form-group form-group-sm">
           <label for="bodymaxlen">Body max-length</label>
           <input v-model.number="bodyMaxLength" type="text" min="0" id="bodymaxlen" class="form-control">
         </div>
@@ -26,13 +26,13 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <div class="form-group">
+        <div class="form-group form-group-sm">
           <label for="timeout">Timeout</label>
           <input v-model.number="timeout" type="number" min="0" id="timeout" class="form-control">
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="form-group">
+        <div class="form-group form-group-sm">
           <label for="backdrop">
             Backdrop (0.0 - 1.0)
           </label>
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label for="position">Position</label>
       <div class="row">
         <div class="col-sm-12">
@@ -89,12 +89,26 @@
           <label for="newTop" data-on="On" data-off="Off"></label>
         </div>
       </div>
+      <div class="switch-wrapper">
+        <strong>One in queue?</strong>
+        <div class="switch">
+          <input v-model="oneAtTime" id="oneAtTime" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+          <label for="oneAtTime" data-on="On" data-off="Off"></label>
+        </div>
+      </div>
+      <div class="switch-wrapper">
+        <strong>One type in queue?</strong>
+        <div class="switch">
+          <input v-model="preventDuplicates" id="preventDuplicates" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+          <label for="preventDuplicates" data-on="On" data-off="Off"></label>
+        </div>
+      </div>
     </div>
 
 
     <div class="row">
       <div class="col-xs-6">
-        <div class="form-group">
+        <div class="form-group form-group-sm">
           <label for="dockMax">
             Max on screen
           </label>
@@ -102,7 +116,7 @@
         </div>
       </div>
       <div class="col-xs-6">
-        <div class="form-group">
+        <div class="form-group form-group-sm">
           <label for="blockMax">
             Max at position
           </label>
@@ -111,7 +125,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label for="style">Toast Style</label>
       <div class="row">
         <div class="col-sm-12">
@@ -124,7 +138,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <div class="buttons">
         <div class="btn-group btn-group-justified">
           <div class="btn btn-success" @click="onSuccess">Success</div>

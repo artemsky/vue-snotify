@@ -30,4 +30,16 @@ export interface SnotifyGlobalConfig {
    * @default true
    */
   newOnTop?: boolean;
+  /**
+   * Only one toast in the queue
+   * @type {boolean}
+   * @default false
+   */
+  oneAtTime?: boolean;
+  /**
+   * Only one toast type in the queue
+   * @type {boolean}
+   * @default false
+   */
+  preventDuplicates?: boolean;
 }

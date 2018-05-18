@@ -85,6 +85,9 @@ export class SnotifyService {
    * @return {number}
    */
    create(snotify: Snotify): SnotifyToast {
+    if (this.config.global.oneAtTime && this.notifications.length !== 0) return;
+     if (this.config.global.preventDuplicates
+       && this.notifications.filter(t => t.config.type === snotify.config.type).length === 1) return;
     const config =
       mergeDeep(this.config.toast, this.config.type[snotify.config.type], snotify.config) as SnotifyToastConfig;
     const toast = new SnotifyToast(

@@ -152,9 +152,22 @@ Vue.use(Snotify, {
   
 ### newOnTop
 
-- type: `true`
-- default: `150`
+- type: `boolean`
+- default: `true`
   > Should new items come from top or bottom side.  
   > This option created for styling purposes.  
   > For example, if your toast position is TOP-RIGHT. It's not very nice, when items comes from top and pulls down all other toasts
+  
+  
+### oneAtTime
+
+- type: `boolean`
+- default: `false`
+  > Only one toast in the queue
+      
+### preventDuplicates
+
+- type: `boolean`
+- default: `false`
+  > Only one toast type in the queue
     
