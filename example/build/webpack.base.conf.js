@@ -7,6 +7,7 @@ function resolve (dir) {
 }
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: './example/src/main.ts'
   },

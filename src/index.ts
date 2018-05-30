@@ -13,6 +13,19 @@ const Plugin = {
     service.setDefaults(options);
     Vue.prototype.$snotify = service;
     Vue.component('vue-snotify', Snotify);
+    // const snotifyElement = document.createElement('div');
+    // snotifyElement.setAttribute('id', 'snotify');
+    // document.querySelector('body').appendChild(snotifyElement);
+    //
+    // new Vue({
+    //   el: '#snotify',
+    //   render: h => h(Snotify)
+    // });
+
+    // auto install
+    if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
+      (window as any).Snotify = service;
+    }
 
   }
 };
@@ -24,12 +37,11 @@ declare module 'vue/types/vue' {
   }
 }
 
-
-
 // auto install
 if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
   (window as any).Vue.use(Plugin.install);
 }
+
 
 export default Plugin;
 export {SnotifyDefaults} from './interfaces/SnotifyDefaults.interface';

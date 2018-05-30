@@ -15,7 +15,8 @@ const gulp = require('gulp'),
   inlineResources = require('./tools/gulp/inline-resources'),
   ts = require("gulp-typescript"),
   merge = require('merge2'),
-  greplace = require('gulp-replace');
+  greplace = require('gulp-replace')
+  dMerge = require('deepmerge');
 
 const {version, license, author, name} = require('./package.json');
 const banner =
@@ -124,8 +125,10 @@ gulp.task('injectDefinitions', function(){
 gulp.task('rollup:fesm', function () {
   return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
-    .pipe(rollup(generateRollupOptions({
-      format: 'es',
+    .pipe(rollup(getRollupOptions({
+      output: {
+        format: 'es',
+      }
     })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.esm.js'))
@@ -137,15 +140,15 @@ gulp.task('rollup:fesm', function () {
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd', function () {
-  const config = generateRollupOptions({
-    format: 'umd',
-    exports: 'named',
-    name: 'vue-snotify',
-  });
-
   return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
-    .pipe(rollup(config))
+    .pipe(rollup(getRollupOptions({
+        output: {
+          format: 'umd',
+          exports: 'named',
+          name: 'vue-snotify',
+        }
+      })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.js'))
     .pipe(gulp.dest(distFolder));
@@ -156,16 +159,16 @@ gulp.task('rollup:umd', function () {
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd:min', function () {
-  const config = generateRollupOptions({
-    format: 'umd',
-    exports: 'named',
-    name: 'vue-snotify',
-  });
-  config.plugins.push(uglify());
   return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
-
-    .pipe(rollup(config))
+    .pipe(rollup(getRollupOptions({
+      output: {
+        format: 'umd',
+        exports: 'named',
+        name: 'vue-snotify',
+      },
+      plugins: [uglify()]
+    })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.min.js'))
     .pipe(gulp.dest(distFolder));
@@ -178,10 +181,12 @@ gulp.task('rollup:umd:min', function () {
 gulp.task('rollup:cjs', function () {
   return gulp.src(`${tmpFolder}/**/*.js`)
   // transform the files here.
-    .pipe(rollup(generateRollupOptions({
-      format: 'cjs',
-      exports: 'named',
-      name: 'vue-snotify',
+    .pipe(rollup(getRollupOptions({
+      output: {
+        format: 'cjs',
+        exports: 'named',
+        name: 'vue-snotify',
+      }
     })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.common.js'))
@@ -307,12 +312,10 @@ function deleteFolders(folders) {
 
 /**
  * Generate configuration object for rollup
- * @param options
  * @returns {*}
  */
-function generateRollupOptions(options) {
-  return Object.assign({
-    strict: true,
+function getRollupOptions(options = {}) {
+  return dMerge({
     // Bundle's entry point
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
     input: `${buildFolder}/index.js`,
@@ -325,16 +328,20 @@ function generateRollupOptions(options) {
 
     // A list of IDs of modules that should remain external to the bundle
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
-    external: [
-      'vue',
-      'Vue'
-    ],
+    // external: [
+    //   'vue',
+    //   'Vue'
+    // ],
 
-    // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
-    globals: {
-      typescript: 'ts',
-      vue: 'Vue'
+    output: {
+      // strict: true,
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
+      globals: {
+        typescript: 'ts',
+        vue: 'Vue'
+      },
     },
+
 
     plugins: [
       node({
@@ -356,5 +363,5 @@ function generateRollupOptions(options) {
       }),
     ]
 
-  }, options)
+  }, options);
 }
