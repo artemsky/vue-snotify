@@ -1,5 +1,12 @@
 ## Change Log
 
+### v3.1.0
+  - add variables namespace [#30](https://github.com/artemsky/vue-snotify/issues/30)
+  - oneAtTime | preventDuplicates - add global config options [#28](https://github.com/artemsky/vue-snotify/issues/28)
+  - add button custom className [#24](https://github.com/artemsky/vue-snotify/issues/24)
+  - fix toastChanged event initialization [#20](https://github.com/artemsky/vue-snotify/issues/20)
+  - bump dependencies
+
 ### v3.0.4
   - fix icons [#17](https://github.com/artemsky/vue-snotify/issues/15)
 ### v3.0.3

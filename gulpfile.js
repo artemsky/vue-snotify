@@ -328,10 +328,10 @@ function getRollupOptions(options = {}) {
 
     // A list of IDs of modules that should remain external to the bundle
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
-    // external: [
-    //   'vue',
-    //   'Vue'
-    // ],
+    external: [
+      'vue',
+      'Vue'
+    ],
 
     output: {
       // strict: true,
