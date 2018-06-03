@@ -2,6 +2,27 @@
   <div class="snotify-backdrop" v-if="backdrop >= 0" :style="{opacity: backdrop}"></div>
   <div v-for="(position, index) in notifications" class="snotify" :class="'snotify-' + index">
     <toast v-for="toast in notifications[index].slice(blockSize_a, blockSize_b)" :toastData="toast" :key="toast.id" @stateChanged="stateChanged">
+      <template slot="progressBar" slot-scope="{state}">
+        <slot name="progressBar" :toast="toast" :state="state"></slot>
+      </template>
+      <template slot="inner">
+        <slot name="inner" :toast="toast"></slot>
+      </template>
+      <template slot="title">
+        <slot name="title" :toast="toast"></slot>
+      </template>
+      <template slot="body">
+        <slot name="body" :toast="toast"></slot>
+      </template>
+      <template slot="prompt">
+        <slot name="prompt" :toast="toast"></slot>
+      </template>
+      <template slot="icon">
+        <slot name="icon" :toast="toast"></slot>
+      </template>
+      <template slot="buttons">
+        <slot name="buttons" :toast="toast"></slot>
+      </template>
     </toast>
   </div>
 </div>
