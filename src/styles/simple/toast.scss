@@ -1,17 +1,17 @@
-$snotify-toast-bg: #fff;
-$snotify-toast-color: #000;
-$snotify-toast-progressBar: #c7c7c7;
-$snotify-toast-progressBarPercentage: #4c4c4c;
+$snotify-toast-bg: #fff !default;
+$snotify-toast-color: #000 !default;
+$snotify-toast-progressBar: #c7c7c7 !default;
+$snotify-toast-progressBarPercentage: #4c4c4c !default;
 
-$snotify-border-width: 4px;
-$snotify-simple-border-color: #000;
-$snotify-success-border-color: #4caf50;
-$snotify-info-border-color: #1e88e5;
-$snotify-warning-border-color: #ff9800;
-$snotify-error-border-color: #f44336;
-$snotify-async-border-color: $snotify-info-border-color;
-$snotify-confirm-border-color: #009688;
-$snotify-prompt-border-color: $snotify-confirm-border-color;
+$snotify-border-width: 4px !default;
+$snotify-simple-border-color: #000 !default;
+$snotify-success-border-color: #4caf50 !default;
+$snotify-info-border-color: #1e88e5 !default;
+$snotify-warning-border-color: #ff9800 !default;
+$snotify-error-border-color: #f44336 !default;
+$snotify-async-border-color: $snotify-info-border-color !default;
+$snotify-confirm-border-color: #009688 !default;
+$snotify-prompt-border-color: $snotify-confirm-border-color !default;
 
 .snotifyToast {
   display: block;

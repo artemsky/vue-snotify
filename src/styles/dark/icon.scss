@@ -1,8 +1,8 @@
-$snotify-success: #4caf50;
-$snotify-info: #1e88e5;
-$snotify-warning: #ff9800;
-$snotify-error: #f44336;
-$snotify-async: $snotify-info;
+$snotify-success: #4caf50 !default;
+$snotify-info: #1e88e5 !default;
+$snotify-warning: #ff9800 !default;
+$snotify-error: #f44336 !default;
+$snotify-async: $snotify-info !default;
 
 $snotify-icons: -generate-icons(
   (
@@ -12,7 +12,7 @@ $snotify-icons: -generate-icons(
     success: $snotify-success,
     async: $snotify-async
   )
-);
+) !default;
 
 .snotify-icon {
   position: absolute;
