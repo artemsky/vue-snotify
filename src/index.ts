@@ -33,7 +33,7 @@ const Plugin = {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $snotify: SnotifyService | any;
+    $snotify: SnotifyService;
   }
 }
 
