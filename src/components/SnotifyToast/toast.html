@@ -27,7 +27,7 @@
         <snotify-prompt :toast="toast">
         </snotify-prompt>
       </slot>
-      <slot name="icon">
+      <slot name="icon" :toast="toast">
         <div v-if="!toast.config.icon" :class="['snotify-icon', 'snotify-icon--' + toast.config.type]"></div>
         <div v-else>
           <img class="snotify-icon" :src='toast.config.icon'/>
