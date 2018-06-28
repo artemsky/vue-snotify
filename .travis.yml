@@ -18,5 +18,6 @@ install:
 script:
   - npm run lint
   - npm run lib:build && npm run link:dist && npm run example:build
+  - npm run link:src
   - npm run test
 
