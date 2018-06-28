@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import {SnotifyToastConfig} from '../../interfaces';
-import {SnotifyEvent} from '../../types';
-import {SnotifyStyle} from '../../enums';
+import {SnotifyToastConfig} from '../interfaces';
+import {SnotifyEvent} from '../types';
+import {SnotifyStyle} from '../enums';
 /**
  * Toast model
  */

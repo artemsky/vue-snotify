@@ -15,8 +15,10 @@ const gulp = require('gulp'),
   inlineResources = require('./tools/gulp/inline-resources'),
   ts = require("gulp-typescript"),
   merge = require('merge2'),
-  greplace = require('gulp-replace')
-  dMerge = require('deepmerge');
+  greplace = require('gulp-replace'),
+  dMerge = require('deepmerge'),
+  typescript = require('rollup-plugin-typescript2'),
+  VuePlugin = require('rollup-plugin-vue').default;
 
 const {version, license, author, name} = require('./package.json');
 const banner =
@@ -45,6 +47,9 @@ const tsProject = ts.createProject( {
       "lib": [
         "es2015",
         "dom"
+      ],
+      "include": [
+        "src/sfc.d.ts"
       ],
       "skipLibCheck": true
     }
@@ -88,10 +93,7 @@ gulp.task('typescript', function () {
   const tsResult = gulp.src(`${tmpFolder}/**/*.ts`)
   .pipe(tsProject());
 
-  return merge([
-    tsResult.dts.pipe(gulp.dest(buildFolder)),
-    tsResult.js.pipe(gulp.dest(buildFolder))
-  ]);
+  return tsResult.dts.pipe(gulp.dest(buildFolder));
 });
 
 
@@ -128,7 +130,7 @@ gulp.task('rollup:fesm', function () {
     .pipe(rollup(getRollupOptions({
       output: {
         format: 'es',
-      }
+      },
     })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.esm.js'))
@@ -140,14 +142,14 @@ gulp.task('rollup:fesm', function () {
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd', function () {
-  return gulp.src(`${buildFolder}/**/*.js`)
+  return gulp.src(`${srcFolder}/**/*.ts`)
   // transform the files here.
     .pipe(rollup(getRollupOptions({
         output: {
           format: 'umd',
           exports: 'named',
           name: 'vue-snotify',
-        }
+        },
       })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.js'))
@@ -167,7 +169,9 @@ gulp.task('rollup:umd:min', function () {
         exports: 'named',
         name: 'vue-snotify',
       },
-      plugins: [uglify()]
+      plugins: [
+        uglify()
+      ]
     })))
     .pipe(inject.prepend(banner))
     .pipe(rename('vue-snotify.min.js'))
@@ -318,7 +322,7 @@ function getRollupOptions(options = {}) {
   return dMerge({
     // Bundle's entry point
     // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-    input: `${buildFolder}/index.js`,
+    input: `${srcFolder}/index.ts`,
 
     // Allow mixing of hypothetical and actual files. "Actual" files can be files
     // accessed by Rollup or produced by plugins further down the chain.
@@ -344,6 +348,39 @@ function getRollupOptions(options = {}) {
 
 
     plugins: [
+      typescript({
+        typescript: require('typescript'),
+        tsconfigOverride: {
+          "declaration": true,
+          "module": "es2015",
+          "target": "es5",
+          "baseUrl": ".",
+          "stripInternal": true,
+          "emitDecoratorMetadata": true,
+          "experimentalDecorators": true,
+          "noImplicitAny": true,
+          "moduleResolution": "node",
+          "outDir": "./build",
+          "rootDir": ".",
+          "lib": [
+            "es2015",
+            "dom"
+          ],
+          "includes": [
+            "src/sfc.d.ts",
+            "src/options.d.ts"
+          ],
+          "files": [
+            "src/sfc.d.ts",
+            "src/options.d.ts"
+          ],
+          "skipLibCheck": true
+        },
+        cacheRoot: '.tmp/' + (Math.floor(Math.random() * (Date.now() - 1)) + 1)
+      }),
+      VuePlugin({
+        defaultLang: { script: 'ts' },
+      }),
       node({
         jsnext: true,
         module: true,

@@ -44,6 +44,10 @@ $snotify-prompt-border-color: $snotify-confirm-border-color;
     color: $snotify-toast-color;
   }
 
+  &__noIcon {
+    padding: 5px 15px 5px 15px;
+  }
+
   &__progressBar {
     position: relative;
     width: 100%;

@@ -1,4 +1,4 @@
-import {SnotifyToast} from '../components/SnotifyToast/toast.model';
+import {SnotifyToast} from '../components/toast.model';
 
 /**
  * Notifications object

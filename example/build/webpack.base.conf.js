@@ -1,6 +1,7 @@
 const path = require('path');
 const utils = require('./utils');
 const config = require('../config');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -19,7 +20,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json',  '.html'],
+    extensions: ['.ts', '.js', '.json',  '.html', '.vue'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -34,8 +35,16 @@ module.exports = {
         loader: 'tslint-loader'
       },
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader'
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+          allowTsInNodeModules: true,
+        }
       },
       {
         test: /\.html$/,
@@ -67,5 +76,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 };

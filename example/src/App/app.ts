@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { SnotifyPosition, SnotifyToast } from 'vue-snotify';
+import { SnotifyPosition, SnotifyToast, SnotifyToastConfig } from 'vue-snotify';
 import { Component } from 'vue-property-decorator';
 
 import './app.scss';
@@ -27,7 +27,7 @@ export class App extends Vue {
   /*
  Change global configuration
   */
-  getConfig() {
+  getConfig(): SnotifyToastConfig {
     this.$snotify.setDefaults({
       global: {
         newOnTop: this.newTop,
@@ -45,7 +45,7 @@ export class App extends Vue {
       timeout: this.timeout,
       showProgressBar: this.progressBar,
       closeOnClick: this.closeClick,
-      pauseOnHover: this.pauseHover
+      pauseOnHover: this.pauseHover,
     };
   }
 
@@ -121,7 +121,7 @@ export class App extends Vue {
     Here we pass an buttons array, which contains of 2 element of type SnotifyButton
      */
     const {timeout, closeOnClick, ...config} = this.getConfig(); // Omit props what i don't need
-    this.$snotify.confirm(this.body, this.title, {
+    const toast = this.$snotify.confirm(this.body, this.title, {
       ...config,
       buttons: [
         {text: 'Yes', action: () => console.log('Clicked: Yes'), bold: false},
@@ -130,6 +130,7 @@ export class App extends Vue {
         {text: 'Close', action: (toast) => {console.log('Clicked: Close'); this.$snotify.remove(toast.id); }, bold: true, className: 'btn-cool'},
       ]
     });
+    this.mapCallbacks(toast);
   }
 
   onPrompt() {

@@ -1,6 +1,6 @@
 {
   "name": "vue-snotify",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "A Vue.js toast notifications",
   "scripts": {
     "prestart": "npm run link:src",
@@ -136,7 +136,7 @@
     "stylelint": "^9.2.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-scss": "^3.1.0",
-    "ts-loader": "^4.3.0",
+    "ts-loader": "^4.4.2",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
     "typescript": "^2.8.3",
@@ -157,6 +157,10 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "deepmerge": "^2.1.1"
+    "deepmerge": "^2.1.1",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-typescript2": "^0.15.1",
+    "rollup-plugin-vue": "^4.3.0",
+    "vue-loader": "^15.2.4"
   }
 }

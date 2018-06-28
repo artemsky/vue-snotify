@@ -69,7 +69,7 @@ export interface SnotifyToastConfig {
    */
   bodyMaxLength?: number;
   /**
-   * Activate custom icon.
+   * Activate custom icon. | false - disable
    * You should provide full tag, e.g.
    * ```html
    * <img src="assets/custom-icon.png"/>
@@ -80,7 +80,7 @@ export interface SnotifyToastConfig {
    * </svg>
    * ```
    * @type {string}
-   * @default Depends on toast type. Look more in icon.component.html
+   * @default undefined
    */
   icon?: string;
   /**

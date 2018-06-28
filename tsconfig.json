@@ -29,6 +29,23 @@
     "dist/**/*.ts"
   ],
   "include": [
-    "example/test/**/*.ts"
+    "example/test/**/*.ts",
+    "src/sfc.d.ts",
+    "src/options.d.ts",
+    "node_modules/vue-snotify/index.ts"
+  ],
+  "files": [
+    "src/sfc.d.ts",
+    "src/options.d.ts",
+    "node_modules/vue-snotify/SnotifyService.ts",
+    "node_modules/vue-snotify/components/toast.model.ts",
+    "node_modules/vue-snotify/decorators/set-toast-type.decorator.ts",
+    "node_modules/vue-snotify/decorators/transform-argument.decorator.ts",
+    "node_modules/vue-snotify/enums/SnotifyPosition.enum.ts",
+    "node_modules/vue-snotify/enums/SnotifyStyle.enum.ts",
+    "node_modules/vue-snotify/enums/index.ts",
+    "node_modules/vue-snotify/toastDefaults.ts",
+    "node_modules/vue-snotify/utils.ts",
+    "node_modules/vue-snotify/SnotifyService.ts"
   ]
 }

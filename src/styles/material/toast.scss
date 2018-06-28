@@ -67,6 +67,10 @@ $snotify-prompt-color: #e0f2f1;
     color: $snotify-simple-color;
   }
 
+  &__noIcon {
+    padding: 5px 15px 5px 15px;
+  }
+
   &__progressBar {
     position: relative;
     width: 100%;

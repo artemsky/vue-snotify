@@ -1,5 +1,10 @@
 ## Change Log
 
+### v3.2.0
+  - stop buttons event propagation [#37](https://github.com/artemsky/vue-snotify/issues/37)
+  - added ability to hide icon`icon: false` [#28](https://github.com/artemsky/vue-snotify/issues/28)
+  - back to SFC. Now with runtime-only build [#14](https://github.com/artemsky/vue-snotify/issues/14)
+
 ### v3.1.0
   - add variables namespace [#30](https://github.com/artemsky/vue-snotify/issues/30)
   - oneAtTime | preventDuplicates - add global config options [#28](https://github.com/artemsky/vue-snotify/issues/28)

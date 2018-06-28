@@ -1,4 +1,4 @@
-import {Snotify} from './components/Snotify';
+import Snotify from './components/Snotify.vue';
 
 import {SnotifyDefaults} from './interfaces';
 import {SnotifyService} from './SnotifyService';
@@ -13,14 +13,6 @@ const Plugin = {
     service.setDefaults(options);
     Vue.prototype.$snotify = service;
     Vue.component('vue-snotify', Snotify);
-    // const snotifyElement = document.createElement('div');
-    // snotifyElement.setAttribute('id', 'snotify');
-    // document.querySelector('body').appendChild(snotifyElement);
-    //
-    // new Vue({
-    //   el: '#snotify',
-    //   render: h => h(Snotify)
-    // });
 
     // auto install
     if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
@@ -29,13 +21,6 @@ const Plugin = {
 
   }
 };
-
-
-declare module 'vue/types/vue' {
-  interface Vue {
-    $snotify: SnotifyService | any;
-  }
-}
 
 // auto install
 if (typeof window !== 'undefined' && window.hasOwnProperty('Vue')) {
@@ -56,5 +41,5 @@ export {SnotifyPosition} from './enums/SnotifyPosition.enum';
 export {SnotifyStyle} from './enums/SnotifyStyle.enum';
 export {SnotifyType} from './types/snotify.type';
 export {SnotifyEvent} from './types/event.type';
-export {SnotifyToast} from './components/SnotifyToast/toast.model';
+export {SnotifyToast} from './components/toast.model';
 
