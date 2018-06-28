@@ -94,12 +94,13 @@ Vue.use(Snotify, {
 ### icon
 
 - type: `string`
-- default: `null`
+- default: `undefined`
+  > Disable icon - `false`;
   > Custom icon url.
   ```js
     const icon = `https://placehold.it/48x100`;
     vm.$snotify.simple('Example body', {
-      icon: icon
+      icon: icon // false - disable
     });
   ```
   

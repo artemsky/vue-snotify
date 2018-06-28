@@ -32,7 +32,7 @@ https://artemsky.github.io/vue-snotify/
 ###### yarn
 `yarn add vue-snotify`
 
-[see detailed instruction](https://github.com/artemsky/vue-snotify/tree/master/documentation/v1/install.md#importplugin)
+[see detailed instruction](https://artemsky.github.io/vue-snotify/documentation/installation.html)
 
 ## Documentation and Examples
 
