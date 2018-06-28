@@ -1,40 +1,40 @@
-$snotify-simple-bg: #fff;
-$snotify-simple-color: #000;
-$snotify-simple-progressBar: #c7c7c7;
-$snotify-simple-progressBarPercentage: #4c4c4c;
+$snotify-simple-bg: #fff !default;
+$snotify-simple-color: #000 !default;
+$snotify-simple-progressBar: #c7c7c7 !default;
+$snotify-simple-progressBarPercentage: #4c4c4c !default;
 
-$snotify-success-bg: #4caf50;
-$snotify-success-color: #c8e6c9;
-$snotify-success-progressBar: #388e3c;
-$snotify-success-progressBarPercentage: #81c784;
+$snotify-success-bg: #4caf50 !default;
+$snotify-success-color: #c8e6c9 !default;
+$snotify-success-progressBar: #388e3c !default;
+$snotify-success-progressBarPercentage: #81c784 !default;
 
-$snotify-info-bg: #1e88e5;
-$snotify-info-color: #e3f2fd;
-$snotify-info-progressBar: #1565c0;
-$snotify-info-progressBarPercentage: #64b5f6;
+$snotify-info-bg: #1e88e5 !default;
+$snotify-info-color: #e3f2fd !default;
+$snotify-info-progressBar: #1565c0 !default;
+$snotify-info-progressBarPercentage: #64b5f6 !default;
 
-$snotify-warning-bg: #ff9800;
-$snotify-warning-color: #fff3e0;
-$snotify-warning-progressBar: #ef6c00;
-$snotify-warning-progressBarPercentage: #ffcc80;
+$snotify-warning-bg: #ff9800 !default;
+$snotify-warning-color: #fff3e0 !default;
+$snotify-warning-progressBar: #ef6c00 !default;
+$snotify-warning-progressBarPercentage: #ffcc80 !default;
 
-$snotify-error-bg: #f44336;
-$snotify-error-color: #ffebee;
-$snotify-error-progressBar: #c62828;
-$snotify-error-progressBarPercentage: #ef9a9a;
+$snotify-error-bg: #f44336 !default;
+$snotify-error-color: #ffebee !default;
+$snotify-error-progressBar: #c62828 !default;
+$snotify-error-progressBarPercentage: #ef9a9a !default;
 
-$snotify-async-bg: $snotify-info-bg;
-$snotify-async-color: $snotify-info-color;
-$snotify-async-progressBar: $snotify-info-progressBar;
-$snotify-async-progressBarPercentage: $snotify-info-progressBarPercentage;
+$snotify-async-bg: $snotify-info-bg !default;
+$snotify-async-color: $snotify-info-color !default;
+$snotify-async-progressBar: $snotify-info-progressBar !default;
+$snotify-async-progressBarPercentage: $snotify-info-progressBarPercentage !default;
 
-$snotify-confirm-bg: #009688;
-$snotify-confirm-color: #e0f2f1;
-$snotify-confirm-progressBar: #4db6ac;
-$snotify-confirm-progressBarPercentage: #80cbc4;
+$snotify-confirm-bg: #009688 !default;
+$snotify-confirm-color: #e0f2f1 !default;
+$snotify-confirm-progressBar: #4db6ac !default;
+$snotify-confirm-progressBarPercentage: #80cbc4 !default;
 
-$snotify-prompt-bg: #009688;
-$snotify-prompt-color: #e0f2f1;
+$snotify-prompt-bg: #009688 !default;
+$snotify-prompt-color: #e0f2f1 !default;
 
 .snotifyToast {
   display: block;

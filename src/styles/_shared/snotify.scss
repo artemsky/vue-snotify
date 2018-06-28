@@ -1,9 +1,11 @@
-$snotify-backdrop-color: #000;
+$snotify-backdrop-color: #000 !default;
+$snotify-width: 300px !default;
+$snotify-offset: 10px !default;
 
 .snotify {
   display: block;
   position: fixed;
-  width: 300px;
+  width: $snotify-width;
   z-index: 9999;
   box-sizing: border-box;
   pointer-events: none;
@@ -16,25 +18,25 @@ $snotify-backdrop-color: #000;
 .snotify-leftTop,
 .snotify-leftCenter,
 .snotify-leftBottom {
-  left: 10px;
+  left: $snotify-offset;
 }
 
 .snotify-rightTop,
 .snotify-rightCenter,
 .snotify-rightBottom {
-  right: 10px;
+  right: $snotify-offset;
 }
 
 .snotify-centerTop,
 .snotify-centerCenter,
 .snotify-centerBottom {
-  left: calc(50% - 300px / 2);
+  left: calc(50% - #{$snotify-width} / 2);
 }
 
 .snotify-leftTop,
 .snotify-centerTop,
 .snotify-rightTop {
-  top: 10px;
+  top: $snotify-offset;
 }
 
 .snotify-leftCenter,
@@ -47,7 +49,7 @@ $snotify-backdrop-color: #000;
 .snotify-leftBottom,
 .snotify-rightBottom,
 .snotify-centerBottom {
-  bottom: 10px;
+  bottom: $snotify-offset;
 }
 
 .snotify-backdrop {
