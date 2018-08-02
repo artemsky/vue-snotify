@@ -136,7 +136,6 @@
     },
 
     created () {
-      console.log(this.toast)
       this.$snotify.emitter.$on('toastChanged', (toast) => {
         if (this.toast.id === toast.id) {
           this.initToast();
