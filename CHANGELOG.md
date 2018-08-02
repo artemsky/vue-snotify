@@ -1,5 +1,8 @@
 ## Change Log
 
+### v3.2.1
+  - remove `console.log` [#48](https://github.com/artemsky/vue-snotify/issues/48)
+  
 ### v3.2.0
   - stop buttons event propagation [#37](https://github.com/artemsky/vue-snotify/issues/37)
   - added ability to hide icon`icon: false` [#28](https://github.com/artemsky/vue-snotify/issues/28)
