@@ -133,19 +133,21 @@
           setTimeout(() => this.$snotify.remove(this.toast.id, true), this.toast.config.animation.time / 2);
         }, this.toast.config.animation.time / 2);
       },
-    },
-
-    created () {
-      this.$snotify.emitter.$on('toastChanged', (toast) => {
+      onToastChanged (toast) {
         if (this.toast.id === toast.id) {
           this.initToast();
         }
-      });
-      this.$snotify.emitter.$on('remove', (id) => {
+      },
+      onToastRemove (id) {
         if (this.toast.id === id) {
           this.onRemove();
         }
-      });
+      }
+    },
+
+    created () {
+      this.$snotify.emitter.$on('toastChanged', this.onToastChanged);
+      this.$snotify.emitter.$on('remove', this.onToastRemove);
     },
     mounted() {
       this.$nextTick(() => {
@@ -163,6 +165,8 @@
     destroyed () {
       cancelAnimationFrame(this.animationFrame);
       this.toast.eventEmitter.$emit('destroyed');
+      this.$snotify.emitter.$off('toastChanged', this.onToastChanged);
+      this.$snotify.emitter.$off('remove', this.onToastRemove);
     }
   });
 
