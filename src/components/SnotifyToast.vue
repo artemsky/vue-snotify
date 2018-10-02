@@ -15,7 +15,7 @@
     <div class="snotifyToast__progressBar" v-if="toast.config.showProgressBar && toast.config.timeout > 0">
       <span class="snotifyToast__progressBar__percentage" :style="{'width': (state.progress * 100) + '%'}"></span>
     </div>
-    <component :is="toast.config.component" v-if="toast.config.component"></component>
+    <component :is="toast.config.component" :custom-props="toast.config.customProps" v-if="toast.config.component"></component>
     <div class="snotifyToast__inner" v-else-if="!toast.config.html" :class="{'snotifyToast__noIcon': toast.config.icon === false}">
       <div class="snotifyToast__title" v-if="toast.title">{{toast.title | truncate(toast.config.titleMaxLength)}}</div>
       <div class="snotifyToast__body" v-if="toast.body">{{toast.body | truncate(toast.config.bodyMaxLength)}}</div>

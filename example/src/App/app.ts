@@ -169,10 +169,16 @@ export class App extends Vue {
           count: 0,
         };
       },
-      template: '<button @click.stop.prevent="count++">You\'ve clicked {{count}} times</button>',
+      props: {
+        customProps: {
+          required: false,
+        },
+      },
+      template: '<button @click.stop.prevent="count++">You\'ve clicked {{count}} times {{customProps}}</button>',
     });
     this.$snotify.component(component, {
       timeout: 9999999999,
+      customProps: 'My custom prop',
     });
   }
 
