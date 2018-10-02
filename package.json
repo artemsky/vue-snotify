@@ -1,6 +1,6 @@
 {
   "name": "vue-snotify-with-vue-component",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Fork of vue-snotify original package",
   "scripts": {
     "prestart": "npm run link:src",
