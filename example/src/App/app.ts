@@ -162,6 +162,19 @@ export class App extends Vue {
     this.$snotify.html(html, this.getConfig());
   }
 
+  onComponent() {
+    const component = Vue.component('button-counter', {
+      data() {
+        return {
+          count: 0,
+        };
+      },
+      template: '<button @click.stop.prevent="count++">You\'ve clicked {{count}} times</button>',
+    });
+    this.$snotify.component(component, {
+      timeout: 9999999999,
+    });
+  }
 
   onClear() {
     this.$snotify.clear();
