@@ -1,7 +1,7 @@
 {
-  "name": "vue-snotify",
-  "version": "3.2.1",
-  "description": "A Vue.js toast notifications",
+  "name": "vue-snotify-with-vue-component",
+  "version": "3.2.4",
+  "description": "Fork of vue-snotify original package",
   "scripts": {
     "prestart": "npm run link:src",
     "start": "cross-env NODE_ENV=development npm run link:src && npm run example:dev",
@@ -24,44 +24,16 @@
     "example:unit": "cross-env karma start example/test/unit/karma.conf.js --single-run",
     "example:lint": "tslint -c tslint.json 'example/src'"
   },
-  "keywords": [
-    "vue",
-    "vuejs",
-    "vuejs 2",
-    "vue 2",
-    "2",
-    "Library",
-    "Notifications",
-    "Notification",
-    "Toast",
-    "toasts",
-    "toaster",
-    "promt",
-    "async",
-    "confirmation",
-    "notify",
-    "notie",
-    "notification-center",
-    "snotify",
-    "vue-snotify",
-    "vue2-snotify",
-    "vuejs notifications",
-    "vue notifications",
-    "vue toater"
-  ],
   "author": {
-    "name": "artemsky",
-    "email": "mr.artemsky@gmail.com"
+    "name": "chuckn0risk",
+    "email": "lchenais@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/artemsky/vue-snotify"
+    "url": "https://github.com/ChucKN0risK/vue-snotify"
   },
-  "homepage": "https://artemsky.github.io/vue-snotify",
+  "homepage": "https://github.com/ChucKN0risK/vue-snotify",
   "license": "MIT",
-  "bugs": {
-    "url": "https://artemsky.github.io/vue-snotify/issues"
-  },
   "engines": {
     "node": ">= 8.0.0",
     "npm": ">= 5.0.0"

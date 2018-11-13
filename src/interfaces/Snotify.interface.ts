@@ -23,4 +23,8 @@ export interface Snotify {
    * Html content
    */
   html?: string;
+  /**
+   * Component content
+   */
+  component?: any;
 }

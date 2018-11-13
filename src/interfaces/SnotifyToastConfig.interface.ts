@@ -104,6 +104,18 @@ export interface SnotifyToastConfig {
    */
   html?: string;
   /**
+   * Component object witch overrides toast content
+   * @type {any}
+   * @default null
+   */
+  component?: any;
+  /**
+   * Component object witch overrides toast content
+   * @type {any}
+   * @default null
+   */
+  customProps?: any;
+  /**
    * Toasts position on screen
    * @type {SnotifyPosition}
    * @default SnotifyPosition.rightBottom

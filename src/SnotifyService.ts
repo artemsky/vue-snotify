@@ -475,4 +475,21 @@ export class SnotifyService {
       }
     });
   }
+
+  /**
+   * Creates empty toast with component inside
+   * @param {any} component
+   * @param {SnotifyToastConfig} config
+   * @returns {number}
+   */
+   component(component: any, config?: SnotifyToastConfig): SnotifyToast {
+    return this.create({
+      title: null,
+      body: null,
+      config: {
+        ...config,
+        ...{component}
+      }
+    });
+  }
 }
