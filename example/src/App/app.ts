@@ -1,11 +1,11 @@
 import Vue from 'vue';
-import { SnotifyPosition, SnotifyToast, SnotifyToastConfig } from 'vue-snotify';
-import { Component } from 'vue-property-decorator';
+import {SnotifyPosition, SnotifyToast, SnotifyToastConfig} from 'vue-snotify';
+import {Component} from 'vue-property-decorator';
 
 import './app.scss';
 
 @Component({
-    template: require('./app.html')
+  template: require('./app.html')
 })
 export class App extends Vue {
   style = 'material';
@@ -24,6 +24,7 @@ export class App extends Vue {
   bodyMaxLength = 80;
   oneAtTime = false;
   preventDuplicates = false;
+
   /*
  Change global configuration
   */
@@ -50,30 +51,55 @@ export class App extends Vue {
   }
 
   mapCallbacks(toast: SnotifyToast) {
-    toast.on('beforeShow', (toast) => { console.log(`${toast.title} - beforeShow`); });
-    toast.on('mounted', (toast) => { console.log(`${toast.title} - mounted`); });
-    toast.on('shown', (toast) => { console.log(`${toast.title} - shown`); });
-    toast.on('beforeHide', (toast) => { console.log(`${toast.title} - beforeHide`); });
-    toast.on('click', (toast) => { console.log(`${toast.title} - click`); });
-    toast.on('destroyed', (toast) => { console.log(`${toast.title} - destroyed`); });
-    toast.on('hidden', (toast) => { console.log(`${toast.title} - hidden`); });
-    toast.on('input', (toast) => { console.log(`${toast.title} - input`); });
-    toast.on('mouseenter', (toast) => { console.log(`${toast.title} - mouseenter`); });
-    toast.on('mouseleave', (toast) => { console.log(`${toast.title} - mouseleave`); });
+    toast.on('beforeShow', (toast) => {
+      console.log(`${toast.title} - beforeShow`);
+    });
+    toast.on('mounted', (toast) => {
+      console.log(`${toast.title} - mounted`);
+    });
+    toast.on('shown', (toast) => {
+      console.log(`${toast.title} - shown`);
+    });
+    toast.on('beforeHide', (toast) => {
+      console.log(`${toast.title} - beforeHide`);
+    });
+    toast.on('click', (toast) => {
+      console.log(`${toast.title} - click`);
+    });
+    toast.on('destroyed', (toast) => {
+      console.log(`${toast.title} - destroyed`);
+    });
+    toast.on('hidden', (toast) => {
+      console.log(`${toast.title} - hidden`);
+    });
+    toast.on('input', (toast) => {
+      console.log(`${toast.title} - input`);
+    });
+    toast.on('mouseenter', (toast) => {
+      console.log(`${toast.title} - mouseenter`);
+    });
+    toast.on('mouseleave', (toast) => {
+      console.log(`${toast.title} - mouseleave`);
+    });
   }
+
   onSuccess() {
     const toast = this.$snotify.success(this.body, this.title, this.getConfig());
     this.mapCallbacks(toast);
   }
+
   onInfo() {
     this.$snotify.info(this.body, this.title, this.getConfig());
   }
+
   onError() {
     this.$snotify.error(this.body, this.title, this.getConfig());
   }
+
   onWarning() {
     this.$snotify.warning(this.body, this.title, this.getConfig());
   }
+
   onSimple() {
 
     // const icon = `assets/custom-svg.svg`;
@@ -125,9 +151,19 @@ export class App extends Vue {
       ...config,
       buttons: [
         {text: 'Yes', action: () => console.log('Clicked: Yes'), bold: false},
-        {text: 'No', action: () => console.log('Clicked: No') },
-        {text: 'Later', action: (toast) => {console.log('Clicked: Later'); this.$snotify.remove(toast.id); } },
-        {text: 'Close', action: (toast) => {console.log('Clicked: Close'); this.$snotify.remove(toast.id); }, bold: true, className: 'btn-cool'},
+        {text: 'No', action: () => console.log('Clicked: No')},
+        {
+          text: 'Later', action: (toast) => {
+            console.log('Clicked: Later');
+            this.$snotify.remove(toast.id);
+          }
+        },
+        {
+          text: 'Close', action: (toast) => {
+            console.log('Clicked: Close');
+            this.$snotify.remove(toast.id);
+          }, bold: true, className: 'btn-cool'
+        },
       ]
     });
     this.mapCallbacks(toast);
@@ -143,8 +179,13 @@ export class App extends Vue {
     const toast = this.$snotify.prompt(this.body, this.title, {
       ...config,
       buttons: [
-        {text: 'Yes', action: (toast) => console.log('Said Yes: ' + toast.value) },
-        {text: 'No', action: (toast) => { console.log('Said No: ' + toast.value); this.$snotify.remove(toast.id); }},
+        {text: 'Yes', action: (toast) => console.log('Said Yes: ' + toast.value)},
+        {
+          text: 'No', action: (toast) => {
+            console.log('Said No: ' + toast.value);
+            this.$snotify.remove(toast.id);
+          }
+        },
       ],
       placeholder: 'Enter "ng-snotify" to validate this input' // Max-length = 40
     }).on('input', (toast) => {
@@ -170,15 +211,17 @@ export class App extends Vue {
         };
       },
       props: {
-        customProps: {
-          required: false,
+        withProps: {
+          required: false
         },
       },
-      template: '<button @click.stop.prevent="count++">You\'ve clicked {{count}} times {{customProps}}</button>',
+      template: '<button @click.stop.prevent="count++">You\'ve clicked {{count}} times - use props: {{withProps}}</button>',
     });
     this.$snotify.component(component, {
       timeout: 9999999999,
-      customProps: 'My custom prop',
+      customProps: {
+        withProps: true,
+      },
     });
   }
 
