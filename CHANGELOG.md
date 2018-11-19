@@ -1,5 +1,8 @@
 ## Change Log
 
+### v3.2.2
+  - fix build process #66
+
 ### v3.2.1
   - remove `console.log` [#48](https://github.com/artemsky/vue-snotify/issues/48)
   
