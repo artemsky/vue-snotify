@@ -90,7 +90,7 @@
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.2",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0",
     "gulp-inject-string": "^1.1.1",
     "gulp-postcss": "^7.0.1",
     "gulp-rename": "^1.2.3",
