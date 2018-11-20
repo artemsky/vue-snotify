@@ -90,6 +90,9 @@
        */
       stateChanged(event) {
         if (!this.withBackdrop.length) {
+          if (this.backdrop >= 0) {
+            this.backdrop = -1;
+          }
           return;
         }
         switch (event) {
