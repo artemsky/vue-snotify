@@ -1,0 +1,51 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./demo-example/out-tsc",
+    "baseUrl": "demo-example",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "es2015",
+    "target": "es5",
+    "noStrictGenericChecks": true,
+    "types": [
+      "jasmine",
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2015",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "src/vue.d.ts",
+    "dist/**/*.ts"
+  ],
+  "include": [
+    "example/test/**/*.ts",
+    "src/sfc.d.ts",
+    "src/options.d.ts",
+    "node_modules/vue-snotify/index.ts"
+  ],
+  "files": [
+    "src/sfc.d.ts",
+    "src/options.d.ts",
+    "node_modules/vue-snotify/SnotifyService.ts",
+    "node_modules/vue-snotify/components/toast.model.ts",
+    "node_modules/vue-snotify/decorators/set-toast-type.decorator.ts",
+    "node_modules/vue-snotify/decorators/transform-argument.decorator.ts",
+    "node_modules/vue-snotify/enums/SnotifyPosition.enum.ts",
+    "node_modules/vue-snotify/enums/SnotifyStyle.enum.ts",
+    "node_modules/vue-snotify/enums/index.ts",
+    "node_modules/vue-snotify/toastDefaults.ts",
+    "node_modules/vue-snotify/utils.ts",
+    "node_modules/vue-snotify/SnotifyService.ts"
+  ]
+}
