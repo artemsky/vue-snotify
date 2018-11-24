@@ -37,15 +37,15 @@
   "files": [
     "src/sfc.d.ts",
     "src/options.d.ts",
-    "node_modules/vue-snotify/SnotifyService.d.ts",
-    "node_modules/vue-snotify/components/toast.model.d.ts",
-    "node_modules/vue-snotify/decorators/set-toast-type.decorator.d.ts",
-    "node_modules/vue-snotify/decorators/transform-argument.decorator.d.ts",
-    "node_modules/vue-snotify/enums/SnotifyPosition.enum.d.ts",
-    "node_modules/vue-snotify/enums/SnotifyStyle.enum.d.ts",
-    "node_modules/vue-snotify/enums/index.d.ts",
-    "node_modules/vue-snotify/toastDefaults.d.ts",
-    "node_modules/vue-snotify/utils.d.ts",
-    "node_modules/vue-snotify/SnotifyService.d.ts"
+    "node_modules/vue-snotify/SnotifyService.ts",
+    "node_modules/vue-snotify/components/toast.model.ts",
+    "node_modules/vue-snotify/decorators/set-toast-type.decorator.ts",
+    "node_modules/vue-snotify/decorators/transform-argument.decorator.ts",
+    "node_modules/vue-snotify/enums/SnotifyPosition.enum.ts",
+    "node_modules/vue-snotify/enums/SnotifyStyle.enum.ts",
+    "node_modules/vue-snotify/enums/index.ts",
+    "node_modules/vue-snotify/toastDefaults.ts",
+    "node_modules/vue-snotify/utils.ts",
+    "node_modules/vue-snotify/SnotifyService.ts"
   ]
 }

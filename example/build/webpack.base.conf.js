@@ -2,6 +2,8 @@ const path = require('path');
 const utils = require('./utils');
 const config = require('../config');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const tsConfigFile =
+  process.env.NODE_ENV === 'development' ? 'tsconfig.dev.json' : 'tsconfig.json'
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -44,6 +46,7 @@ module.exports = {
         options: {
           appendTsSuffixTo: [/\.vue$/],
           allowTsInNodeModules: true,
+          configFile: tsConfigFile,
         }
       },
       {
