@@ -2,6 +2,7 @@
 
 ### v3.2.2
   - fix build process #66
+  - add fix backdrop #57
 
 ### v3.2.1
   - remove `console.log` [#48](https://github.com/artemsky/vue-snotify/issues/48)

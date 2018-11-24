@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="snotify-backdrop" v-if="backdrop >= 0" :style="{opacity: backdrop}"></div>
-    <div v-for="(position, index) in notifications" class="snotify" :class="'snotify-' + index">
+    <div v-for="(position, index) in notifications" class="snotify" :class="'snotify-' + index" :key="index">
       <toast v-for="toast in notifications[index].slice(blockSize_a, blockSize_b)" :toastData="toast" :key="toast.id" @stateChanged="stateChanged" />
     </div>
   </div>
 
 </template>
-
+&
 <script lang="ts">
   import Vue from 'vue';
   import {SnotifyToast} from './toast.model';
@@ -90,6 +90,9 @@
        */
       stateChanged(event) {
         if (!this.withBackdrop.length) {
+          if (this.backdrop >= 0) {
+            this.backdrop = -1;
+          }
           return;
         }
         switch (event) {
