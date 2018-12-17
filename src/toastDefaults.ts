@@ -35,6 +35,7 @@ export const ToastDefaults = {
         {text: 'Cancel', action: null, bold: false},
       ],
       placeholder: 'Enter answer here...',
+      initialValue: '',
       type: SnotifyStyle.prompt,
     },
     [SnotifyStyle.confirm]: {

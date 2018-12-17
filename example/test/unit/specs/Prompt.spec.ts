@@ -80,6 +80,17 @@ describe('Prompt Toast', () => {
       });
     });
   });
+  
+  it('should set initial value', (done) => {
+    const toast = vm.$snotify.prompt('test', 'test2', {
+      initialValue: 'Hello'
+    });
+    vm.$nextTick(() => {
+      const node: HTMLInputElement = vm.$el.querySelector('.snotify.snotify-rightBottom .snotifyToast.snotify-prompt input');
+      expect(node.value).toEqual('Hello');
+      done();
+    });
+  });
 });
 
 

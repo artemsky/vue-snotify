@@ -79,6 +79,12 @@ Vue.use(Snotify, {
 - default: `"Enter answer here..."`
   > Placeholder for Prompt toast
   
+### initialValue
+
+- type: `string`
+- default: `""`
+  > Inital value for Prompt toast
+  
 ### titleMaxLength
 
 - type: `number`
