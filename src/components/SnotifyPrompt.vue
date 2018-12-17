@@ -1,6 +1,7 @@
 <template>
 <span class="snotifyToast__input" :class="{'snotifyToast__input--filled': isPromptFocused}">
     <input @input="valueChanged"
+           :value="toast.value"
            class="snotifyToast__input__field" type="text"
            :id="toast.id"
            @focus="isPromptFocused = true"

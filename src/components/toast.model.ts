@@ -37,7 +37,7 @@ export class SnotifyToast {
                public body: string,
                public config: SnotifyToastConfig) {
     if (this.config.type === SnotifyStyle.prompt) {
-      this.value = '';
+      this.value = this.config.initialValue;
     }
     this.on('hidden', () => {
       this._eventsHolder.forEach((o) => {

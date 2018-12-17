@@ -146,10 +146,11 @@ export class App extends Vue {
         {text: 'Yes', action: (toast) => console.log('Said Yes: ' + toast.value) },
         {text: 'No', action: (toast) => { console.log('Said No: ' + toast.value); this.$snotify.remove(toast.id); }},
       ],
-      placeholder: 'Enter "ng-snotify" to validate this input' // Max-length = 40
+      placeholder: 'Enter "vue-snotify" to validate this input', // Max-length = 40
+      initialValue: 'ng-snotify'
     }).on('input', (toast) => {
       console.log(toast.value);
-      toast.valid = !!toast.value.match('ng-snotify');
+      toast.valid = !!toast.value.match('vue-snotify');
     });
 
 

@@ -57,6 +57,12 @@ export interface SnotifyToastConfig {
    */
   placeholder?: string;
   /**
+   * Initial input value for Prompt toast
+   * @type {string}
+   * @default ''
+   */
+  initialValue?: string;
+  /**
    * Toast title maximum length
    * @type {number}
    * @default 16
