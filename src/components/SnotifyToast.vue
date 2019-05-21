@@ -59,9 +59,11 @@
       /**
        * Initialize base toast config
        */
-      initToast () {
-        if (this.toast.config.timeout > 0) {
-          this.startTimeout(0);
+      initToast (toast) {
+        if (toast === undefined || this.toast.id === toast.id) {
+          if (this.toast.config.timeout > 0) {
+            this.startTimeout(0);
+          }
         }
       },
       onClick () {
@@ -121,31 +123,25 @@
       /**
        * Trigger beforeDestroy lifecycle. Removes toast
        */
-      onRemove () {
-        this.state.isDestroying = true;
-        this.$emit('stateChanged', 'beforeHide');
-        this.toast.eventEmitter.$emit('beforeHide');
-        this.state.animation = this.toast.config.animation.exit;
-        setTimeout(() => {
-          this.$emit('stateChanged', 'hidden');
-          this.state.animation = 'snotifyToast--out';
-          this.toast.eventEmitter.$emit('hidden');
-          setTimeout(() => this.$snotify.remove(this.toast.id, true), this.toast.config.animation.time / 2);
-        }, this.toast.config.animation.time / 2);
+      onRemove (id) {
+        if (this.toast.id === id) {
+          this.state.isDestroying = true;
+          this.$emit('stateChanged', 'beforeHide');
+          this.toast.eventEmitter.$emit('beforeHide');
+          this.state.animation = this.toast.config.animation.exit;
+          setTimeout(() => {
+            this.$emit('stateChanged', 'hidden');
+            this.state.animation = 'snotifyToast--out';
+            this.toast.eventEmitter.$emit('hidden');
+            setTimeout(() => this.$snotify.remove(this.toast.id, true), this.toast.config.animation.time / 2);
+          }, this.toast.config.animation.time / 2);
+        }
       },
     },
 
     created () {
-      this.$snotify.emitter.$on('toastChanged', (toast) => {
-        if (this.toast.id === toast.id) {
-          this.initToast();
-        }
-      });
-      this.$snotify.emitter.$on('remove', (id) => {
-        if (this.toast.id === id) {
-          this.onRemove();
-        }
-      });
+      this.$snotify.emitter.$on('toastChanged', this.initToast);
+      this.$snotify.emitter.$on('remove', this.onRemove);
     },
     mounted() {
       this.$nextTick(() => {
@@ -161,6 +157,8 @@
       });
     },
     destroyed () {
+      this.$snotify.emitter.$off('toastChanged', this.initToast);
+      this.$snotify.emitter.$off('remove', this.onRemove);
       cancelAnimationFrame(this.animationFrame);
       this.toast.eventEmitter.$emit('destroyed');
     }
