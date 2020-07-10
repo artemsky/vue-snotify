@@ -6,6 +6,7 @@ $snotify-offset: 10px !default;
   display: block;
   position: fixed;
   width: $snotify-width;
+  max-width: calc(100% - #{$snotify-offset} * 2);
   z-index: 9999;
   box-sizing: border-box;
   pointer-events: none;
